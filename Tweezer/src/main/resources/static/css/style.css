@@ -1,0 +1,76 @@
+body {
+	background-color: rgb(229,236,240);
+}
+.home {
+	margin-bottom: 7px;
+}
+.fa-twitter {
+	font-size: 20px;
+	color: rgb(0, 164, 237);
+}
+.searchbar {
+	border-radius: 25px;
+}
+.tweez-btn {
+	border-radius: 25px;
+	background-color: rgb(0, 164, 237);
+}
+#tweezer-logo {
+	height: 30px;
+}
+.profile_pic .me {
+    text-align: left;
+    position: relative;
+   	top: 100px;
+    width: 18%;
+}
+.whitebar {
+	display: flex;
+	justify-content: space-between;
+	margin: 0 auto;
+}
+.links-bar {
+	width: 20%;
+	display: flex;
+	justify-content: space-around;
+	margin: 0 auto;
+	font-size: 15px;
+}
+.followers {
+	display: inline-block;
+}
+.user-profile {
+	margin: 0 0 4px 0;
+}
+.profile-info {
+	margin-bottom: 1px;
+	padding: 0;
+}
+.fa-calendar-alt {
+	color: grey;
+}
+.tweet-feed {
+	padding: 0px;
+}
+.tweet-title {
+	margin-bottom: 1px;
+	background-color: white;
+}
+.grey-text {
+	color: grey;
+}
+.tweet-feed {
+	margin: 0;
+}
+.tweet {
+	background-color: white;
+}
+.small-pic {
+	width: 10%;
+	height: 10%;
+	margin-left: 10px;
+}
+.misc-feed {
+	margin: 0 0 0 4px;
+	background-color: white;
+}
