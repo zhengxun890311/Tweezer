@@ -92,7 +92,7 @@
     			</div>
     		</div>
     		<div class="col-2 misc-feed">
-    		
+    			<h2>Hello World</h2>
     		</div>
     	</div>
     </div>   	
