@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Tweezer
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: 政勋
+Implementation-Vendor-Id: com.skcc.tweezer
+Build-Jdk: 1.8.0_201
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/Tweezer
+Created-By: Maven Integration for Eclipse
+
