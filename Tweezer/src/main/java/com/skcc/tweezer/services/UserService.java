@@ -56,7 +56,7 @@ public class UserService {
 		uR.updateUser(id, firstName, lastName, birthday);
 	}
 	
-	public void followUser(User user, User following) {
-		uR.followUser(user, following);
+	public void followUser(Long userId, Long followingId) {
+		uR.followUser(userId, followingId);
 	}
 }
