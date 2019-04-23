@@ -74,7 +74,9 @@ public class UsersCtrl {
     	if (userId==null) {
     		return "loginreg.jsp";
     	}else {
-    		model.addAttribute("user", uS.findUserById(userId));
+    		User u = uS.findUserById(userId);
+    		model.addAttribute("user", u);
+    		model.addAttribute("following", u.getFollowers());
     		return "profile.jsp";    		
     	}
     }
@@ -114,8 +116,7 @@ public class UsersCtrl {
     @PostMapping("/followUser")
     public String follow(@ModelAttribute("user") User following, HttpSession session) {
     	Long userId = (Long) session.getAttribute("userId");
-    	User user = uS.findUserById(userId);
-    	uS.followUser(user, following);
+    	uS.followUser(userId, following.getId());
     	return "redirect:/users/" + following.getId();
     }
 
