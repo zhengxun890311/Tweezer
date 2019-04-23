@@ -22,6 +22,11 @@ public interface UserRepo extends CrudRepository<User, Long>{
 	@Query("update User u set u.firstName=?2, u.lastName=?3, u.birthday=?4 where u.id=?1")
 	void updateUser(Long id, String firstName, String lastName, Date birthday);
 	
+<<<<<<< Upstream, based on master
 	@Query(value="insert into friendships(user_id, follower_id) values (?1, ?2)", nativeQuery=true)
 	void followUser(Long userId, Long followingId);
+=======
+	@Query("")
+	void followUser(User user, User following);
+>>>>>>> 4053f79 follow user feature
 }
