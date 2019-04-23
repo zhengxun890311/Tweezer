@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <%@ page isErrorPage="true" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,9 +83,9 @@
     <div class="container">
     	<div class="row justify-content-space-between">
     		<div class="col-3 user-profile">
-    			<h3 class="profile-info"><a href="/home">{user.firstName} {user.lastName}</a></h3>
-    			<p class="profile-info"><span class="grey-text"><a href="/users/${user.id}">@{user.username}</a></span></p>
-    			<p class="profile-info"><i class="far fa-calendar-alt"></i><span class="grey-text">Joined {user.dateCreated}</span></p>
+    			<h3 class="profile-info"><a href="/home">${user.firstName} ${user.lastName}</a></h3>
+    			<p class="profile-info"><span class="grey-text"><a href="/users/${user.id}">@${user.username}</a></span></p>
+    			<p class="profile-info"><i class="far fa-calendar-alt"></i><span class="grey-text"> Joined ${user.createdAt}</span></p>
     		</div>
     		<div class="col-9 tweet-feed">
     			<div class="row tweet-title">
@@ -89,40 +94,20 @@
     			</div>
    <!-- This is where the for-loop will go for tweets  -->	
    	 		<!-- PLACEHOLDER TEXT BELOW -->		
-    			<div class="row tweet">
-    				<img src="/images/me.jpg" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
-    				<div class="col-8">
-	    				<p class="tweet-user-info"><a href="/users/${user.id}">Christian Bueno @christianbueno</a> * Apr 23</p>
-	    				<p class="tweet-text">This is my third tweez!!!</p>
-	    				<div class="row">
-	    					<i class="col-2 far fa-comment"></i>
-	    					<span class="heart"><i class="col-2 far fa-heart"></i></span>
-    					</div>
-    				</div>
-    			</div>
-    	<!-- End of the for loops for tweets -->
+    		<c:forEach items="${user.tweets}" var="tweet">
    	    		<div class="row tweet">
-    				<img src="/images/me2.jpg" alt="{user.photo} class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
+    				<img src="/images/me.jpg" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
     				<div class="col-8">
-	    				<p class="tweet-user-info"><a href="/users/${user.id}">{user.firstName} {user.lastName} @{user.username}</a> * {tweez.dateCreated}</p>
-	    				<p class="tweet-text">{tweez.text} This is my second tweez!!!</p>
-	    				<div class="row">
+	    				<p class="tweet-user-info"><a href="/users/${user.id}">${user.firstName} ${user.lastName} ${user.username}</a> * Posted: {tweet.createdAt}</p>
+	    				<p class="tweet-text">${tweet.text}</p>
+	    				<div class="row tweet-icons">
 	    					<i class="col-2 far fa-comment"></i>
 	    					<span class="heart"><i class="col-2 far fa-heart"></i></span>
     					</div>
     				</div>
     			</div>
-			    <div class="row tweet">
-    				<img src="/images/me.jpg" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
-    				<div class="col-8">
-	    				<p class="tweet-user-info"><a href="/users/${user.id}">Christian Bueno @christianbueno</a> * Apr 21</p>
-	    				<p class="tweet-text">This is my first tweez!!!</p>
-	    				<div class="row">
-	    					<i class="col-2 far fa-comment"></i>
-	    					<span class="heart"><i class="col-2 far fa-heart"></i></span>
-    					</div>
-    				</div>
-    			</div>
+   			</c:forEach>
+    	<!-- End of the for loops for tweets -->
     		</div>
     	</div>
     </div>
