@@ -3,7 +3,7 @@
       <%@ page isErrorPage="true" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
@@ -86,7 +86,15 @@
     		<div class="col-3 user-profile">
     			<h3 class="profile-info"><a href="/home">${user.firstName} ${user.lastName}</a></h3>
     			<p class="profile-info"><span class="grey-text"><a href="/users/${user.id}">@${user.username}</a></span></p>
-    			<p class="profile-info"><i class="far fa-calendar-alt"></i><span class="grey-text"> Joined ${user.createdAt}</span></p>
+    			
+    			<fmt:formatDate value="${user.createdAt}" pattern="MMMM dd, yyyy" var="formattedDate"/>
+    			<p class="profile-info"><i class="far fa-calendar-alt"></i><span class="grey-text"> Joined ${formattedDate}</span></p>
+    			
+    			<form:form method="POST" action="/followUser" modelAttribute="user">
+    				<input type="hidden" name="id" value="${user.id}">
+    				<input type="submit" value="follow" class="btn btn-outline-info">
+    			</form:form>
+    			
     		</div>
     		<div class="col-9 tweet-feed">
     			<div class="row tweet-title">

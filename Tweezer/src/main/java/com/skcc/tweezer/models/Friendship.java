@@ -38,6 +38,11 @@ public class Friendship {
     
     public Friendship() {}
 
+	public Friendship(User follower, User user) {
+		this.follower = follower;
+		this.user = user;
+	}
+
 	public Long getId() {
 		return id;
 	}
