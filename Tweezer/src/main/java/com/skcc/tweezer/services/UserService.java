@@ -56,12 +56,8 @@ public class UserService {
 		uR.updateUser(id, firstName, lastName, birthday);
 	}
 	
-<<<<<<< Upstream, based on master
 	public void followUser(Long userId, Long followingId) {
 		uR.followUser(userId, followingId);
-=======
-	public void followUser(User user, User following) {
-		uR.followUser(user, following);
->>>>>>> 4053f79 follow user feature
 	}
+
 }

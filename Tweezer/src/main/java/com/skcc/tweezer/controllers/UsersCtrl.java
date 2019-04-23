@@ -75,15 +75,10 @@ public class UsersCtrl {
     	if (userId==null) {
     		return "loginreg.jsp";
     	}else {
-<<<<<<< Upstream, based on master
     		User u = uS.findUserById(userId);
     		model.addAttribute("user", u);
     		model.addAttribute("following", u.getFollowers());
-    		return "home.jsp";    		
-=======
-    		model.addAttribute("user", uS.findUserById(userId));
-    		return "profile.jsp";    		
->>>>>>> 4053f79 follow user feature
+    		return "home.jsp";    		   		
     	}
     }
     
@@ -126,13 +121,6 @@ public class UsersCtrl {
     	return "redirect:/users/" + following.getId();
     }
     
-    @PostMapping("/followUser")
-    public String follow(@ModelAttribute("user") User following, HttpSession session) {
-    	Long userId = (Long) session.getAttribute("userId");
-    	User user = uS.findUserById(userId);
-    	uS.followUser(user, following);
-    	return "redirect:/users/" + following.getId();
-    }
 
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
