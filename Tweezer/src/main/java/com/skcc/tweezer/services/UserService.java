@@ -59,4 +59,5 @@ public class UserService {
 	public void followUser(Long userId, Long followingId) {
 		uR.followUser(userId, followingId);
 	}
+
 }

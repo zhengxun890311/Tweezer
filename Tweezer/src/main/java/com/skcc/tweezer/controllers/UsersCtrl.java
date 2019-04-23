@@ -78,18 +78,18 @@ public class UsersCtrl {
     		User u = uS.findUserById(userId);
     		model.addAttribute("user", u);
     		model.addAttribute("following", u.getFollowers());
-    		return "home.jsp";    		
+    		return "home.jsp";    		   		
     	}
     }
     
-    @GetMapping("/editUser")
+    @GetMapping("/editprofile")
     public String editUser(@ModelAttribute("user") User user, Model model, HttpSession session) {
     	Long userId = (Long) session.getAttribute("userId");
     	model.addAttribute("user", uS.findUserById(userId));
-    	return "editUser.jsp";
+    	return "editprofile.jsp";
     }
     
-    @PostMapping("/editUser")
+    @PostMapping("/editprofile")
     public String updateUser(@Valid @ModelAttribute("user") User user, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
     	List<String> messages = new ArrayList<String>();
     	if (result.hasErrors()) {
@@ -101,7 +101,7 @@ public class UsersCtrl {
 				}
 			}
 			redirectAttributes.addFlashAttribute("messages", messages);
-			return "redirect:/editUser";
+			return "redirect:/editprofile";
     	} else {
     		uS.updateUser(user.getId(), user.getFirstName(), user.getLastName(), user.getBirthday());
     		return "redirect:/home";
@@ -120,6 +120,7 @@ public class UsersCtrl {
     	uS.followUser(userId, following.getId());
     	return "redirect:/users/" + following.getId();
     }
+    
 
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
