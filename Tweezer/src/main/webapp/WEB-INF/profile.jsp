@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="css/style.css">
+
 </head>
 <body>
 	<div class="container" style="background-color: white; min-width: 100%;">
@@ -57,13 +58,13 @@
 	        </div>
     	</div>
     </div>
-    <div class="row shadow-sm p-3 mb-5 bg-white rounded whitebar" style=" height: 60px; min-width: 100%;">
+    <div class="row shadow-sm p-2 mb-5 bg-white rounded whitebar" style=" height: 60px; min-width: 100%;">
     	<div class="container links-bar">
-    		<div class="row">
-				<p class="col followers">Tweezes</p>
-				<p class="col followers">Following</p>
-				<p class="col followers">Lists</p>
-				<p class="col followers">Moments</p>    		
+    		<div class="row" style="width: 300px;">
+				<p class="followers">Tweezes</p>
+				<p class="followers">Following</p>
+				<p class="followers">Lists</p>
+				<p class="followers">Moments</p>    		
     		</div>
     		<div class="row">
 <!--     		<p class="col">19</p>
@@ -81,20 +82,52 @@
     			<p class="profile-info"><span class="grey-text">@christianbueno</span></p>
     			<p class="profile-info"><i class="far fa-calendar-alt"></i><span class="grey-text"> Joined April 2019</span></p>
     		</div>
-    		<div class="col-6 tweet-feed">
+    		<div class="col-9 tweet-feed">
     			<div class="row tweet-title">
-    				<h4 class="col-3">Tweezes</h4>
-    				<h4 class="col-5"><a href="#">Tweezes & replies</a></h4>    			
+    				<p class="col-2">Tweezes</p>
+    				<p class="col-9"><a href="#">Tweezes & replies</a></p>    			
     			</div>
+   <!-- This is where the for-loop will go for tweets  -->	
+   	 		<!-- PLACEHOLDER TEXT BELOW -->		
     			<div class="row tweet">
-    				<img src="/images/me.jpg" class="col-2 small-pic rounded-circle p-3 img-fluid  bg-white rounded">
-    				<p>Christian</p>
+    				<img src="/images/me.jpg" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
+    				<div class="col-8">
+	    				<p class="tweet-user-info">Christian @christianbueno * Apr 23</p>
+	    				<p class="tweet-text">This is my third tweet!!!</p>
+	    				<div class="row">
+	    					<i class="col-2 far fa-comment"></i>
+	    					<span class="heart"><i class="col-2 far fa-heart"></i></span>
+    					</div>
+    				</div>
     			</div>
-    		</div>
-    		<div class="col-2 misc-feed">
-    			<h2>Hello World</h2>
+    	<!-- End of the for loops for tweets -->
+    	    			<div class="row tweet">
+    				<img src="/images/me.jpg" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
+    				<div class="col-8">
+	    				<p class="tweet-user-info">Christian @christianbueno * Apr 22</p>
+	    				<p class="tweet-text">This is my second tweet!!!</p>
+	    				<div class="row">
+	    					<i class="col-2 far fa-comment"></i>
+	    					<span class="heart"><i class="col-2 far fa-heart"></i></span>
+    					</div>
+    				</div>
+    			</div>
+    			    			<div class="row tweet">
+    				<img src="/images/me.jpg" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
+    				<div class="col-8">
+	    				<p class="tweet-user-info">Christian @christianbueno * Apr 21</p>
+	    				<p class="tweet-text">This is my first tweet!!!</p>
+	    				<div class="row">
+	    					<i class="col-2 far fa-comment"></i>
+	    					<span class="heart"><i class="col-2 far fa-heart"></i></span>
+    					</div>
+    				</div>
+    			</div>
     		</div>
     	</div>
-    </div>   	
+    </div>
+    
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
