@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.skcc.tweezer.models.Friendship;
 import com.skcc.tweezer.models.Tweet;
 import com.skcc.tweezer.models.User;
 import com.skcc.tweezer.services.UserService;
@@ -109,19 +110,39 @@ public class UsersCtrl {
     }
     
     @GetMapping("/users/{id}")
-    public String show(Model model, @PathVariable("id") Long id, @ModelAttribute("user") User user) {
+    public String show(Model model, @ModelAttribute("user") User user, @PathVariable("id") Long id, HttpSession session) {
     	model.addAttribute("user", uS.findUserById(id));
     	return "profile.jsp";
     }
     
+//    @PostMapping("/followUser")
+//    public String follow(@ModelAttribute("user") User following, HttpSession session) {
+//    	Long userId = (Long) session.getAttribute("userId");
+//    	User user = uS.findUserById(userId);
+//    	User follower = uS.findUserById(following.getId());
+//    	uS.followUser(userId, following.getId());
+////    	uS.saveFriend(friendship);
+////    	uS.saveFriendship(user, follower);
+//    	return "redirect:/users/" + following.getId();
+//    }
+    
+//    @GetMapping("/users/{id}")
+//    public String show(Model model, @PathVariable("id") Long id, @ModelAttribute("friendship") Friendship friendship, HttpSession session) {
+//    	model.addAttribute("user", uS.findUserById(id));
+//    	model.addAttribute("loggeduser", session.getAttribute("userId"));
+//    	return "profile.jsp";
+//    }
+//    
     @PostMapping("/followUser")
     public String follow(@ModelAttribute("user") User following, HttpSession session) {
     	Long userId = (Long) session.getAttribute("userId");
+//    	User user = uS.findUserById(userId);
+//    	User follower = uS.findUserById(following.getId());
     	uS.followUser(userId, following.getId());
     	return "redirect:/users/" + following.getId();
     }
     
-
+ 
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
     	session.invalidate();
