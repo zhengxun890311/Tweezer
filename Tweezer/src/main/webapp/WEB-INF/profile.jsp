@@ -14,7 +14,7 @@
 	<div class="container" style="background-color: white; min-width: 100%;">
 		<div class="container">
 			<nav class="navbar navbar-expand-lg navbar-light ">
-			  <a class="navbar-brand home" href="#"><i class="fas fa-home"></i> Home</a>
+			  <a class="navbar-brand home" href="/home"><i class="fas fa-home"></i> Home</a>
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon"></span>
 			  </button>
@@ -22,13 +22,13 @@
 			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 			    <ul class="navbar-nav mr-auto">
 			      <li class="nav-item active">
-			        <a class="nav-link" href="#"><i class="fas fa-bolt"></i> Moments <span class="sr-only">(current)</span></a>
+			        <a class="nav-link" href="/moments"><i class="fas fa-bolt"></i> Moments <span class="sr-only">(current)</span></a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#"><i class="fas fa-bell"></i> Notifications</a>
+			        <a class="nav-link" href="/notifications"><i class="fas fa-bell"></i> Notifications</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Messages</a>
+			        <a class="nav-link" href="/messages"><i class="fas fa-envelope"></i> Messages</a>
 			      </li>
 		  	      <li class="nav-item">
 			        	<a class="nav-link" href="#" style="margin-left: 95px;"><img id="tweezer-logo"src="images/tweezer.png"></a>	        
@@ -78,9 +78,9 @@
     <div class="container">
     	<div class="row justify-content-space-between">
     		<div class="col-3 user-profile">
-    			<h3 class="profile-info">Christian</h3>
-    			<p class="profile-info"><span class="grey-text">@christianbueno</span></p>
-    			<p class="profile-info"><i class="far fa-calendar-alt"></i><span class="grey-text"> Joined April 2019</span></p>
+    			<h3 class="profile-info"><a href="/home">{user.firstName} {user.lastName}</a></h3>
+    			<p class="profile-info"><span class="grey-text"><a href="/users/${user.id}">@{user.username}</a></span></p>
+    			<p class="profile-info"><i class="far fa-calendar-alt"></i><span class="grey-text">Joined {user.dateCreated}</span></p>
     		</div>
     		<div class="col-9 tweet-feed">
     			<div class="row tweet-title">
@@ -92,8 +92,8 @@
     			<div class="row tweet">
     				<img src="/images/me.jpg" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
     				<div class="col-8">
-	    				<p class="tweet-user-info">Christian @christianbueno * Apr 23</p>
-	    				<p class="tweet-text">This is my third tweet!!!</p>
+	    				<p class="tweet-user-info"><a href="/users/${user.id}">Christian Bueno @christianbueno</a> * Apr 23</p>
+	    				<p class="tweet-text">This is my third tweez!!!</p>
 	    				<div class="row">
 	    					<i class="col-2 far fa-comment"></i>
 	    					<span class="heart"><i class="col-2 far fa-heart"></i></span>
@@ -101,22 +101,22 @@
     				</div>
     			</div>
     	<!-- End of the for loops for tweets -->
-    	    			<div class="row tweet">
-    				<img src="/images/me.jpg" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
+   	    		<div class="row tweet">
+    				<img src="/images/me2.jpg" alt="{user.photo} class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
     				<div class="col-8">
-	    				<p class="tweet-user-info">Christian @christianbueno * Apr 22</p>
-	    				<p class="tweet-text">This is my second tweet!!!</p>
+	    				<p class="tweet-user-info"><a href="/users/${user.id}">{user.firstName} {user.lastName} @{user.username}</a> * {tweez.dateCreated}</p>
+	    				<p class="tweet-text">{tweez.text} This is my second tweez!!!</p>
 	    				<div class="row">
 	    					<i class="col-2 far fa-comment"></i>
 	    					<span class="heart"><i class="col-2 far fa-heart"></i></span>
     					</div>
     				</div>
     			</div>
-    			    			<div class="row tweet">
+			    <div class="row tweet">
     				<img src="/images/me.jpg" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
     				<div class="col-8">
-	    				<p class="tweet-user-info">Christian @christianbueno * Apr 21</p>
-	    				<p class="tweet-text">This is my first tweet!!!</p>
+	    				<p class="tweet-user-info"><a href="/users/${user.id}">Christian Bueno @christianbueno</a> * Apr 21</p>
+	    				<p class="tweet-text">This is my first tweez!!!</p>
 	    				<div class="row">
 	    					<i class="col-2 far fa-comment"></i>
 	    					<span class="heart"><i class="col-2 far fa-heart"></i></span>
