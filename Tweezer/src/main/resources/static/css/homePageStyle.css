@@ -1,0 +1,63 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	color: black;
+}
+#bg {
+	position: absolute; 
+	top: -50; 
+	left: -50;
+	min-height: 100%;
+	width: 100%;
+}
+#bg img {
+	top: 0; 
+	left: 0; 
+	right: 0; 
+	bottom: 0; 
+	margin: auto; 
+	min-width: 50%;
+	min-height: 50%;
+}
+#backgr {
+	max-width:100%;
+}
+input {
+	border-radius: 3px;
+}
+.main {
+	padding: 10px;
+	margin-right: 0px;
+	margin-left: 60%;
+	
+}
+.register-half {
+	padding-left: 5%;
+}
+.login {
+	margin-bottom: 40%;
+}
+.logform {
+	padding: 5px;
+}
+.form-control {
+	display: inline-block;
+}
+#tweezer-logo {
+	max-width: 10%;
+}
+.main-font, p {
+	font-family: 'Marcellus', serif;
+}
+.register-btn {
+	background-color: rgb(80, 61, 104);
+	color: white;
+	border-color: rgb(80, 61, 104);
+}
+.login-btn {
+	background-color: rgb(71, 159, 124);
+	color: white;
+	border-color: rgb(80, 61, 104);
+}

@@ -16,6 +16,7 @@
 
 </head>
 <body>
+<!-- {fn:length(course.users)} -->
 	<div class="container" style="background-color: white; min-width: 100%;">
 		<div class="container">
 			<nav class="navbar navbar-expand-lg navbar-light ">

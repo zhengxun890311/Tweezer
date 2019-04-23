@@ -7,57 +7,79 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Registration/Login Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Marcellus" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="css/homePageStyle.css">
 </head>
 <body>
-    <h1>Register!</h1>
-    
-    <p><form:errors path="user.*"/></p>
-    
-    <form:form method="POST" action="/registration" modelAttribute="user">
-        <p>
-            <form:label path="firstName">First Name:</form:label>
-            <form:input path="firstName"/>
-        </p>
-        <p>
-            <form:label path="lastName">Last Name:</form:label>
-            <form:input path="lastName"/>
-        </p>
-        <p>
-            <form:label path="username">Username:</form:label>
-            <form:input path="username"/>
-        </p>
-        <p>
-            <form:label path="email">Email:</form:label>
-            <form:input type="email" path="email"/>
-        </p>
-        <p>
-            <form:label path="birthday">Birthday:</form:label>
-            <form:input type="date" path="birthday"/>
-        </p>
-        <p>
-            <form:label path="password">Password:</form:label>
-            <form:password path="password"/>
-        </p>
-        <p>
-            <form:label path="passwordConfirmation">Password Confirmation:</form:label>
-            <form:password path="passwordConfirmation"/>
-        </p>
-        <input type="submit" value="Register!"/>
-    </form:form>
-    
-    <h1>Login</h1>
-    <p><c:out value="${error}" /></p>
-    <form method="post" action="/login">
-        <p>
-            <label for="email">Email</label>
-            <input type="text" id="email" name="email"/>
-        </p>
-        <p>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password"/>
-        </p>
-        <input type="submit" value="Login!"/>
-    </form>    
-    
+<div id="bg">
+	<img id="backgr" src="images/tweezer-bg.png" alt="background">
+</div>
+<div class="container main">
+	<div class="row">
+		<div class="col-6 register-half">
+			<div class="row login">
+				<div class="container">
+				    <form method="post" action="/login" style="display: inline-block;">
+			            <input type="text"  name="email" class="col-4 form-control form-control-sm"/>
+			            <input type="password" name="password" placeholder="*******" class="col-4 form-control form-control-sm"/>
+						<input type="submit" value="Log In" class="login-btn badge-pill"/>
+				    </form>  			
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-10">
+					<img id="tweezer-logo"src="images/tweezer.png">
+					<h4><span class="main-font">Join Tweezer today.</span></h4>
+			    	<p><form:errors path="user.*"/></p>
+					<button class="register-btn badge-pill">Sign Up</button>
+					
+					<span id="register-form" style="display: none;">
+					    <form:form method="POST" action="/registration" modelAttribute="user">
+						<div class="row">
+							<div class="col-4 ">
+					            <p><form:label path="firstName">First Name:</form:label></p>
+					            <p><form:label path="lastName">Last Name:</form:label></p>
+					            <p><form:label path="username">Username:</form:label></p>
+					            <p><form:label path="email">Email:</form:label></p>
+					            <p><form:label path="birthday">Birthday:</form:label></p>
+					            <p><form:label path="password">Password:</form:label></p>
+					            <p><form:label path="passwordConfirmation">Password Confirmation:</form:label></p>
+							</div>
+							<div class="col-8 form-group">
+						        <p>
+						            <form:input path="firstName" class="form-control form-control-sm" placeholder="Enter First Name"/>
+						        </p>
+						        <p>
+						            <form:input path="lastName" class="form-control form-control-sm" placeholder="Enter Last Name"/>
+						        </p>
+						        <p>
+						            <form:input path="username" class="form-control form-control-sm" placeholder="Enter a Username"/>
+						        </p>
+						        <p>
+						            <form:input type="email" path="email" class="form-control form-control-sm" placeholder="Enter Your Email"/>
+						        </p>
+						        <p>
+						            <form:input type="date" path="birthday" class="form-control form-control-sm"/>
+						        </p>
+						        <p>
+						            <form:password path="password" class="form-control form-control-sm" placeholder="Password"/>
+						        </p>
+						        <p>
+						            <form:password path="passwordConfirmation" class="form-control form-control-sm" placeholder="Confirm Your Password"/>
+						        </p>
+						        <input type="submit" value="Register" class="register-btn badge-pill"/>
+							</div>
+						</div>
+					    </form:form>				
+					</span>
+				</div>
+			</div>
+	    </div>
+	</div>
+</div>
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
