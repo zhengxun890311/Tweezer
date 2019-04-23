@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -32,6 +34,12 @@ public class User {
 	private String lastName;
 	@Size(min=1, message="username is required")
 	private String username;
+	@Email
+	private String email;
+	@Size(min=8, message="password must be at least 8 cahracters")
+    private String password;
+    @Transient
+    private String passwordConfirmation;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
     @Column(updatable=false)
@@ -98,6 +106,30 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getPasswordConfirmation() {
+		return passwordConfirmation;
+	}
+
+	public void setPasswordConfirmation(String passwordConfirmation) {
+		this.passwordConfirmation = passwordConfirmation;
 	}
 
 	public Date getBirthday() {
