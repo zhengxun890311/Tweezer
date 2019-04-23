@@ -1,0 +1,54 @@
+#tweet_div{
+    margin-right: 0px;
+    margin-left: 0px;
+
+}
+#tweet_div_content{
+	margin-left:0px;
+	margin-right:0px;
+}
+#div2{
+	background-color: #00A4ED;
+	height:100px;
+}
+#profile_div_img{
+	width:80px;
+	height:80px;
+	margin-left:20px;
+	margin-top:-40px;
+}
+#profile_div{
+	width:100%;
+	height:200px;
+}
+#div1{
+	width:200px;
+	height:50%;
+	display:inline;
+}
+#trend_div{
+	margin-top:20px;
+}
+
+#profile_div_font{
+	margin-left:120px;
+}
+#profile_div_name{
+	margin-top: 12px;
+	margin-left:110px;
+}
+#profile_div_id{
+	margin-top: -10px;
+	margin-left:110px;
+}
+#profile_div_tweets{
+	margin-top: 10px;
+	margin-left:25px;
+}
+#profile_div_following{
+	margin-top: -48px;
+	margin-left:150px;
+}
+.tweet_a{
+	text-decoration: none;
+}

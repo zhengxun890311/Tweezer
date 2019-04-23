@@ -16,7 +16,6 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/homeStyle.css">
-
 </head>
 <body>
 	<div class="container"
@@ -56,65 +55,93 @@
 			</nav>
 		</div>
 	</div>
-	<!-- Top of profile and profile picture -->
-	<div class="container"
-		style="background-color: rgb(0, 164, 237); min-width: 100%; height: 200px;">
-		<div class="container">
-			<div class="justify-content-center">
-				<div class="profile_pic">
-					<img src="images/me.jpg" alt="my_pic"
-						class="me rounded-circle img-fluid shadow-sm p-1 mb-5 bg-white rounded">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col bio">
-					<h1></h1>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row shadow-sm p-2 mb-5 bg-white rounded whitebar"
-		style="height: 60px; min-width: 100%;">
-		<div class="container links-bar">
-			<div class="row" style="width: 300px;">
-				<p class="followers">Tweezes</p>
-				<p class="followers">Following</p>
-				<p class="followers">Lists</p>
-				<p class="followers">Moments</p>
-			</div>
-			<div class="row">
-				<!--     		<p class="col">19</p>
-				<p class="col">2</p>
-				<p class="col">0</p>
-				<p class="col">18</p>  -->
-			</div>
-		</div>
-	</div>
-
-
-
-
+	
 	<div class="container">
 		<div class="row justify-content-space-between">
-			<div id="div1" style="background-color:red" class="col-3 user-profile">
-				<h3 class="profile-info">Christian</h3>
-				<p class="profile-info">
-					<span class="grey-text">@christianbueno</span>
-				</p>
-				<p class="profile-info">
-					<i class="far fa-calendar-alt"></i><span class="grey-text">
-						Joined April 2019</span>
-				</p>
-			</div>
-			<div id="div2" style="background-color:yellow" class="col-3 user-profile">
-				<h3 class="profile-info">Christian</h3>
-				<p class="profile-info">
-					<span class="grey-text">@christianbueno</span>
-				</p>
-				<p class="profile-info">
-					<i class="far fa-calendar-alt"></i><span class="grey-text">
-						Joined April 2019</span>
-				</p>
+			<div class="col-3 user-profile">
+				<div id="profile_div" style="background-color: white">
+					<div id="div2" style="background-color: #00A4ED" class="profile_pic">
+						<a href="http://www.google.com">
+							<img id="profile_div_img" src="images/me.jpg" alt="my_pic"
+								class="me rounded-circle img-fluid shadow-sm p-1 mb-5 bg-white rounded">
+						</a>
+						<div id="profile_div_name">
+							<h6>Skyler</h6>
+						</div>
+						<div id="profile_div_id">
+							<font size="2">@skyler61797325</font>
+						</div>
+						
+						<div id="profile_div_tweets">
+							<a style="text-decoration: none;" href="#">
+								<div style="color:#657786">Tweets</div>
+								<div>20</div>
+							</a>
+						</div>
+						<div id="profile_div_following">
+							<a style="text-decoration: none;" href="#">
+								<div style="color:#657786">Following</div>
+								<div>2</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+				<div id="trend_div" style="background-color: white;padding:10px;">
+					<h3><span class="black-text">Trends for you</span></h3>
+					<p style:"color:#1DA1F2">
+						<h6>
+							<a href="#">Chris sale</a>
+						</h6>
+					</p>
+					<p>
+						<h6>
+							<a href="#">S&P 500 and nasdaq</a>
+						</h6>
+					</p>
+					<p>
+						<h6>
+							<a href="#">#2020 census</a>
+						</h6>
+					</p>
+					<p>
+						<h6>
+							<a href="#">frank clark</a>
+						</h6>
+					</p>
+					<p>
+						<h6>
+							<a href="#">#seahawks</a>
+						</h6>
+					</p>
+					<p>
+						<h6>
+							<a href="#">#pbwc</a>
+						</h6>
+					</p>
+					<p>
+						<h6>
+							<a href="#">patrick peterson</a>
+						</h6>
+					</p>
+					<p>
+						<h6>
+							<a href="#">#ncg2019</a>
+						</h6>
+					</p>
+					<p>
+						<h6>
+							<a href="#">#joe biden</a>
+						</h6>
+					</p>
+					<p>
+						<h6>
+							<a href="#">#robbie gould</a>
+						</h6>
+					</p>
+				</div>
 			</div>
 			<div class="col-6 tweet-feed">
 				<!-- Main content -->
@@ -123,10 +150,10 @@
 					<p>
 						<form:input id="tweetText" class="form-control" path="text" />
 					</p>
-					<input id="success_btn" class="btn btn-success" type="submit"
+					<input id="success_btn" class="btn btn-success" type="submit" placeholder="What's happening"
 						value="Tweet" />
 				</form:form>
-				<div class="row tweet-title">
+				<div id="tweet_div_content" class="row tweet-title" style:"margin-left:0px;margin-right:0px">
 					<p class="col-2">Tweezes</p>
 					<p class="col-9">
 						<a href="#">Tweezes & replies</a>
@@ -134,7 +161,7 @@
 				</div>
 				<!-- This is where the for-loop will go for tweets  -->
 				<!-- PLACEHOLDER TEXT BELOW -->
-				<div class="row tweet">
+				<div id="tweet_div" class="row tweet">
 					<img src="/images/me.jpg"
 						class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
 					<div class="col-8">
@@ -159,17 +186,18 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
-
 	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#success_btn").hide();
+			$("#tweetText").on('focus',function(){
+				$("#success_btn").show();	
+			});
+			
+			$("#tweetText").blur(function(){
+				$("#success_btn").hide();
+			});
+		})
+	</script>
 </body>
 </html>
