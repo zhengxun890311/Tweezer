@@ -48,6 +48,8 @@ public class UsersCtrl {
     		return "loginreg.jsp";
     	} else {
     		User u = uS.registerUser(user);
+    		SendEmail sendEmail = new SendEmail();
+    		sendEmail.sendEmail(u);
     		session.setAttribute("userId",  u.getId());
     		return "redirect:/home";
     	}
