@@ -22,4 +22,6 @@ public interface UserRepo extends CrudRepository<User, Long>{
 	@Query("update User u set u.firstName=?2, u.lastName=?3, u.birthday=?4 where u.id=?1")
 	void updateUser(Long id, String firstName, String lastName, Date birthday);
 	
+	@Query("")
+	void followUser(User user, User following);
 }
