@@ -34,6 +34,11 @@ public class User {
 	private String lastName;
 	@Size(min=1, message="username is required")
 	private String username;
+	
+	private String userPhotoPath;
+	private String reserved1;
+	private String reserved2;
+	
 	@Email
 	private String email;
 	@Size(min=8, message="password must be at least 8 cahracters")
@@ -75,6 +80,30 @@ public class User {
     private List<Like> likes;
     
     public User() {}
+
+	public String getReserved1() {
+		return reserved1;
+	}
+
+	public void setReserved1(String reserved1) {
+		this.reserved1 = reserved1;
+	}
+
+	public String getReserved2() {
+		return reserved2;
+	}
+
+	public void setReserved2(String reserved2) {
+		this.reserved2 = reserved2;
+	}
+
+	public String getUserPhotoPath() {
+		return userPhotoPath;
+	}
+
+	public void setUserPhotoPath(String userPhotoPath) {
+		this.userPhotoPath = userPhotoPath;
+	}
 
 	public Long getId() {
 		return id;
