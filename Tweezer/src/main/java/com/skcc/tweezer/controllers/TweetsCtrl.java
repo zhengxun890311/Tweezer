@@ -1,8 +1,10 @@
 package com.skcc.tweezer.controllers;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +25,7 @@ public class TweetsCtrl {
 	}
 	
 	@PostMapping("/createTweet")
-	public String createTweet(HttpSession session,@ModelAttribute("tweetObj") Tweet tweet) {
+	public String createTweet(HttpSession session,@Valid @ModelAttribute("tweetObj") Tweet tweet, BindingResult result) {
 		//System.out.println(session.getAttribute("userId"));
 		System.out.println(tweet.getText());
 		System.out.println(tweet.getText());

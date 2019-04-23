@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.skcc.tweezer.models.Tweet;
 import com.skcc.tweezer.models.User;
 import com.skcc.tweezer.services.UserService;
 import com.skcc.tweezer.validators.UserValidator;
@@ -69,7 +70,7 @@ public class UsersCtrl {
     }
     
     @GetMapping("/home")
-    public String home(Model model, HttpSession session) {
+    public String home(@ModelAttribute("tweetObj") Tweet tweet, Model model, HttpSession session) {
     	Long userId = (Long) session.getAttribute("userId");
     	if (userId==null) {
     		return "loginreg.jsp";
