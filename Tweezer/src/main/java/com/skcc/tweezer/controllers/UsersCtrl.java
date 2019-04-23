@@ -77,7 +77,7 @@ public class UsersCtrl {
     		User u = uS.findUserById(userId);
     		model.addAttribute("user", u);
     		model.addAttribute("following", u.getFollowers());
-    		return "profile.jsp";    		
+    		return "home.jsp";    		
     	}
     }
     
@@ -110,7 +110,7 @@ public class UsersCtrl {
     @GetMapping("/users/{id}")
     public String show(Model model, @PathVariable("id") Long id, @ModelAttribute("user") User user) {
     	model.addAttribute("user", uS.findUserById(id));
-    	return "";
+    	return "profile.jsp";
     }
     
     @PostMapping("/followUser")
