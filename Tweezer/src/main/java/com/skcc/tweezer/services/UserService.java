@@ -55,4 +55,8 @@ public class UserService {
 	public void updateUser(Long id, String firstName, String lastName, Date birthday) {
 		uR.updateUser(id, firstName, lastName, birthday);
 	}
+	
+	public void followUser(Long userId, Long followingId) {
+		uR.followUser(userId, followingId);
+	}
 }

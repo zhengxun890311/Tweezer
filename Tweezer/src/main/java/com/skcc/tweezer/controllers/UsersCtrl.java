@@ -71,8 +71,14 @@ public class UsersCtrl {
     @GetMapping("/home")
     public String home(Model model, HttpSession session) {
     	Long userId = (Long) session.getAttribute("userId");
-    	model.addAttribute("user", uS.findUserById(userId));
-    	return "profile.jsp";
+    	if (userId==null) {
+    		return "loginreg.jsp";
+    	}else {
+    		User u = uS.findUserById(userId);
+    		model.addAttribute("user", u);
+    		model.addAttribute("following", u.getFollowers());
+    		return "home.jsp";    		
+    	}
     }
     
     @GetMapping("/editUser")
@@ -102,9 +108,16 @@ public class UsersCtrl {
     }
     
     @GetMapping("/users/{id}")
-    public String show(Model model, @PathVariable("id") Long id) {
+    public String show(Model model, @PathVariable("id") Long id, @ModelAttribute("user") User user) {
     	model.addAttribute("user", uS.findUserById(id));
-    	return "";
+    	return "profile.jsp";
+    }
+    
+    @PostMapping("/followUser")
+    public String follow(@ModelAttribute("user") User following, HttpSession session) {
+    	Long userId = (Long) session.getAttribute("userId");
+    	uS.followUser(userId, following.getId());
+    	return "redirect:/users/" + following.getId();
     }
 
     @RequestMapping("/logout")
