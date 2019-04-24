@@ -56,8 +56,7 @@
 						<input class="form-control mr-sm-2 searchbar" type="search"
 							placeholder="Search Tweezer" aria-label="Search"> <i
 							class="fas fa-user" style="margin-right: 10px;"></i>
-						<button class="btn btn-primary my-2 my-sm-0 tweez-btn"
-							type="submit">Tweez</button>
+						<a href="/logout" class="btn btn-primary my-2 my-sm-0 tweez-btn">Log Out</a>
 					</form>
 				</div>
 			</nav>
@@ -183,20 +182,22 @@
    	 				
     		<c:forEach items="${followingTweets}" var="t">
    	    		<div class="row tweet" style="margin-left:0px;margin-right: 0px;">
-    				<img src="${t[0]}" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
+   	    			<c:if test="${empty t[1] != true}">
+    					<img src="${t[1]}" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
+    				</c:if>
     				<div class="col-8">
 	    				
 	    				
 	    				
-    					<fmt:formatDate value="${t[5]}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDateTweet"/>
-	    				<p class="tweet-user-info"><a href="/users/${user.id}"><c:out value="${t[1]} ${t[2]} @${t[3]}"/></a> • Posted: <c:out value="${formattedDateTweet}"/></p>
+    					<fmt:formatDate value="${t[6]}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDateTweet"/>
+	    				<p class="tweet-user-info"><a href="/users/${t[0]}"><c:out value="${t[2]} ${t[3]} @${t[4]}"/></a> • Posted: <c:out value="${formattedDateTweet}"/></p>
     			
 	    				
 	    				
-	    				<p class="tweet-text">${t[4]}</p>
+	    				<p class="tweet-text">${t[5]}</p>
 	    				
- 						<c:if test ="${empty t[6]!= true }">
-							<a href="${t[6]}"><img src="${t[6]}" class="tweet-photo"></a>
+ 						<c:if test ="${empty t[7]!= true }">
+							<a href="${t[7]}"><img src="${t[7]}" class="tweet-photo"></a>
 						</c:if>
 	    				
 	    				<div class="row tweet-icons">
@@ -216,7 +217,23 @@
     			</div>
    			</c:forEach>
 			</div>
+			
+<!-- 	This is the section for 'who to follow' -->
 			<div class="col-3 user-profile">
+			<h3>Who to Follow</h3>
+			<c:forEach items="${whoToFollow}" var="u" begin="0" end="2">
+<%-- 				<c:if test="${empty u[1] != true}">
+    				<img src="${u[4]}" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
+    			</c:if> --%>
+    			<a href="/users/${u[0]}"><c:out value="${u[1]} ${u[2]} @${u[3]}"/></a>
+    			<form:form method="POST" action="/whoToFollow" modelAttribute="followUserObj">
+		   			<input type="hidden" name="id" value="${u[0]}">
+	 				<input type="submit" value="follow" class="btn btn-outline-info">
+		    	</form:form>
+    				
+			</c:forEach>
+			
+<!-- 			I left this section in case you wanted to use the code for something else. Delete if not needed anymore! -->
 				<h3 class="profile-info"><c:out value="${user.firstName}"/></h3>
 				<p class="profile-info">
 					<span class="grey-text">@<c:out value="${user.username}"/></span>
@@ -226,6 +243,7 @@
 					<fmt:formatDate value="${user.createdAt}" pattern="MMMM yyyy" var="formattedDate"/>
 						Joined <c:out value="${formattedDate}"/></span>
 				</p>
+				
 			</div>
 		</div>
 	</div>

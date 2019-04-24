@@ -79,6 +79,10 @@ public class UserService {
 		return uR.getFollowingTweets(id);
 	}
 	
+	public List<Object[]> getWhoToFollow(Long id){
+		return uR.getWhoToFollow(id);
+	}
+	
 //	public List<Object[]> getFollowing(Long id){
 //		return uR.getFollowing(id);
 //	}
