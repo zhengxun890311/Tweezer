@@ -16,8 +16,14 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+	
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/homeStyle.css">
+
 </head>
 <body>
 	<div class="container"
@@ -147,7 +153,7 @@
 			</div>
 			<div class="col-6 tweet-feed">
 				<!-- Main content -->
-				<form:form action="/createTweet" method="post"
+				<form:form action="/createTweet" method="post" enctype="multipart/form-data"
 					modelAttribute="tweetObj">
 					<input type="hidden" name="user" path="user" value="${user.id}">
 					<p>
@@ -155,6 +161,16 @@
 					</p>
 					<input id="success_btn" class="btn btn-success" type="submit" placeholder="What's happening"
 						value="Tweet" />
+						
+						
+						
+					<input id="myfile" name="myfile" type="file" path="video_path" class="form-control" />
+					<div id="player" class="embed-responsive embed-responsive-16by9">
+					  <iframe id="iframe" class="embed-responsive-item" src="${tweetObj.video_path}"></iframe>
+					</div>
+					
+					
+						
 				</form:form>
 				<div id="tweet_div_content" class="row tweet-title" style:"margin-left:0px;margin-right:0px">
 					<p class="col-2">Tweezes</p>
@@ -175,6 +191,7 @@
     				<div class="col-8">
 	    				<p class="tweet-user-info"><a href="/users/${user.id}">${user.firstName} ${user.lastName} ${user.username}</a> * Posted: ${tweet.createdAt}</p>
 	    				<p class="tweet-text">${tweet.text}</p>
+	    				<img src="${tweet.photo_path}" style="width: 20rem;height: 15rem;">
 	    				<div class="row tweet-icons">
 	    					<i class="col-2 far fa-comment"></i>
 	    					<span class="heart"><i class="col-2 far fa-heart"></i></span>
@@ -200,10 +217,41 @@
 	<script>
 		$(document).ready(function(){
 			$("#success_btn").hide();
+			$("#iframe").hide();
+			$("#player").hide();
+			$("#myfile").hide();
+			
 			$("#tweetText").on('focus',function(){
-				$("#success_btn").show();	
+				$("#success_btn").show();
+				$("#iframe").show();
+				$("#myfile").show();
 			});
 		})
+		
+		
+		$("#myfile").change(function(){
+			$("#player").show();
+			var url = createURL(this.files[0]);
+			if(url){
+				$("#iframe").attr("src",url);
+			}
+		})
+		function createURL(file){
+			var url=null;
+			if(window.createObjectURL!=undefined){
+				url=window.createObjectURL(file);
+			}
+			else if(window.URL!=undefined){
+				url=window.URL.createObjectURL(file);
+			}
+			else if(window.webkitURL!=undefined){
+				url=window.webkitURL.createObjectURL(file);
+			}
+			
+			return url;
+		}
+		
+		
 	</script>
 </body>
 </html>
