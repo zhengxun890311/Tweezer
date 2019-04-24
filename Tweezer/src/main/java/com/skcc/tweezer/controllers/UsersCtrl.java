@@ -114,7 +114,9 @@ public class UsersCtrl {
     
     @GetMapping("/users/{id}")
     public String show(Model model, @ModelAttribute("user") User user, @PathVariable("id") Long id, HttpSession session) {
+    	Long userId = (Long) session.getAttribute("userId");
     	model.addAttribute("user", uS.findUserById(id));
+    	model.addAttribute("loggedUser", uS.findUserById(userId));
     	return "profile.jsp";
     }
     
