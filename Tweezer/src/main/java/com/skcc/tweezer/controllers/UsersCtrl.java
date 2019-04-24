@@ -1,8 +1,12 @@
 package com.skcc.tweezer.controllers;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skcc.tweezer.models.Friendship;
@@ -77,6 +82,7 @@ public class UsersCtrl {
     		return "loginreg.jsp";
     	}else {
     		User u = uS.findUserById(userId);
+    		System.out.println(u.getUserPhotoPath());
     		model.addAttribute("user", u);
 //    		for (User user: u.getUserFollowing()) {
 //    			System.out.println(user.getFirstName());
@@ -94,7 +100,29 @@ public class UsersCtrl {
     }
     
     @PostMapping("/editprofile")
-    public String updateUser(@Valid @ModelAttribute("user") User user, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+    public String updateUser(@Valid @ModelAttribute("user") User user, 
+    		BindingResult result, 
+    		Model model, 
+    		RedirectAttributes redirectAttributes,
+    		HttpServletRequest request,
+    		HttpSession session,
+    		@RequestParam(value = "myfile") MultipartFile image) {
+		String path = request.getSession().getServletContext().getRealPath("/images");
+		File file = new File(path);
+		if (!file.exists()) {
+			file.mkdir();
+		}
+		String random_photo_name = UUID.randomUUID().toString().replaceAll("-", "");
+		try {
+			image.transferTo(new File(path + "/" + random_photo_name + "." + "jpg"));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		String url = "images/" + random_photo_name + "." + "jpg";
+		System.out.println("database url is：" + url);
+		user.setUserPhotoPath(url);
     	List<String> messages = new ArrayList<String>();
     	if (result.hasErrors()) {
 			for (Object object: result.getAllErrors()) {
@@ -107,7 +135,7 @@ public class UsersCtrl {
 			redirectAttributes.addFlashAttribute("messages", messages);
 			return "redirect:/editprofile";
     	} else {
-    		uS.updateUser(user.getId(), user.getFirstName(), user.getLastName(), user.getBirthday());
+    		uS.updateUser(user.getId(), user.getFirstName(), user.getLastName(), user.getBirthday(),user.getUserPhotoPath());
     		return "redirect:/home";
     	}
     }

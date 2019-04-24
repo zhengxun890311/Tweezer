@@ -69,8 +69,10 @@
 			<div class="col-3 user-profile">
 				<div id="profile_div" style="background-color: white">
 					<div id="div2" style="background-color: #00A4ED" class="profile_pic">
-						<a href="http://www.google.com">
-							<img id="profile_div_img" src="images/me.jpg" alt="my_pic"
+						
+						
+						<a href="/editprofile">
+							<img id="profile_div_img" src="${user.userPhotoPath}" alt="my_pic"
 								class="me rounded-circle img-fluid shadow-sm p-1 mb-5 bg-white rounded">
 						</a>
 						<div id="profile_div_name">
@@ -187,7 +189,7 @@
    	 				
     		<c:forEach items="${user.tweets}" var="tweet">
    	    		<div class="row tweet" style="margin-left:0px;margin-right: 0px;">
-    				<img src="/images/me.jpg" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
+    				<img src="${user.userPhotoPath}" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
     				<div class="col-8">
 	    				<p class="tweet-user-info"><a href="/users/${user.id}">${user.firstName} ${user.lastName} ${user.username}</a> * Posted: ${tweet.createdAt}</p>
 	    				<p class="tweet-text">${tweet.text}</p>
