@@ -57,14 +57,14 @@ public class User {
     @JoinTable(
     		name = "friendships",
     		joinColumns = @JoinColumn(name="user_id"),
-    		inverseJoinColumns = @JoinColumn(name="follower_id")
+    		inverseJoinColumns = @JoinColumn(name="following_id")
     )
-    private List<User> userFollowers;
+    private List<User> userFollowing;
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
     		name = "friendships",
-    		joinColumns = @JoinColumn(name="follower_id"),
+    		joinColumns = @JoinColumn(name="following_id"),
     		inverseJoinColumns = @JoinColumn(name="user_id")
     )
     private List<User> followers;
@@ -185,12 +185,12 @@ public class User {
 		this.updatedAt = updatedAt;
 	}
 
-	public List<User> getUserFollowers() {
-		return userFollowers;
+	public List<User> getUserFollowing() {
+		return userFollowing;
 	}
 
-	public void setUserFollowers(List<User> userFollowers) {
-		this.userFollowers = userFollowers;
+	public void setUserFollowing(List<User> userFollowing) {
+		this.userFollowing = userFollowing;
 	}
 
 	public List<User> getFollowers() {

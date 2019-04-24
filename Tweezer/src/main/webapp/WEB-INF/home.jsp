@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
@@ -66,10 +67,10 @@
 								class="me rounded-circle img-fluid shadow-sm p-1 mb-5 bg-white rounded">
 						</a>
 						<div id="profile_div_name">
-							<h6>Skyler</h6>
+							<h6><c:out value="${user.firstName}"/></h6>
 						</div>
 						<div id="profile_div_id">
-							<font size="2">@skyler61797325</font>
+							<font size="2">@<c:out value="${user.username}"/></font>
 						</div>
 						
 						<div id="profile_div_tweets">
@@ -160,7 +161,12 @@
 					</p>
 				</div>
 					
-   	 		<!-- PLACEHOLDER TEXT BELOW -->		
+   	 		<!-- PLACEHOLDER TEXT BELOW -->
+   	 		<p>showing tweets by users you follow: </p>
+   	 		<c:forEach items="${following}" var ="f">
+   	 			<p><c:out value="${f.firstName}"/></p>
+   	 		</c:forEach>
+   	 				
     		<c:forEach items="${user.tweets}" var="tweet">
    	    		<div class="row tweet" style="margin-left:0px;margin-right: 0px;">
     				<img src="/images/me.jpg" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
@@ -176,9 +182,9 @@
    			</c:forEach>
 			</div>
 			<div class="col-3 user-profile">
-				<h3 class="profile-info">Christian</h3>
+				<h3 class="profile-info"><c:out value="${user.firstName}"/></h3>
 				<p class="profile-info">
-					<span class="grey-text">@christianbueno</span>
+					<span class="grey-text">@<c:out value="${user.username}"/></span>
 				</p>
 				<p class="profile-info">
 					<i class="far fa-calendar-alt"></i><span class="grey-text">

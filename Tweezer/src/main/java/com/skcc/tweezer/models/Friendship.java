@@ -29,19 +29,20 @@ public class Friendship {
     private Date updatedAt;
     
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="follower_id")
-    private User follower;
-    
-    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id")
     private User user;
     
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="following_id")
+    private User following;
+    
+    
     public Friendship() {}
 
-	public Friendship(User follower, User user) {
-		this.follower = follower;
-		this.user = user;
-	}
+//	public Friendship(User following, User user) {
+//		this.following = following;
+//		this.user = user;
+//	}
 
 	public Long getId() {
 		return id;
@@ -67,12 +68,12 @@ public class Friendship {
 		this.updatedAt = updatedAt;
 	}
 
-	public User getFollower() {
-		return follower;
+	public User getFollowing() {
+		return following;
 	}
 
-	public void setFollower(User follower) {
-		this.follower = follower;
+	public void setFollowing(User following) {
+		this.following = following;
 	}
 
 	public User getUser() {
