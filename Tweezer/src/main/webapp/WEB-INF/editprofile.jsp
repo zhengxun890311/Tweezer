@@ -89,11 +89,12 @@
         <div class="custom-file">
 			<input id="myfile" name="myfile" type="file" path="userPhotoPath" class="custom-file-input">
 			<label class="custom-file-label" for="customFile">Choose file for user pic</label>
-			<div id="player" class="embed-responsive embed-responsive-16by9">
-					  <iframe id="iframe" class="embed-responsive-item" src="${tweetObj.video_path}"></iframe>
-					</div>
+			<div>
+				<img id="player" src="${tweet.photo_path}" style="width: 20rem;height: 15rem;">
+			</div>
+			<input type="submit" value="Update"/>
 		</div>
-        <input type="submit" value="Update"/>
+        
     </form:form>
     </div>
     </div>
@@ -101,11 +102,12 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
 	$(document).ready(function(){
+		$("#player").hide();
 		$("#myfile").change(function(){
 			$("#player").show();
 			var url = createURL(this.files[0]);
 			if(url){
-				$("#iframe").attr("src",url);
+				$("#player").attr("src",url);
 			}
 		})
 		
