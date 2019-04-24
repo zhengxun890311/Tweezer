@@ -56,6 +56,10 @@ body {
 	margin-bottom: 1px;
 	padding: 0;
 }
+.tinypic {
+	max-height: 40px;
+	border-radius: 5px;
+}
 .fa-calendar-alt {
 	color: grey;
 }
@@ -84,6 +88,10 @@ body {
 }
 .tweet-user-info {
 	font-size: 14px;
+}
+.tweet-photo {
+	max-width: 100%;
+	border-radius: 10px;
 }
 .reply-icon {
 	height: 10px;
