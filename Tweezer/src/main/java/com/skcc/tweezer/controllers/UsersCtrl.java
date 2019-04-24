@@ -76,7 +76,7 @@ public class UsersCtrl {
     }
     
     @GetMapping("/home")
-    public String home(@ModelAttribute("tweetObj") Tweet tweet, Model model, @ModelAttribute("replyObj") Reply reply, HttpSession session) {
+    public String home(@ModelAttribute("tweetObj") Tweet tweet, Model model, @ModelAttribute("replyObj") Reply reply, @ModelAttribute("followUserObj") User followUser, HttpSession session) {
     	Long userId = (Long) session.getAttribute("userId");
     	if (userId==null) {
     		return "redirect:/";
@@ -90,6 +90,7 @@ public class UsersCtrl {
     		model.addAttribute("following", u.getUserFollowing());
     		model.addAttribute("loggedUser", uS.findUserById(userId));
     		model.addAttribute("followingTweets", uS.getFollowingTweets(userId));
+    		model.addAttribute("whoToFollow", uS.getWhoToFollow(userId));
     		return "home.jsp";    		   		
     	}
     }
@@ -168,6 +169,7 @@ public class UsersCtrl {
 //    	return "profile.jsp";
 //    }
 //    
+    // follow on user profile
     @PostMapping("/followUser")
     public String follow(@ModelAttribute("followUserObj") User following, HttpSession session) {
     	Long userId = (Long) session.getAttribute("userId");
@@ -182,6 +184,14 @@ public class UsersCtrl {
     	Long userId = (Long) session.getAttribute("userId");
     	uS.unfollowUser(userId, unfollow.getId());
     	return "redirect:/users/" + unfollow.getId();
+    }
+    
+    // follow on home page
+    @PostMapping("/whoToFollow")
+    public String whoToFollow(@ModelAttribute("followUserObj") User following, HttpSession session) {
+    	Long userId = (Long) session.getAttribute("userId");
+    	uS.followUser(userId, following.getId());
+    	return "redirect:/home";
     }
  
     @RequestMapping("/logout")
