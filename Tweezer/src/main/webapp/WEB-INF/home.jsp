@@ -159,20 +159,21 @@
 						<a href="#">Tweezes & replies</a>
 					</p>
 				</div>
-				<!-- This is where the for-loop will go for tweets  -->
-				<!-- PLACEHOLDER TEXT BELOW -->
-				<div id="tweet_div" class="row tweet">
-					<img src="/images/me.jpg"
-						class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
-					<div class="col-8">
-						<p class="tweet-user-info">Christian @christianbueno * Apr 23</p>
-						<p class="tweet-text">This is my third tweet!!!</p>
-						<div class="row">
-							<i class="col-2 far fa-comment"></i> <span class="heart"><i
-								class="col-2 far fa-heart"></i></span>
-						</div>
-					</div>
-				</div>
+					
+   	 		<!-- PLACEHOLDER TEXT BELOW -->		
+    		<c:forEach items="${user.tweets}" var="tweet">
+   	    		<div class="row tweet" style="margin-left:0px;margin-right: 0px;">
+    				<img src="/images/me.jpg" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
+    				<div class="col-8">
+	    				<p class="tweet-user-info"><a href="/users/${user.id}">${user.firstName} ${user.lastName} ${user.username}</a> * Posted: {tweet.createdAt}</p>
+	    				<p class="tweet-text">${tweet.text}</p>
+	    				<div class="row tweet-icons">
+	    					<i class="col-2 far fa-comment"></i>
+	    					<span class="heart"><i class="col-2 far fa-heart"></i></span>
+    					</div>
+    				</div>
+    			</div>
+   			</c:forEach>
 			</div>
 			<div class="col-3 user-profile">
 				<h3 class="profile-info">Christian</h3>
@@ -192,10 +193,6 @@
 			$("#success_btn").hide();
 			$("#tweetText").on('focus',function(){
 				$("#success_btn").show();	
-			});
-			
-			$("#tweetText").blur(function(){
-				$("#success_btn").hide();
 			});
 		})
 	</script>
