@@ -180,31 +180,36 @@
 				</div>
 					
    	 		<!-- PLACEHOLDER TEXT BELOW -->
-   	 		<p>showing tweets by users you follow: </p>
-   	 		<c:forEach items="${following}" var ="f">
-   	 			<p><c:out value="${f.firstName}"/></p>
-   	 		</c:forEach>
    	 				
-    		<c:forEach items="${user.tweets}" var="tweet">
+    		<c:forEach items="${followingTweets}" var="t">
    	    		<div class="row tweet" style="margin-left:0px;margin-right: 0px;">
-    				<img src="${user.userPhotoPath}" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
+    				<img src="${t[0]}" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
     				<div class="col-8">
 	    				
 	    				
 	    				
-    					<fmt:formatDate value="${tweet.createdAt}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDateTweet"/>
-	    				<p class="tweet-user-info"><a href="/users/${user.id}"><c:out value="${user.firstName} ${user.lastName} @${user.username}"/></a> • Posted: <c:out value="${formattedDateTweet}"/></p>
+    					<fmt:formatDate value="${t[5]}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDateTweet"/>
+	    				<p class="tweet-user-info"><a href="/users/${user.id}"><c:out value="${t[1]} ${t[2]} @${t[3]}"/></a> • Posted: <c:out value="${formattedDateTweet}"/></p>
     			
 	    				
 	    				
-	    				<p class="tweet-text">${tweet.text}</p>
+	    				<p class="tweet-text">${t[4]}</p>
 	    				
- 						<c:if test ="${empty tweet.photo_path != true }">
-							<a href="${tweet.photo_path}"><img src="${tweet.photo_path}" class="tweet-photo"></a>
+ 						<c:if test ="${empty t[6]!= true }">
+							<a href="${t[6]}"><img src="${t[6]}" class="tweet-photo"></a>
 						</c:if>
 	    				
 	    				<div class="row tweet-icons">
-	    					<i class="col-2 far fa-comment"></i>
+	    	<!-- post reply -->
+	    					<i class="col-2 far fa-comment">
+	    					<form:form method="post" action="/homeReply" modelAttribute="replyObj">
+	    						<input type="hidden" name="tweet" value="${tweet.id}">
+	    						<input type="hidden" name="user" value="${loggedUser.id}">
+	    						<form:input path="text"/>
+	    						<input type="submit" value="reply">
+	    					</form:form>
+	    					</i>
+	    	<!-- like a tweet -->
 	    					<span class="heart"><i class="col-2 far fa-heart"></i></span>
     					</div>
     				</div>

@@ -76,7 +76,7 @@ public class UsersCtrl {
     }
     
     @GetMapping("/home")
-    public String home(@ModelAttribute("tweetObj") Tweet tweet, Model model, HttpSession session) {
+    public String home(@ModelAttribute("tweetObj") Tweet tweet, Model model, @ModelAttribute("replyObj") Reply reply, HttpSession session) {
     	Long userId = (Long) session.getAttribute("userId");
     	if (userId==null) {
     		return "redirect:/";
@@ -88,6 +88,8 @@ public class UsersCtrl {
 //    			System.out.println(user.getFirstName());
 //    		}
     		model.addAttribute("following", u.getUserFollowing());
+    		model.addAttribute("loggedUser", uS.findUserById(userId));
+    		model.addAttribute("followingTweets", uS.getFollowingTweets(userId));
     		return "home.jsp";    		   		
     	}
     }
