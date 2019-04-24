@@ -42,6 +42,7 @@ public class Tweet {
     
     public Tweet() {}
     
+    
 	public Long getId() {
 		return id;
 	}

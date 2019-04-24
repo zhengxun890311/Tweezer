@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
@@ -148,6 +149,7 @@
 				<!-- Main content -->
 				<form:form action="/createTweet" method="post"
 					modelAttribute="tweetObj">
+					<input type="hidden" name="user" path="user" value="${user.id}">
 					<p>
 						<form:input id="tweetText" class="form-control" path="text" />
 					</p>
@@ -171,7 +173,7 @@
    	    		<div class="row tweet" style="margin-left:0px;margin-right: 0px;">
     				<img src="/images/me.jpg" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
     				<div class="col-8">
-	    				<p class="tweet-user-info"><a href="/users/${user.id}">${user.firstName} ${user.lastName} ${user.username}</a> * Posted: {tweet.createdAt}</p>
+	    				<p class="tweet-user-info"><a href="/users/${user.id}">${user.firstName} ${user.lastName} ${user.username}</a> * Posted: ${tweet.createdAt}</p>
 	    				<p class="tweet-text">${tweet.text}</p>
 	    				<div class="row tweet-icons">
 	    					<i class="col-2 far fa-comment"></i>
@@ -188,7 +190,8 @@
 				</p>
 				<p class="profile-info">
 					<i class="far fa-calendar-alt"></i><span class="grey-text">
-						Joined April 2019</span>
+					<fmt:formatDate value="${user.createdAt}" pattern="MMMM yyyy" var="formattedDate"/>
+						Joined <c:out value="${formattedDate}"/></span>
 				</p>
 			</div>
 		</div>
