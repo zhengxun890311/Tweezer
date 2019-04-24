@@ -36,7 +36,7 @@
 					<button class="register-btn badge-pill">Sign Up</button>
 					
 					<span id="register-form" style="display: none;">
-					    <form:form method="POST" action="/registration" modelAttribute="user">
+					    <form:form method="POST" action="/registration" modelAttribute="userObj">
 						<div class="row">
 							<div class="col-4 ">
 					            <p><form:label path="firstName">First Name:</form:label></p>

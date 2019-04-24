@@ -75,6 +75,10 @@ public class UserService {
 		uR.unfollowUser(userId, unfollowId);
 	}
 	
+	public List<Object[]> getFollowingTweets(Long id){
+		return uR.getFollowingTweets(id);
+	}
+	
 //	public List<Object[]> getFollowing(Long id){
 //		return uR.getFollowing(id);
 //	}
