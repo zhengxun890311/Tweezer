@@ -52,22 +52,28 @@ public class TweetsCtrl {
 			BindingResult result,
 			HttpServletRequest request, Model model,
 			@RequestParam(value = "myfile") MultipartFile image) {
-		String path = request.getSession().getServletContext().getRealPath("/images");
-		File file = new File(path);
-		if (!file.exists()) {
-			file.mkdir();
+		if(tweet.getPhoto_path()==null) {
+			tweet.setPhoto_path(null);
 		}
-		String random_photo_name = UUID.randomUUID().toString().replaceAll("-", "");
-		try {
-			image.transferTo(new File(path + "/" + random_photo_name + "." + "jpg"));
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		else 
+		{
+			String path = request.getSession().getServletContext().getRealPath("/images");
+			File file = new File(path);
+			if (!file.exists()) {
+				file.mkdir();
+			}
+			String random_photo_name = UUID.randomUUID().toString().replaceAll("-", "");
+			try {
+				image.transferTo(new File(path + "/" + random_photo_name + "." + "jpg"));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			String url = "images/" + random_photo_name + "." + "jpg";
+			System.out.println("database url is：" + url);
+			tweet.setPhoto_path(url);
 		}
-		String url = "images/" + random_photo_name + "." + "jpg";
-		System.out.println("database url is：" + url);
-		tweet.setPhoto_path(url);
 		tweetService.createTweet(tweet);
 		return "redirect:/home";
 	}
