@@ -90,10 +90,29 @@
     			<fmt:formatDate value="${user.createdAt}" pattern="MMMM dd, yyyy" var="formattedDate"/>
     			<p class="profile-info"><i class="far fa-calendar-alt"></i><span class="grey-text"> Joined ${formattedDate}</span></p>
     			
-    			<form:form method="POST" action="/followUser" modelAttribute="user">
-    				<input type="hidden" name="id" value="${user.id}">
-    				<input type="submit" value="follow" class="btn btn-outline-info">
-    			</form:form>
+ <!--   follow button -->
+ 				<c:forEach items="${loggedUser.getUserFollowing()}" var ="f">
+ 					<c:if test="${f.id == user.id}">
+ 						<c:set var="alreadyFollowing" value="true"/>
+ 					</c:if>
+ 				</c:forEach>
+ 				
+ 				<c:choose>
+ 					<c:when test="${loggedUser.id == user.id}">
+ 						<p> this is you</p>
+ 						<br/>
+ 					</c:when>
+ 					<c:when test="${alreadyFollowing == true}">
+ 						<c:set var="alreadyFollowing" value="false"/>
+ 						<p> unfollow </p>
+ 					</c:when>
+ 					<c:otherwise>
+		    			<form:form method="POST" action="/followUser" modelAttribute="user">
+		    				<input type="hidden" name="id" value="${user.id}">
+		    				<input type="submit" value="follow" class="btn btn-outline-info">
+		    			</form:form>
+		    		</c:otherwise>
+		    	</c:choose>
     			
     		</div>
     		<div class="col-9 tweet-feed">
