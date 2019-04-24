@@ -26,7 +26,7 @@
 
 </head>
 <body>
-	<div class="container"
+	<div class="container top-part"
 		style="background-color: white; min-width: 100%;">
 		<div class="container">
 			<nav class="navbar navbar-expand-lg navbar-light ">
@@ -158,20 +158,18 @@
 				<form:form action="/createTweet" method="post" enctype="multipart/form-data"
 					modelAttribute="tweetObj">
 					<input type="hidden" name="user" path="user" value="${user.id}">
-					<p>
-						<form:input id="tweetText" class="form-control" path="text" />
-					</p>
-					<input id="success_btn" class="btn btn-success" type="submit" placeholder="What's happening"
-						value="Tweet" />
-						
-						
-						
-					<input id="myfile" name="myfile" type="file" path="video_path" class="form-control" />
-					<div id="player" class="embed-responsive embed-responsive-16by9">
-					  <iframe id="iframe" class="embed-responsive-item" src="${tweetObj.video_path}"></iframe>
+					<div style="text-align: right;">
+						<input type="file" name="myfile" path="video_path" id="myfile"class="hidden photo-upload" style="display: none;"src="${tweetObj.video_path}"/>
+						<label for="myfile" class="photo-upload"><h3><i class="far fa-image"></i></h3></label>					
 					</div>
 					
+						<form:textarea style="max-height:200px;" id="tweetText" class="form-control" path="text" placeholder="What's the Tweez?"/>
 					
+<!-- 					<input id="success_btn" class="btn btn-success" type="submit" placeholder="What's happening"
+						value="Tweet" /> -->
+					<div style="text-align: right; margin-top: 5px; margin-bottom: 5px;">
+						<button id="success_btn" class="btn btn-primary my-2 my-sm-0 tweez-btn" type="submit">Tweez</button>
+					</div>
 						
 				</form:form>
 				<div id="tweet_div_content" class="row tweet-title" style:"margin-left:0px;margin-right:0px">
@@ -191,9 +189,13 @@
    	    		<div class="row tweet" style="margin-left:0px;margin-right: 0px;">
     				<img src="${user.userPhotoPath}" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
     				<div class="col-8">
-	    				<p class="tweet-user-info"><a href="/users/${user.id}">${user.firstName} ${user.lastName} ${user.username}</a> * Posted: ${tweet.createdAt}</p>
+	    				<p class="tweet-user-info"><a href="/users/${user.id}"><c:out value="${user.firstName} ${user.lastName} @${user.username}"/></a> * Posted: <c:out value="${tweet.createdAt}"/></p>
 	    				<p class="tweet-text">${tweet.text}</p>
-	    				<img src="${tweet.photo_path}" style="width: 20rem;height: 15rem;">
+	    				
+ 						<c:if test ="${empty tweet.photo_path != true }">
+							<a href="${tweet.photo_path}"><img src="${tweet.photo_path}" class="tweet-photo"></a>
+						</c:if>
+	    				
 	    				<div class="row tweet-icons">
 	    					<i class="col-2 far fa-comment"></i>
 	    					<span class="heart"><i class="col-2 far fa-heart"></i></span>
@@ -225,8 +227,8 @@
 			
 			$("#tweetText").on('focus',function(){
 				$("#success_btn").show();
-				$("#iframe").show();
-				$("#myfile").show();
+ 				/* $("#iframe").show(); */
+				/* $("#myfile").show(); */
 			});
 		})
 		
@@ -252,7 +254,6 @@
 			
 			return url;
 		}
-		
 		
 	</script>
 </body>
