@@ -189,7 +189,14 @@
    	    		<div class="row tweet" style="margin-left:0px;margin-right: 0px;">
     				<img src="${user.userPhotoPath}" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
     				<div class="col-8">
-	    				<p class="tweet-user-info"><a href="/users/${user.id}"><c:out value="${user.firstName} ${user.lastName} @${user.username}"/></a> * Posted: <c:out value="${tweet.createdAt}"/></p>
+	    				
+	    				
+	    				
+    					<fmt:formatDate value="${tweet.createdAt}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDateTweet"/>
+	    				<p class="tweet-user-info"><a href="/users/${user.id}"><c:out value="${user.firstName} ${user.lastName} @${user.username}"/></a> • Posted: <c:out value="${formattedDateTweet}"/></p>
+    			
+	    				
+	    				
 	    				<p class="tweet-text">${tweet.text}</p>
 	    				
  						<c:if test ="${empty tweet.photo_path != true }">
