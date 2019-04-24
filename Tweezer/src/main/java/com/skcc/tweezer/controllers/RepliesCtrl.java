@@ -48,6 +48,8 @@ public class RepliesCtrl {
 	@PostMapping("/userReply")
 	public String userReply(@Valid @ModelAttribute("replyObj") Reply reply, BindingResult result, RedirectAttributes redirectAttributes) {
 		List<String> messages = new ArrayList<String>();
+		System.out.println(reply.getUser().getId());
+		System.out.println(reply.getTweet().getId());
 		if (result.hasErrors()) {
 			for (Object object: result.getAllErrors()) {
 				if (object instanceof FieldError) {

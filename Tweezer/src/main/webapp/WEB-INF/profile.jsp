@@ -12,7 +12,6 @@
 <title>Tweezer</title>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
@@ -54,7 +53,7 @@
     	<div class="container">
 	        <div class="justify-content-center">
 	            <div class="profile_pic">
-	                <img src="/images/me.jpg" alt="my_pic" class="me rounded-circle img-fluid shadow-sm p-1 mb-5 bg-white rounded">
+	                <img src="/${user.userPhotoPath}" alt="my_pic" class="me rounded-circle img-fluid shadow-sm p-1 mb-5 bg-white rounded">
 	            </div>
 	        </div>
 	        <div class="row">
@@ -119,27 +118,59 @@
     				<p class="col-9"><a href="#">Tweezes & replies</a></p>    			
     			</div>
    <!-- This is where the for-loop will go for tweets  -->	
-   	 		<!-- PLACEHOLDER TEXT BELOW -->		
+   
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+		    			<div class="modal-header">
+			      			<h5 class="modal-title" id="exampleModalCenterTitle">Reply to <c:out value="${user.username}"/>'s Tweez</h5>
+				  			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				    		<span aria-hidden="true">&times;</span></button>
+						</div>
+					    <div class="modal-body">				
+   						 <form:form method="post" action="/userReply" modelAttribute="replyObj">
+    						<input id="modal-tweetId" type="hidden" name="tweet"/>
+    						<input id="modal-userId" type="hidden" name="user"/>
+    						<form:input path="text" class="form-control"/>
+					    </div>
+					    <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					        <input type="submit" class="btn btn-success tweez-btn" value="Reply">
+						</form:form>
+				        </div>
+					</div>
+				</div>
+			</div>
+	 				
     		<c:forEach items="${user.tweets}" var="tweet">
    	    		<div class="row tweet">
-    				<img src="/images/me.jpg" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
+    				<img src="/${user.userPhotoPath}" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
     				<div class="col-8">
 
     					<fmt:formatDate value="${tweet.createdAt}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDateTweet"/>
 	    				<p class="tweet-user-info"><a href="/users/${user.id}"><c:out value="${user.firstName} ${user.lastName} @${user.username}"/></a> • Posted: <c:out value="${formattedDateTweet}"/></p>
 	    				<p class="tweet-text">${tweet.text}</p>
 	    				<div class="row tweet-icons">
-	 		<!-- post reply -->
-	    					<i class="col-2 far fa-comment">
-	    					<form:form method="post" action="/userReply" modelAttribute="replyObj">
-	    						<input type="hidden" name="tweet" value="${tweet.id}">
-	    						<input type="hidden" name="user" value="${loggedUser.id}">
-	    						<form:input path="text"/>
-	    						<input type="submit" value="reply">
-	    					</form:form>
-	    					</i>
+ 		<!-- post reply -->
+			<!-- Button trigger modal -->
+						<button type="button" class="btn reply-icon reply-button" data-toggle="modal" data-target="#exampleModalCenter" data-user="${loggedUser.id}" data-tweet="${tweet.id}">
+						  <i class="col-2 far fa-comment" style="padding:0;"></i>
+						</button>
 	    	<!-- like a tweet -->
-	    					<span class="heart"><i class="col-2 far fa-heart"></i></span>
+	    				<span class="heart" style="padding-top: 7px;"><i class="col-2 far fa-heart" style="padding-left:10px;"></i></span>
+    					</div>
+    					<div class="row" style="display:absolute;">
+	    					<div class="container">
+		    					<div class="row" style="margin-left: 1px;">
+		    						<div class="" style="display:inline-block;">
+			    						<span class="badge badge-light">${fn:length(tweet.replies)}</span>
+		    						</div>
+	  							    <div class="" style="margin-left: 19px; display:inline-block;">
+			    						<%-- <span class="badge badge-light">${fn:length(tweet.replies)}</span> --%>
+		    						</div>
+		    					</div>
+	    					</div>
     					</div>
     				</div>
     			</div>
@@ -148,7 +179,10 @@
     		</div>
     	</div>
     </div>
-    
+ 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>
 </body>

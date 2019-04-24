@@ -85,13 +85,16 @@ body {
 .tweet-user-info {
 	font-size: 14px;
 }
+.reply-icon {
+	height: 10px;
+}
 .redheart {
 	color: red;
 	animation: job_fadein 0.5s;
 }
 	    @keyframes job_fadein {
-	        from { opacity: 0; font-size:20px;}
-	        to   { opacity: 1; font-size:10px;}
+	        from { color: black;}
+	        to   { color: red;}
 	    }
 .misc-feed {
 	margin: 0 0 0 4px;
