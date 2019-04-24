@@ -60,7 +60,7 @@ public class RepliesCtrl {
 		} else {
 			rS.createReply(reply);
 		}
-		return "redirect:/home";
+		return "redirect:/users/" + reply.getTweet().getUser().getId();
 	}
 	
 	

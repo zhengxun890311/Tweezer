@@ -93,15 +93,22 @@
  				
  				<c:choose>
  					<c:when test="${loggedUser.id == user.id}">
+<<<<<<< Upstream, based on master
  						<p> </p>
+=======
+ 						<p></p>
+>>>>>>> 53a6678 added unfollow feature and reply feature to user profile
  						<br/>
  					</c:when>
  					<c:when test="${alreadyFollowing == true}">
  						<c:set var="alreadyFollowing" value="false"/>
- 						<p> unfollow </p>
+ 						<form:form method="POST" action="/unfollowUser" modelAttribute="unfollowUserObj">
+		    				<input type="hidden" name="id" value="${user.id}">
+		    				<input type="submit" value="unfollow" class="btn btn-outline-info">
+		    			</form:form>
  					</c:when>
  					<c:otherwise>
-		    			<form:form method="POST" action="/followUser" modelAttribute="user">
+		    			<form:form method="POST" action="/followUser" modelAttribute="followUserObj">
 		    				<input type="hidden" name="id" value="${user.id}">
 		    				<input type="submit" value="follow" class="btn btn-outline-info">
 		    			</form:form>
@@ -120,11 +127,24 @@
    	    		<div class="row tweet">
     				<img src="/images/me.jpg" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
     				<div class="col-8">
+<<<<<<< Upstream, based on master
     					<fmt:formatDate value="${tweet.createdAt}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDateTweet"/>
 	    				<p class="tweet-user-info"><a href="/users/${user.id}"><c:out value="${user.firstName} ${user.lastName} @${user.username}"/></a> • Posted: <c:out value="${formattedDateTweet}"/></p>
+=======
+	    				<p class="tweet-user-info"><a href="/users/${user.id}"><c:out value="${user.firstName} ${user.lastName} @${user.username}"/></a> * Posted: <c:out value="${tweet.createdAt}"/></p>
+>>>>>>> 53a6678 added unfollow feature and reply feature to user profile
 	    				<p class="tweet-text">${tweet.text}</p>
 	    				<div class="row tweet-icons">
-	    					<i class="col-2 far fa-comment"></i>
+	 		<!-- post reply -->
+	    					<i class="col-2 far fa-comment">
+	    					<form:form method="post" action="/userReply" modelAttribute="replyObj">
+	    						<input type="hidden" name="tweet" value="${tweet.id}">
+	    						<input type="hidden" name="user" value="${loggedUser.id}">
+	    						<form:input path="text"/>
+	    						<input type="submit" value="reply">
+	    					</form:form>
+	    					</i>
+	    	<!-- like a tweet -->
 	    					<span class="heart"><i class="col-2 far fa-heart"></i></span>
     					</div>
     				</div>

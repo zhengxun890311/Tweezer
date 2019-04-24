@@ -30,6 +30,9 @@ public interface UserRepo extends CrudRepository<User, Long>{
 	@Query(value="insert into friendships(user_id, following_id) values (?1, ?2)", nativeQuery=true)
 	void followUser(Long userId, Long followingId);
 	
-	
+	@Transactional
+	@Modifying
+	@Query(value="delete from friendships where user_id=?1 and following_id=?2", nativeQuery=true)
+	void unfollowUser(Long userId, Long unfollowId);
 
 }

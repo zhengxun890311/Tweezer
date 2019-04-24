@@ -68,8 +68,11 @@ public class UserService {
 	}
 	
 	public void followUser(Long userId, Long followingId) {
-		System.out.println(userId + "***" + followingId);
 		uR.followUser(userId, followingId);
+	}
+	
+	public void unfollowUser(Long userId, Long unfollowId) {
+		uR.unfollowUser(userId, unfollowId);
 	}
 	
 //	public List<Object[]> getFollowing(Long id){
