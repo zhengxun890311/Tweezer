@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.skcc.tweezer.models.Friendship;
+import com.skcc.tweezer.models.Reply;
 import com.skcc.tweezer.models.Tweet;
 import com.skcc.tweezer.models.User;
 import com.skcc.tweezer.services.UserService;
@@ -141,7 +141,7 @@ public class UsersCtrl {
     }
     
     @GetMapping("/users/{id}")
-    public String show(Model model, @ModelAttribute("user") User user, @PathVariable("id") Long id, HttpSession session) {
+    public String show(Model model, @ModelAttribute("followUserObj") User followUser, @ModelAttribute("unfollowUserObj") User unfollowUser, @ModelAttribute("replyObj") Reply reply, @PathVariable("id") Long id, HttpSession session) {
     	Long userId = (Long) session.getAttribute("userId");
     	model.addAttribute("user", uS.findUserById(id));
     	model.addAttribute("loggedUser", uS.findUserById(userId));
@@ -167,7 +167,7 @@ public class UsersCtrl {
 //    }
 //    
     @PostMapping("/followUser")
-    public String follow(@ModelAttribute("user") User following, HttpSession session) {
+    public String follow(@ModelAttribute("followUserObj") User following, HttpSession session) {
     	Long userId = (Long) session.getAttribute("userId");
 //    	User user = uS.findUserById(userId);
 //    	User follower = uS.findUserById(following.getId());
@@ -175,6 +175,12 @@ public class UsersCtrl {
     	return "redirect:/users/" + following.getId();
     }
     
+    @PostMapping("/unfollowUser")
+    public String unfollow(@ModelAttribute("unfolowUserObj") User unfollow, HttpSession session) {
+    	Long userId = (Long) session.getAttribute("userId");
+    	uS.unfollowUser(userId, unfollow.getId());
+    	return "redirect:/users/" + unfollow.getId();
+    }
  
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
