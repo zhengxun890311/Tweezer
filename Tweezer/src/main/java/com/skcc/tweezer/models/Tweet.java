@@ -27,6 +27,10 @@ public class Tweet {
 	private Long id;
 	@Size(min=1, message="tweet cannot be empty")
 	private String text;
+	
+	private String photo_path;
+	private String video_path;
+	
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createdAt;
@@ -43,6 +47,26 @@ public class Tweet {
     public Tweet() {}
     
     
+	public String getPhoto_path() {
+		return photo_path;
+	}
+
+
+	public void setPhoto_path(String photo_path) {
+		this.photo_path = photo_path;
+	}
+
+
+	public String getVideo_path() {
+		return video_path;
+	}
+
+
+	public void setVideo_path(String video_path) {
+		this.video_path = video_path;
+	}
+
+
 	public Long getId() {
 		return id;
 	}
