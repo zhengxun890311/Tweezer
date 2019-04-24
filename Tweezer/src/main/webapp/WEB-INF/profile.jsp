@@ -93,11 +93,8 @@
  				
  				<c:choose>
  					<c:when test="${loggedUser.id == user.id}">
-<<<<<<< Upstream, based on master
  						<p> </p>
-=======
- 						<p></p>
->>>>>>> 53a6678 added unfollow feature and reply feature to user profile
+
  						<br/>
  					</c:when>
  					<c:when test="${alreadyFollowing == true}">
@@ -127,12 +124,9 @@
    	    		<div class="row tweet">
     				<img src="/images/me.jpg" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
     				<div class="col-8">
-<<<<<<< Upstream, based on master
+
     					<fmt:formatDate value="${tweet.createdAt}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDateTweet"/>
 	    				<p class="tweet-user-info"><a href="/users/${user.id}"><c:out value="${user.firstName} ${user.lastName} @${user.username}"/></a> • Posted: <c:out value="${formattedDateTweet}"/></p>
-=======
-	    				<p class="tweet-user-info"><a href="/users/${user.id}"><c:out value="${user.firstName} ${user.lastName} @${user.username}"/></a> * Posted: <c:out value="${tweet.createdAt}"/></p>
->>>>>>> 53a6678 added unfollow feature and reply feature to user profile
 	    				<p class="tweet-text">${tweet.text}</p>
 	    				<div class="row tweet-icons">
 	 		<!-- post reply -->
