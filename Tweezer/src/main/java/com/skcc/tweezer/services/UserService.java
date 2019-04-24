@@ -1,13 +1,13 @@
 package com.skcc.tweezer.services;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skcc.tweezer.models.Friendship;
 import com.skcc.tweezer.models.User;
 import com.skcc.tweezer.repositories.FriendshipRepo;
 import com.skcc.tweezer.repositories.UserRepo;
@@ -71,5 +71,9 @@ public class UserService {
 		System.out.println(userId + "***" + followingId);
 		uR.followUser(userId, followingId);
 	}
+	
+//	public List<Object[]> getFollowing(Long id){
+//		return uR.getFollowing(id);
+//	}
 
 }

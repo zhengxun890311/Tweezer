@@ -78,7 +78,10 @@ public class UsersCtrl {
     	}else {
     		User u = uS.findUserById(userId);
     		model.addAttribute("user", u);
-    		model.addAttribute("following", u.getFollowers());
+//    		for (User user: u.getUserFollowing()) {
+//    			System.out.println(user.getFirstName());
+//    		}
+    		model.addAttribute("following", u.getUserFollowing());
     		return "home.jsp";    		   		
     	}
     }

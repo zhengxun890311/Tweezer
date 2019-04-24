@@ -17,13 +17,17 @@ public interface UserRepo extends CrudRepository<User, Long>{
 	
 	User findByEmail(String email);
 	
+//	@Query("select f.friend_id from Friendship f where f.user_id=?1")
+//	List<Object[]> getFollowing(Long userId);
+	
 	@Transactional
 	@Modifying
 	@Query("update User u set u.firstName=?2, u.lastName=?3, u.birthday=?4 where u.id=?1")
 	void updateUser(Long id, String firstName, String lastName, Date birthday);
 	
-
-	@Query(value="insert into friendships(user_id, follower_id) values (?1, ?2)", nativeQuery=true)
+	@Transactional
+	@Modifying
+	@Query(value="insert into friendships(user_id, following_id) values (?1, ?2)", nativeQuery=true)
 	void followUser(Long userId, Long followingId);
 
 }
