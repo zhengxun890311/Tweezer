@@ -44,12 +44,12 @@ public class UsersCtrl {
 	private MessageSource mS;
 	
 	@GetMapping("/")
-	public String index(@ModelAttribute("user") User user) {
+	public String index(@ModelAttribute("userObj") User user) {
 		return "loginreg.jsp";
 	}
 	
     @PostMapping("/registration")
-    public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
+    public String registerUser(@Valid @ModelAttribute("userObj") User user, BindingResult result, HttpSession session) {
     	uV.validate(user,  result);
     	if (result.hasErrors()) {
     		return "loginreg.jsp";
@@ -79,7 +79,7 @@ public class UsersCtrl {
     public String home(@ModelAttribute("tweetObj") Tweet tweet, Model model, HttpSession session) {
     	Long userId = (Long) session.getAttribute("userId");
     	if (userId==null) {
-    		return "loginreg.jsp";
+    		return "redirect:/";
     	}else {
     		User u = uS.findUserById(userId);
     		System.out.println(u.getUserPhotoPath());
