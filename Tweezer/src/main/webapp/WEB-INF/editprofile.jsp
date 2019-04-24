@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 	<div class="container" style="background-color: white; min-width: 100%;">
@@ -66,7 +66,7 @@
 
 <div class="main" style="margin: 0 auto; width: 40%">
     
-    <form:form method="POST" action="/editprofile" modelAttribute="user">
+    <form:form method="POST" action="/editprofile" enctype="multipart/form-data" modelAttribute="user">
     	<input type="hidden" name="id" value="${user.id}">
         <div class="form-group">
             <form:label path="firstName">First Name:</form:label>
@@ -87,8 +87,11 @@
             <form:input type="date" path="birthday"/>
         </div>
         <div class="custom-file">
-			<input type="file" class="custom-file-input" id="customFile" path="userPhotoPath">
+			<input id="myfile" name="myfile" type="file" path="userPhotoPath" class="custom-file-input">
 			<label class="custom-file-label" for="customFile">Choose file for user pic</label>
+			<div id="player" class="embed-responsive embed-responsive-16by9">
+					  <iframe id="iframe" class="embed-responsive-item" src="${tweetObj.video_path}"></iframe>
+					</div>
 		</div>
         <input type="submit" value="Update"/>
     </form:form>
@@ -96,5 +99,31 @@
     </div>
     
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#myfile").change(function(){
+			$("#player").show();
+			var url = createURL(this.files[0]);
+			if(url){
+				$("#iframe").attr("src",url);
+			}
+		})
+		
+		function createURL(file){
+			var url=null;
+			if(window.createObjectURL!=undefined){
+				url=window.createObjectURL(file);
+			}
+			else if(window.URL!=undefined){
+				url=window.URL.createObjectURL(file);
+			}
+			else if(window.webkitURL!=undefined){
+				url=window.webkitURL.createObjectURL(file);
+			}
+			
+			return url;
+		}
+	})
+</script>
 </body>
 </html>

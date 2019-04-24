@@ -63,8 +63,8 @@ public class UserService {
 //		fr.setId((long)1);
 //		fR.save(fr);
 //	}
-	public void updateUser(Long id, String firstName, String lastName, Date birthday) {
-		uR.updateUser(id, firstName, lastName, birthday);
+	public void updateUser(Long id, String firstName, String lastName, Date birthday,String userPhotoPath) {
+		uR.updateUser(id, firstName, lastName, birthday,userPhotoPath);
 	}
 	
 	public void followUser(Long userId, Long followingId) {
