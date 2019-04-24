@@ -12,8 +12,8 @@
 <title>Tweezer</title>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="css/style.css">
 
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 <!-- {fn:length(course.users)} -->
@@ -37,7 +37,7 @@
 			        <a class="nav-link" href="/messages"><i class="fas fa-envelope"></i> Messages</a>
 			      </li>
 		  	      <li class="nav-item">
-			        	<a class="nav-link" href="#" style="margin-left: 95px;"><img id="tweezer-logo"src="images/tweezer.png"></a>	        
+			        	<a class="nav-link" href="#" style="margin-left: 95px;"><img id="tweezer-logo"src="/images/tweezer.png"></a>	        
 			      </li>
 			    </ul>
 			    <form class="form-inline my-2 my-lg-0">
@@ -50,11 +50,11 @@
 		</div>
 	</div>
 <!-- Top of profile and profile picture -->
-    <div class="container" style="background-color: rgb(0,164,237); min-width: 100%; height: 200px;">
+    <div class="container" style="background-color: rgb(79,61,103); min-width: 100%; height: 200px;">
     	<div class="container">
 	        <div class="justify-content-center">
 	            <div class="profile_pic">
-	                <img src="images/me.jpg" alt="my_pic" class="me rounded-circle img-fluid shadow-sm p-1 mb-5 bg-white rounded">
+	                <img src="/images/me.jpg" alt="my_pic" class="me rounded-circle img-fluid shadow-sm p-1 mb-5 bg-white rounded">
 	            </div>
 	        </div>
 	        <div class="row">
@@ -67,16 +67,10 @@
     <div class="row shadow-sm p-2 mb-5 bg-white rounded whitebar" style=" height: 60px; min-width: 100%;">
     	<div class="container links-bar">
     		<div class="row" style="width: 300px;">
-				<p class="followers">Tweezes</p>
-				<p class="followers">Following</p>
-				<p class="followers">Lists</p>
-				<p class="followers">Moments</p>    		
-    		</div>
-    		<div class="row">
-<!--     		<p class="col">19</p>
-				<p class="col">2</p>
-				<p class="col">0</p>
-				<p class="col">18</p>  -->
+				<p class="col-3 followers"><button type="button" class="btn badge-pill">Tweezes <span class="badge badge-dark">${fn:length(user.tweets)}</span></button></p>
+				<p class="col-3 followers"><button type="button" class="btn badge-pill">Following <span class="badge badge-dark">${fn:length(user.userFollowing)}</span></button></p>
+ 				<p class="col-3 followers"><button type="button" class="btn badge-pill">Followers <span class="badge badge-dark">${fn:length(user.followers)}</span></button></p>
+				<!-- <p class="followers">Moments</p> -->   		
     		</div>
     	</div>
     </div> 
@@ -87,7 +81,7 @@
     			<h3 class="profile-info"><a href="/home">${user.firstName} ${user.lastName}</a></h3>
     			<p class="profile-info"><span class="grey-text"><a href="/users/${user.id}">@${user.username}</a></span></p>
     			
-    			<fmt:formatDate value="${user.createdAt}" pattern="MMMM dd, yyyy" var="formattedDate"/>
+    			<fmt:formatDate value="${user.createdAt}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDate"/>
     			<p class="profile-info"><i class="far fa-calendar-alt"></i><span class="grey-text"> Joined ${formattedDate}</span></p>
     			
  <!--   follow button -->
@@ -99,7 +93,7 @@
  				
  				<c:choose>
  					<c:when test="${loggedUser.id == user.id}">
- 						<p> this is you</p>
+ 						<p> </p>
  						<br/>
  					</c:when>
  					<c:when test="${alreadyFollowing == true}">
@@ -126,7 +120,8 @@
    	    		<div class="row tweet">
     				<img src="/images/me.jpg" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
     				<div class="col-8">
-	    				<p class="tweet-user-info"><a href="/users/${user.id}">${user.firstName} ${user.lastName} ${user.username}</a> * Posted: {tweet.createdAt}</p>
+    					<fmt:formatDate value="${tweet.createdAt}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDateTweet"/>
+	    				<p class="tweet-user-info"><a href="/users/${user.id}"><c:out value="${user.firstName} ${user.lastName} @${user.username}"/></a> • Posted: <c:out value="${formattedDateTweet}"/></p>
 	    				<p class="tweet-text">${tweet.text}</p>
 	    				<div class="row tweet-icons">
 	    					<i class="col-2 far fa-comment"></i>
@@ -141,6 +136,6 @@
     </div>
     
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
 </body>
 </html>

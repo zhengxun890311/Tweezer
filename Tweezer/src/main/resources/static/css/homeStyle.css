@@ -1,3 +1,6 @@
+.top-part {
+	margin-bottom: 5px;
+}
 #tweet_div{
     margin-right: 0px;
     margin-left: 0px;
@@ -51,4 +54,20 @@
 }
 .tweet_a{
 	text-decoration: none;
+}
+.tweet-photo {
+	max-width: 100%;
+	border-radius: 10px;
+}
+.fa-comment {
+	margin-top: 4px;
+}
+.photo-upload {
+	position: absolute;
+	margin-top: 20px;
+	right: 0;
+	margin-right: 20px;
+}
+.fa-image {
+	min-height: 40px;
 }
