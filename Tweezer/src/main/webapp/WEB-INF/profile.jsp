@@ -53,7 +53,7 @@
     	<div class="container">
 	        <div class="justify-content-center">
 	            <div class="profile_pic">
-	                <img src="/${user.userPhotoPath}" alt="my_pic" class="me rounded-circle img-fluid shadow-sm p-1 mb-5 bg-white rounded">
+	                <img src="/${user.userPhotoPath}" alt="my_pic" class="me img-fluid shadow-sm p-1 mb-5 bg-white rounded-circle rounded" style= "max-height: 200px; max-width: 200px;">
 	            </div>
 	        </div>
 	        <div class="row">
@@ -109,8 +109,14 @@
 		    				<input type="submit" value="follow" class="btn btn-outline-info">
 		    			</form:form>
 		    		</c:otherwise>
-		    	</c:choose>
-    			
+		    	</c:choose>	
+	    		<div class="">
+	    			<c:forEach items="${user.tweets}" var="tweet">
+	    				<c:if test ="${empty tweet.photo_path != true }">
+	    					<a href="#${tweet.id}"><img src="/${tweet.photo_path}" class="tinypic"/></a>
+	   					</c:if>
+	    			</c:forEach>
+	    		</div>
     		</div>
     		<div class="col-9 tweet-feed">
     			<div class="row tweet-title">
@@ -150,6 +156,9 @@
     					<fmt:formatDate value="${tweet.createdAt}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDateTweet"/>
 	    				<p class="tweet-user-info"><a href="/users/${user.id}"><c:out value="${user.firstName} ${user.lastName} @${user.username}"/></a> • Posted: <c:out value="${formattedDateTweet}"/></p>
 	    				<p class="tweet-text">${tweet.text}</p>
+			 			<c:if test ="${empty tweet.photo_path != true }">
+	    					<a href="/${tweet.photo_path}"><img src="/${tweet.photo_path}" class="tweet-photo" id="${tweet.id}"></a>
+    					</c:if>
 	    				<div class="row tweet-icons">
  		<!-- post reply -->
 			<!-- Button trigger modal -->

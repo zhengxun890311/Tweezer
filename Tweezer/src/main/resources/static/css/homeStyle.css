@@ -11,7 +11,7 @@
 	margin-right:0px;
 }
 #div2{
-	background-color: #00A4ED;
+	background-color: rgb(79,61,103);
 	height:100px;
 }
 #profile_div_img{
@@ -59,6 +59,9 @@
 	max-width: 100%;
 	border-radius: 10px;
 }
+.reply-icon {
+	height: 10px;
+}
 .fa-comment {
 	margin-top: 4px;
 }
@@ -70,4 +73,8 @@
 }
 .fa-image {
 	min-height: 40px;
+}
+.usericon {
+    width: 100%;
+    height: 100%;
 }
