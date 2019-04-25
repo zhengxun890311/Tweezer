@@ -62,7 +62,6 @@
 			</nav>
 		</div>
 	</div>
-	
 	<div class="container">
 		<div class="row justify-content-space-between">
 			<div class="col-3 user-profile">
