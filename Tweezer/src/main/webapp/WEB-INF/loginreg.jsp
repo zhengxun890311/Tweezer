@@ -55,10 +55,10 @@
 						            <form:input path="lastName" class="form-control form-control-sm" placeholder="Enter Last Name"/>
 						        </p>
 						        <p>
-						            <form:input path="username" class="form-control form-control-sm" placeholder="Enter a Username"/>
+						            <form:input id="username" onkeydown="check('username');" path="username" class="form-control form-control-sm" placeholder="Enter a Username"/>
 						        </p>
 						        <p>
-						            <form:input type="email" path="email" class="form-control form-control-sm" placeholder="Enter Your Email"/>
+						            <form:input id="email" onKeydown="check('email');" type="email" path="email" class="form-control form-control-sm" placeholder="Enter Your Email"/>
 						        </p>
 						        <p>
 						            <form:input type="date" path="birthday" class="form-control form-control-sm"/>
