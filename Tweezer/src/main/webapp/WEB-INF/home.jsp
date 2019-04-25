@@ -138,17 +138,16 @@
     		<c:forEach items="${followingTweets}" var="t">
    	    		<div class="row tweet" style="margin-left:0px;margin-right: 0px;">
    	    			<c:if test="${empty t[1] != true}">
-    					<div class="tweetcropper">
-	    					<img src="${t[1]}" class="small-tweet-pic img-fluid">
-    					</div>
+  	    				<div class="container col-3" style="display:inline-block; margin: 15px 0 0 0;">
+	    					<div class="tweetcropper">
+		    					<img src="${t[1]}" class="small-tweet-pic img-fluid">
+	    					</div>
+  	    				</div>
     				</c:if>
     				<div class="col-8">
 	    				
     					<fmt:formatDate value="${t[6]}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDateTweet"/>
 	    				<p class="tweet-user-info"><a href="/users/${t[0]}"><c:out value="${t[2]} ${t[3]} @${t[4]}"/></a> • Posted: <c:out value="${formattedDateTweet}"/></p>
-    			
-	    				
-	    				
 	    				<p class="tweet-text" style="margin-bottom: 8x;">${t[5]}</p>
 	    				
  						<c:if test ="${empty t[7]!= true }">
