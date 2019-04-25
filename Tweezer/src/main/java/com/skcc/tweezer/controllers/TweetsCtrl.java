@@ -67,7 +67,17 @@ public class TweetsCtrl {
 			}
 			String url = "images/" + random_photo_name + "." + "jpg";
 			System.out.println("database url is：" + url);
-			tweet.setPhoto_path(url);
+			if(tweet.getText().equals("")) {
+				tweet.setText("  ");
+			}
+			if(image.getSize()==0) {
+				tweet.setPhoto_path(null);
+				System.out.println("11111111111");
+				System.out.println("11111111111");
+			}
+			else {
+				tweet.setPhoto_path(url);
+			}
 			tweetService.createTweet(tweet);
 			return "redirect:/home";
 	}
