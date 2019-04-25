@@ -54,7 +54,8 @@ public class UsersCtrl {
 	
     @PostMapping("/registration")
     public String registerUser(@Valid @ModelAttribute("userObj") User user, BindingResult result, HttpSession session) {
-    	uV.validate(user,  result);
+    	uV.validate(user, result);
+    	System.out.println(result);
     	if (result.hasErrors()) {
     		return "loginreg.jsp";
     	} else {

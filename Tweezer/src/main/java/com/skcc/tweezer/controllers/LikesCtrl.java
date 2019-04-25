@@ -18,11 +18,10 @@ public class LikesCtrl {
 	
 	@PostMapping("/like")
 	public String like(@ModelAttribute("likeObj") Like like) {
-		Tweet t = tS.findTweet(like.getTweet().getId());
+		System.out.println(like.getTweet().getId());
+		System.out.println(like.getUser().getId());
 		lS.createLike(like);
-		return "redirect:/home";
-//		return "redirect:/users" + t.getUser().getId();
+		return "redirect:/users/" + like.getTweet().getUser().getId();
 	}
-
 
 }
