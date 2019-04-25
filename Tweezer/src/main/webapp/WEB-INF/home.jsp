@@ -143,8 +143,7 @@
 	    					</div>
   	    				</div>
     				</c:if>
-    				<div class="col-8">
-	    				
+    				<div class="col-9">
     					<fmt:formatDate value="${t[6]}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDateTweet"/>
 	    				<p class="tweet-user-info"><a href="/users/${t[0]}"><c:out value="${t[2]} ${t[3]} @${t[4]}"/></a> • Posted: <c:out value="${formattedDateTweet}"/></p>
 	    				<p class="tweet-text" style="margin-bottom: 8x;">${t[5]}</p>
