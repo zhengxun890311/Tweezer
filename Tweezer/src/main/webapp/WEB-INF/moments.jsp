@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,12 +64,85 @@
 		</div>
 	</div>
 	
-	<h3>Most Recent News</h3>
+		
+	<div class="container">
+		<div class="row justify-content-space-between">
+			<div class="col-3 user-profile">
+				<div id="profile_div" style="background-color: white">
+					<div id="div2" class="profile_pic">
+						
+						
+						<a href="/editprofile">
+							<img id="profile_div_img" src="${user.userPhotoPath}" alt="my_pic"
+								class="me rounded-circle img-fluid shadow-sm p-1 mb-5 bg-white rounded">
+						</a>
+						<div id="profile_div_name">
+							<h6><c:out value="${user.firstName}"/></h6>
+						</div>
+						<div id="profile_div_id">
+							<a style="text-decoration: none; color:grey;" href="/users/${user.id}"><font size="2">@<c:out value="${user.username}"/></font></a>
+						</div>
+						
+					</div>
+				</div>
+				
+<!-- 		This is the section for 'Trends'	 -->	
 
+				<div id="trend_div" style="background-color: white;padding:10px;">
+					<h3><span class="black-text">Trends for you</span></h3>
+					
+					<c:forEach items="${trends.response.results}" var='t' begin="1">
+					<a href="${t.webUrl}"><c:out value="${t.webTitle}"/></a> | 
+					</c:forEach>
+				</div>
+				</div>
+				
+			
+			<div class="col-6 tweet-feed">
+				<!-- Main content -->
+				
+				<div id="tweet_div_content" class="row tweet-title" style="margin-left:0px;margin-right:0px">
+					<!-- <p class="col-9"> -->
+						
+						<h4>Most Recent News</h4>
+						
+					
 					<c:forEach items="${news.response.results}" var="n">
 					<p><c:out value="${n.sectionName}"/></p>
 					<p><c:out value="${n.webPublicationDate}"/><a href="${n.webUrl}"><c:out value="${n.webTitle}"/></a></p>
 					</c:forEach>
+					
+				</div>
+				</div>
+				
+   	 				
+    		
+			
+<!-- 	This is the section for 'who to follow' -->
+			<div class="col-3 user-profile">
+				<h3>Who to Follow</h3>
+				<c:forEach items="${whoToFollow}" var="u" begin="0" end="2">
+				<div class="row" style="height: 80px; margin-bottom: 30px; margin-left: 2px;">
+					<!-- <div class="col-3"> -->
+		 				<c:if test="${empty u[1] != true}">
+		    				<img src="${u[4]}" alt="user.photo" class="usericon col-3 rounded-circle p-1 img-fluid  bg-white rounded" style= "max-height: 200px;">
+		    			</c:if>
+					<!-- </div> -->
+					<div class="col-8">
+		    			<a href="/users/${u[0]}"><c:out value="${u[1]} ${u[2]}"/></a>
+		    			<p style="margin-bottom: 0;"><a href="/users/${u[0]}"><c:out value="@${u[3]}"/></a></p>
+		    			<form:form method="POST" action="/whoToFollow" modelAttribute="followUserObj">
+				   			<input type="hidden" name="id" value="${u[0]}">
+			 				<input type="submit" value="follow" class="btn btn-outline-info">
+				    	</form:form>
+					</div>
+				</div>
+				</c:forEach>
+    				
+				
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>
