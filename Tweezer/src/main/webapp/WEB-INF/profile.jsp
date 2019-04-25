@@ -42,7 +42,7 @@
 			    <form class="form-inline my-2 my-lg-0">
 			      <input class="form-control mr-sm-2 searchbar" type="search" placeholder="Search Tweezer" aria-label="Search">
 			      <i class="fas fa-user" style="margin-right: 10px;"></i>
-			      <button class="btn btn-primary my-2 my-sm-0 tweez-btn" type="submit"> Tweez</button>
+			      <a href="/logout" class="btn btn-primary my-2 my-sm-0 tweez-btn">Log Out</a>
 			    </form>
 			  </div>
 			</nav>
@@ -80,7 +80,7 @@
     			<h3 class="profile-info"><a href="/home">${user.firstName} ${user.lastName}</a></h3>
     			<p class="profile-info"><span class="grey-text"><a href="/users/${user.id}">@${user.username}</a></span></p>
     			
-    			<fmt:formatDate value="${user.createdAt}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDate"/>
+    			<fmt:formatDate value="${user.createdAt}" pattern="MMMM dd, yyyy" var="formattedDate"/>
     			<p class="profile-info"><i class="far fa-calendar-alt"></i><span class="grey-text"> Joined ${formattedDate}</span></p>
     			
  <!--   follow button -->
@@ -141,8 +141,7 @@
 				        </div>
 					</div>
 				</div>
-			</div>
-	 				
+			</div>	
     		<c:forEach items="${user.tweets}" var="tweet">
    	    		<div class="row tweet">
     				<img src="/${user.userPhotoPath}" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
@@ -158,7 +157,15 @@
 						  <i class="col-2 far fa-comment" style="padding:0;"></i>
 						</button>
 	    	<!-- like a tweet -->
-	    				<span class="heart" style="padding-top: 7px;"><i class="col-2 far fa-heart" style="padding-left:10px;"></i></span>
+	    				<span class="heart" style="padding-top: 7px;">
+	    				<i class="col-2 far fa-heart" style="padding-left:10px;">
+	    				</i> 
+	    					<form:form action="/like" method="post" modelAttribute="likeObj">
+	    						<input type="hidden" name="tweet" value="${tweet.id}">
+	    						<input type="hidden" name="user" value="${loggedUser.id}">
+	    						<input type="submit" value="like">
+	    					</form:form>
+	    				</span>
     					</div>
     					<div class="row" style="display:absolute;">
 	    					<div class="container">
