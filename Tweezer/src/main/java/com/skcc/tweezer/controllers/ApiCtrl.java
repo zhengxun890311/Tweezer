@@ -20,30 +20,9 @@ public class ApiCtrl {
 	@Autowired
 	private UserService uS;
 	private RestTemplate rT;
-	
 
-    @GetMapping("/api")
-    public String home(@ModelAttribute("tweetObj") Tweet tweet, Model model, @ModelAttribute("replyObj") Reply reply, @ModelAttribute("followUserObj") User followUser, HttpSession session) {
-    	Long userId = (Long) session.getAttribute("userId");
-    		
-    		final String uri = "https://content.guardianapis.com/sections?api-key=c0f4afff-8d9c-4006-8a44-b778650d8e0f";
-    		RestTemplate restTemplate = new RestTemplate();
-    		Object result = restTemplate.getForObject(uri,  Object.class);
-    		System.out.println(result);
-    		
-    		User u = uS.findUserById(userId);
-    		System.out.println(u.getUserPhotoPath());
-    		model.addAttribute("user", u);
-    		model.addAttribute("following", u.getUserFollowing());
-    		model.addAttribute("loggedUser", uS.findUserById(userId));
-    		model.addAttribute("followingTweets", uS.getFollowingTweets(userId));
-    		model.addAttribute("whoToFollow", uS.getWhoToFollow(userId));
-    		model.addAttribute("trends", result);
-    		return "api.jsp";    		   		
-    	
-    }
     
-    @GetMapping("/moments")
+    @GetMapping("/news")
     public String moments(Model model) {
     	
 //		final String uri = "https://content.guardianapis.com/search?q=technology&api-key=c0f4afff-8d9c-4006-8a44-b778650d8e0f";

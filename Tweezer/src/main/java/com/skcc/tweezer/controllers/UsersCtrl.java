@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -65,6 +66,9 @@ public class UsersCtrl {
     	}
     }
     
+
+   
+    
     @PostMapping("/login")
     public String loginUser(@ModelAttribute("user") User user, @RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
     	boolean isAuthenticated = uS.authenticateUser(email, password);
@@ -84,12 +88,18 @@ public class UsersCtrl {
     	if (userId==null) {
     		return "redirect:/";
     	}else {
+
+    		final String uri = "https://content.guardianapis.com/sections?api-key=c0f4afff-8d9c-4006-8a44-b778650d8e0f";
+    		RestTemplate restTemplate = new RestTemplate();
+    		Object result = restTemplate.getForObject(uri,  Object.class);
+    	
     		User u = uS.findUserById(userId);
     		model.addAttribute("user", u);
     		model.addAttribute("following", u.getUserFollowing());
     		model.addAttribute("loggedUser", uS.findUserById(userId));
     		model.addAttribute("followingTweets", uS.getFollowingTweets(userId));
     		model.addAttribute("whoToFollow", uS.getWhoToFollow(userId));
+    		model.addAttribute("trends", result);
     		return "home.jsp";    		   		
     	}
     }
@@ -149,10 +159,14 @@ public class UsersCtrl {
     @GetMapping("/users/{id}")
     public String show(Model model, @ModelAttribute("followUserObj") User followUser, @ModelAttribute("unfollowUserObj") User unfollowUser, @ModelAttribute("replyObj") Reply reply, @ModelAttribute("likeObj") Like like, @PathVariable("id") Long id, HttpSession session) {
     	Long userId = (Long) session.getAttribute("userId");
-    	model.addAttribute("user", uS.findUserById(id));
-    	model.addAttribute("loggedUser", uS.findUserById(userId));
-    	model.addAttribute("userTweets", uS.getUserTweets(id));
-    	return "profile.jsp";
+    	if (userId==null) {
+    		return "redirect:/";
+    	} else {
+	    	model.addAttribute("user", uS.findUserById(id));
+	    	model.addAttribute("loggedUser", uS.findUserById(userId));
+	    	model.addAttribute("userTweets", uS.getUserTweets(id));
+	    	return "profile.jsp";
+    	}
     }
    
     

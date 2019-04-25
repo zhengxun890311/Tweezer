@@ -42,8 +42,8 @@
 
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a class="nav-link" href="/moments"><i
-								class="fas fa-bolt"></i> Moments <span class="sr-only">(current)</span></a>
+						<li class="nav-item active"><a class="nav-link" href="/news"><i
+								class="fas fa-bolt"></i> News <span class="sr-only">(current)</span></a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="#"><i
 								class="fas fa-bell"></i> Notifications</a></li>
@@ -105,6 +105,7 @@
 					<c:forEach items="${trends.response.results}" var='t' begin="1">
 					<a href="${t.webUrl}"><c:out value="${t.webTitle}"/></a> | 
 					</c:forEach>
+				</div>
 				</div>
 				
 			
