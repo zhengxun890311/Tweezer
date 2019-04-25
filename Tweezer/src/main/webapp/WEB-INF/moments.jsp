@@ -30,7 +30,7 @@
 		style="background-color: white; min-width: 100%;">
 		<div class="container">
 			<nav class="navbar navbar-expand-lg navbar-light ">
-				<a class="navbar-brand home" href="#"><i class="fas fa-home"></i>
+				<a class="navbar-brand home" href="/home"><i class="fas fa-home"></i>
 					Home</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupportedContent"
@@ -41,8 +41,8 @@
 
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a class="nav-link" href="#"><i
-								class="fas fa-bolt"></i> Moments <span class="sr-only">(current)</span></a>
+						<li class="nav-item active"><a class="nav-link" href="/news"><i
+								class="fas fa-bolt"></i> News <span class="sr-only">(current)</span></a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="#"><i
 								class="fas fa-bell"></i> Notifications</a></li>
