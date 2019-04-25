@@ -54,9 +54,8 @@
 								src="images/tweezer.png"></a></li>
 					</ul>
 					<form class="form-inline my-2 my-lg-0">
-						<input class="form-control mr-sm-2 searchbar" type="search"
-							placeholder="Search Tweezer" aria-label="Search"> <i
-							class="fas fa-user" style="margin-right: 10px;"></i>
+						<input class="form-control mr-sm-2 searchbar" type="search"placeholder="Search Tweezer" aria-label="Search"> 
+							<a href="/editprofile"><i class="fas fa-user" style="margin-right: 10px;"></i></a>
 						<a href="/logout" class="btn btn-danger my-2 my-sm-0 tweez-btn">Log Out</a>
 					</form>
 				</div>
@@ -69,7 +68,6 @@
 			<div class="col-3 user-profile">
 				<div id="profile_div" style="background-color: white">
 					<div id="div2" class="profile_pic">
-						
 						
 						<a href="/editprofile">
 							<img id="profile_div_img" src="${user.userPhotoPath}" alt="my_pic"
@@ -106,7 +104,7 @@
 					<a href="${t.webUrl}"><c:out value="#${t.webTitle}"/></a> | 
 					</c:forEach>
 				</div>
-				</div>
+			</div>
 				
 			
 			<div class="col-6 tweet-feed">
@@ -140,7 +138,9 @@
     		<c:forEach items="${followingTweets}" var="t">
    	    		<div class="row tweet" style="margin-left:0px;margin-right: 0px;">
    	    			<c:if test="${empty t[1] != true}">
-    					<img src="${t[1]}" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
+    					<div class="tweetcropper">
+	    					<img src="${t[1]}" class="small-tweet-pic img-fluid">
+    					</div>
     				</c:if>
     				<div class="col-8">
 	    				
@@ -149,7 +149,7 @@
     			
 	    				
 	    				
-	    				<p class="tweet-text">${t[5]}</p>
+	    				<p class="tweet-text" style="margin-bottom: 8x;">${t[5]}</p>
 	    				
  						<c:if test ="${empty t[7]!= true }">
 							<a href="${t[7]}"><img src="${t[7]}" class="tweet-photo"></a>
@@ -178,34 +178,17 @@
 							</div>
 						</div>
 	    				<div class="row tweet-icons">
-	    	<!-- post reply -->
-		    		<!-- Button trigger modal -->
-						<button type="button" class="btn reply-icon reply-button" data-toggle="modal" data-target="#exampleModalCenter" data-user="${loggedUser.id}" data-tweet="${t[9]}">
-						  <i class="col-2 far fa-comment" style="padding:0;"></i>
-						</button>
- 								    	<!-- like a tweet -->
-	    					<form:form action="/like" method="post" modelAttribute="likeObj">
-		    				
-	    						<form:input type="hidden" path="tweet" value="${tweet.id}"/>
+<!-- post reply -->
+<!-- Button trigger modal -->
+							<button type="button" style="padding: 0; margin-left: 10px; margin-right: 30px;" class="btn reply-icon reply-button" data-toggle="modal" data-target="#exampleModalCenter" data-user="${loggedUser.id}" data-tweet="${t[9]}">
+								<span class="badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-comment" style="padding:0; font-size: 1.5em;"> ${fn:length(tweet.replies)}</i></span>
+							</button>
+<!-- like a tweet -->
+	    					<form:form action="/homeLike" method="post" modelAttribute="likeObj">
+	    						<form:input type="hidden" path="tweet" value="${t[9]}"/>
 	    						<form:input type="hidden" path="user" value="${loggedUser.id}"/>
-	<!--     						<input type="submit" value="like"> -->
-			    				<button type="submit" style="border:0; padding:0px;"><span class="heart badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-heart" style="padding:0; font-size: 1.5em;"> ${fn:length(tweet.likes)}</i></span></button> 
-		    				
+			    				<button type="submit" style="border:0; padding:0px;"><span class="heart badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-heart" style="padding:0; font-size: 1.5em; margin-top: 5px;"> ${fn:length(tweet.likes)}</i></span></button> 
 	    					</form:form>
- 	    	<!-- like a tweet -->
-	    				<!-- <span class="heart" style="padding-top: 7px;"><i class="col-2 far fa-heart" style="padding-left:10px;"></i></span> -->
-    					</div>
-    					<div class="row" style="display:absolute;">
-	    					<div class="container">
-		    					<div class="row" style="margin-left: 1px;">
-<!-- 		    						<div class="" style="display:inline-block;">
-			    						<span class="badge badge-light">"{fn:length(t[replies])}"</span>
-		    						</div> -->
-	  							   <%--  <div class="" style="margin-left: 19px; display:inline-block;">
-			    						<span class="badge badge-light">${fn:length(tweet.replies)}</span>
-		    						</div> --%>
-		    					</div>
-	    					</div>
     					</div>
     				</div>
     			</div>
@@ -213,13 +196,15 @@
 			</div>
 			
 <!-- 	This is the section for 'who to follow' -->
-			<div class="col-3 user-profile">
+<%-- 			<div class="col-3 user-profile" style="background-color: white; max-height: 360px;">
 				<h3>Who to Follow</h3>
 				<c:forEach items="${whoToFollow}" var="u" begin="0" end="2">
 				<div class="row" style="height: 80px; margin-bottom: 30px; margin-left: 2px;">
 					<!-- <div class="col-3"> -->
 		 				<c:if test="${empty u[1] != true}">
-		    				<img src="${u[4]}" alt="user.photo" class="usericon col-3 rounded-circle p-1 img-fluid  bg-white rounded" style= "max-height: 200px;">
+		    				<div class="cropper">
+			    				<img src="${u[4]}" class="usericon img-fluid  bg-white" style= "max-height: 200px;">
+		    				</div>
 		    			</c:if>
 					<!-- </div> -->
 					<div class="col-8">
@@ -232,9 +217,42 @@
 					</div>
 				</div>
 				</c:forEach>
-    				
-				
+			</div> --%>
+			
+			<div class="col-3 user-profile">
+				<div id="profile_div" style="background-color: white; height: 360px; margin-top: 1px; text-align: center; padding-left: 15px;">
+					<h3>Who to Follow</h3>
+					<c:forEach items="${whoToFollow}" var="u" begin="0" end="2">
+						<div class="row" style="height: 80px; margin-bottom: 30px; margin-left: 2px;">
+			 				<c:if test="${empty u[1] != true}">
+			    				<div class="cropper">
+				    				<img src="${u[4]}" class="usericon img-fluid  bg-white" style= "max-height: 200px;">
+			    				</div>
+			    			</c:if>
+							<div class="col-8" style="padding-left: 0;">
+				    			<a href="/users/${u[0]}"><c:out value="${u[1]} ${u[2]}"/></a>
+				    			<p style="margin-bottom: 0;"><a href="/users/${u[0]}"><c:out value="@${u[3]}"/></a></p>
+				    			<form:form method="POST" action="/whoToFollow" modelAttribute="followUserObj">
+						   			<input type="hidden" name="id" value="${u[0]}">
+					 				<input type="submit" value="follow" class="btn btn-outline-info">
+						    	</form:form>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
 			</div>
+				
+<!-- 		This is the section for 'Trends'	 -->	
+
+				<div id="trend_div" style="background-color: white;padding:10px;">
+					<h3><span class="black-text">Trends for you</span></h3>
+					
+					<c:forEach items="${trends.response.results}" var='t' begin="1">
+					<a href="${t.webUrl}"><c:out value="#${t.webTitle}"/></a> | 
+					</c:forEach>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
