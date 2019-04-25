@@ -1,0 +1,13 @@
+.prof-pic-crop {
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	overflow: hidden;
+	border-radius: 50%;
+}
+.prof-pic {
+	display: inline-block;
+	margin: 0;
+	height: 100%;
+	width: auto;
+}
