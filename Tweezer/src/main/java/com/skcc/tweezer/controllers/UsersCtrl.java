@@ -85,7 +85,6 @@ public class UsersCtrl {
     		return "redirect:/";
     	}else {
     		User u = uS.findUserById(userId);
-    		System.out.println(u.getUserPhotoPath());
     		model.addAttribute("user", u);
     		model.addAttribute("following", u.getUserFollowing());
     		model.addAttribute("loggedUser", uS.findUserById(userId));
@@ -124,7 +123,6 @@ public class UsersCtrl {
 			e.printStackTrace();
 		}
 		String url = "images/" + random_photo_name + "." + "jpg";
-		System.out.println("database url is：" + url);
 		user.setUserPhotoPath(url);
     	List<String> messages = new ArrayList<String>();
     	if (result.hasErrors()) {
@@ -137,7 +135,12 @@ public class UsersCtrl {
 			}
 			redirectAttributes.addFlashAttribute("messages", messages);
 			return "redirect:/editprofile";
-    	} else {
+    	} 
+    	else {
+    		if(image.getSize()==0) {
+    			User newUser = uS.findUserById(user.getId());
+    			user.setUserPhotoPath(newUser.getUserPhotoPath());
+    		}
     		uS.updateUser(user.getId(), user.getFirstName(), user.getLastName(), user.getBirthday(),user.getUserPhotoPath());
     		return "redirect:/home";
     	}
