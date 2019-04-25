@@ -42,7 +42,7 @@
 
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a class="nav-link" href="#"><i
+						<li class="nav-item active"><a class="nav-link" href="/moments"><i
 								class="fas fa-bolt"></i> Moments <span class="sr-only">(current)</span></a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="#"><i
@@ -97,61 +97,16 @@
 					</div>
 				</div>
 				
+<!-- 		This is the section for 'Trends'	 -->	
+
 				<div id="trend_div" style="background-color: white;padding:10px;">
 					<h3><span class="black-text">Trends for you</span></h3>
-					<p style:"color:#1DA1F2">
-						<h6>
-							<a href="#">Chris sale</a>
-						</h6>
-					</p>
-					<p>
-						<h6>
-							<a href="#">S&P 500 and nasdaq</a>
-						</h6>
-					</p>
-					<p>
-						<h6>
-							<a href="#">#2020 census</a>
-						</h6>
-					</p>
-					<p>
-						<h6>
-							<a href="#">frank clark</a>
-						</h6>
-					</p>
-					<p>
-						<h6>
-							<a href="#">#seahawks</a>
-						</h6>
-					</p>
-					<p>
-						<h6>
-							<a href="#">#pbwc</a>
-						</h6>
-					</p>
-					<p>
-						<h6>
-							<a href="#">patrick peterson</a>
-						</h6>
-					</p>
-					<p>
-						<h6>
-							<a href="#">#ncg2019</a>
-						</h6>
-					</p>
-					<p>
-						<h6>
-							<a href="#">#joe biden</a>
-						</h6>
-					</p>
-					<p>
-						<h6>
-							<a href="#">#robbie gould</a>
-						</h6>
-					</p>
+					
+					<c:forEach items="${trends.response.results}" var='t' begin="1">
+					<a href="${t.webUrl}"><c:out value="${t.webTitle}"/></a> | 
+					</c:forEach>
 				</div>
-			</div>
-			
+				
 			
 			<div class="col-6 tweet-feed">
 				<!-- Main content -->
@@ -268,17 +223,6 @@
 				</div>
 				</c:forEach>
     				
-			
-<!-- 			I left this section in case you wanted to use the code for something else. Delete if not needed anymore! -->
-				<h3 class="profile-info"><c:out value="${user.firstName}"/></h3>
-				<p class="profile-info">
-					<span class="grey-text">@<c:out value="${user.username}"/></span>
-				</p>
-				<p class="profile-info">
-					<i class="far fa-calendar-alt"></i><span class="grey-text">
-					<fmt:formatDate value="${user.createdAt}" pattern="MMMM yyyy" var="formattedDate"/>
-						Joined <c:out value="${formattedDate}"/></span>
-				</p>
 				
 			</div>
 		</div>
