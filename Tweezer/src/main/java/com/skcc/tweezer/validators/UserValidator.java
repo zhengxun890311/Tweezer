@@ -10,6 +10,7 @@ import com.skcc.tweezer.models.User;
 
 @Component
 public class UserValidator implements Validator {
+	
 	@Override
 	public boolean supports(Class<?> clazz) {
 		return User.class.equals(clazz);

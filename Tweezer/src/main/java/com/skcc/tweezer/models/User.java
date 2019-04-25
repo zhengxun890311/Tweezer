@@ -41,7 +41,7 @@ public class User {
 	
 	@Email
 	private String email;
-	@Size(min=8, message="password must be at least 8 cahracters")
+	@Size(min=8, message="password must be at least 8 characters")
     private String password;
     @Transient
     private String passwordConfirmation;

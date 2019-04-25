@@ -103,7 +103,7 @@
 					<h3><span class="black-text">Trends for you</span></h3>
 					
 					<c:forEach items="${trends.response.results}" var='t' begin="1">
-					<a href="${t.webUrl}"><c:out value="${t.webTitle}"/></a> | 
+					<a href="${t.webUrl}"><c:out value="#${t.webTitle}"/></a> | 
 					</c:forEach>
 				</div>
 				</div>
@@ -114,18 +114,18 @@
 				<form:form action="/createTweet" method="post" enctype="multipart/form-data"
 					modelAttribute="tweetObj">
 					<input type="hidden" name="user" path="user" value="${user.id}">
-					<div style="text-align: right;">
-						<input type="file" name="myfile" path="video_path" id="myfile"class="hidden photo-upload" style="display: none;"src="${tweetObj.video_path}"/>
-						<label for="myfile" class="photo-upload"><h3><i class="far fa-image"></i></h3></label>					
-					</div>
+				<div style="text-align: right;">
+					<input type="file" name="myfile" path="video_path" id="myfile"class="hidden photo-upload" style="display: none;"src="${tweetObj.video_path}"/>
+					<label for="myfile" class="photo-upload"><h3><i class="far fa-image"></i></h3></label>					
+				</div>
 					
-						<form:textarea style="max-height:200px;" id="tweetText" class="form-control" path="text" placeholder="What's the Tweez?"/>
+				<form:textarea style="max-height:200px;" id="tweetText" class="form-control" path="text" placeholder="What's the Tweez?"/>
 					
-<!-- 					<input id="success_btn" class="btn btn-success" type="submit" placeholder="What's happening"
-						value="Tweet" /> -->
-					<div style="text-align: right; margin-top: 5px; margin-bottom: 5px;">
-						<button id="success_btn" class="btn btn-primary my-2 my-sm-0 tweez-btn" type="submit">Tweez</button>
-					</div>
+	<!-- 					<input id="success_btn" class="btn btn-success" type="submit" placeholder="What's happening"
+							value="Tweet" /> -->
+				<div style="text-align: right; margin-top: 5px; margin-bottom: 5px;">
+					<button id="success_btn" class="btn btn-primary my-2 my-sm-0 tweez-btn" type="submit">Tweez</button>
+				</div>
 						
 				</form:form>
 				<div id="tweet_div_content" class="row tweet-title" style:"margin-left:0px;margin-right:0px">
@@ -183,18 +183,27 @@
 						<button type="button" class="btn reply-icon reply-button" data-toggle="modal" data-target="#exampleModalCenter" data-user="${loggedUser.id}" data-tweet="${t[9]}">
 						  <i class="col-2 far fa-comment" style="padding:0;"></i>
 						</button>
-	    	<!-- like a tweet -->
-	    				<span class="heart" style="padding-top: 7px;"><i class="col-2 far fa-heart" style="padding-left:10px;"></i></span>
+ 								    	<!-- like a tweet -->
+	    					<form:form action="/like" method="post" modelAttribute="likeObj">
+		    				
+	    						<form:input type="hidden" path="tweet" value="${tweet.id}"/>
+	    						<form:input type="hidden" path="user" value="${loggedUser.id}"/>
+	<!--     						<input type="submit" value="like"> -->
+			    				<button type="submit" style="border:0; padding:0px;"><span class="heart badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-heart" style="padding:0; font-size: 1.5em;"> ${fn:length(tweet.likes)}</i></span></button> 
+		    				
+	    					</form:form>
+ 	    	<!-- like a tweet -->
+	    				<!-- <span class="heart" style="padding-top: 7px;"><i class="col-2 far fa-heart" style="padding-left:10px;"></i></span> -->
     					</div>
     					<div class="row" style="display:absolute;">
 	    					<div class="container">
 		    					<div class="row" style="margin-left: 1px;">
-		    						<div class="" style="display:inline-block;">
+<!-- 		    						<div class="" style="display:inline-block;">
 			    						<span class="badge badge-light">"{fn:length(t[replies])}"</span>
-		    						</div>
-	  							    <div class="" style="margin-left: 19px; display:inline-block;">
-			    						<%-- <span class="badge badge-light">${fn:length(tweet.replies)}</span> --%>
-		    						</div>
+		    						</div> -->
+	  							   <%--  <div class="" style="margin-left: 19px; display:inline-block;">
+			    						<span class="badge badge-light">${fn:length(tweet.replies)}</span>
+		    						</div> --%>
 		    					</div>
 	    					</div>
     					</div>
