@@ -49,11 +49,11 @@
 		</div>
 	</div>
 <!-- Top of profile and profile picture -->
-    <div class="container" style="background-color: rgb(0,164,237); min-width: 100%; height: 200px;">
+    <div class="container" style="background-color: rgb(79,61,103); min-width: 100%; height: 200px;">
     	<div class="container">
 	        <div class="justify-content-center">
 	            <div class="profile_pic">
-	                <img src="images/me.jpg" alt="my_pic" class="me rounded-circle img-fluid shadow-sm p-1 mb-5 bg-white rounded">
+	                <img src="/${user.userPhotoPath}" alt="my_pic" class="me rounded-circle img-fluid shadow-sm p-1 mb-5 bg-white rounded">
 	            </div>
 	        </div>
 	        <div class="row">
@@ -87,7 +87,7 @@
             <form:input type="date" path="birthday"/>
         </div>
         <div class="custom-file">
-			<input id="myfile" name="myfile" type="file" path="userPhotoPath" class="custom-file-input">
+			<input id="myfile" name="myfile" type="file" path="userPhotoPath" class="custom-file-input" value="${user.userPhotoPath }">
 			<label class="custom-file-label" for="customFile">Choose file for user pic</label>
 			<div>
 				<img id="player" src="${tweet.photo_path}" style="width: 20rem;height: 15rem;">
