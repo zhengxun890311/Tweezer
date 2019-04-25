@@ -97,11 +97,16 @@
 				</div>
 				
 				
-				
+<!-- 		This is the section for 'Trends'	 -->	
+
 				<div id="trend_div" style="background-color: white;padding:10px;">
 					<h3><span class="black-text">Trends for you</span></h3>
 					
+					<c:forEach items="${trends.response.results}" var='t' begin="1">
+					<a href="${t.webUrl}"><c:out value="${t.webTitle}"/></a> | 
+					</c:forEach>
 				</div>
+				
 			</div>
 			<div class="col-6 tweet-feed">
 				<!-- Main content -->
