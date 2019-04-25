@@ -31,7 +31,15 @@ public class Tweet {
 	private String photo_path;
 	private String video_path;
 	
-    @Column(updatable=false)
+    public List<Like> getLikes() {
+		return likes;
+	}
+
+
+	public void setLikes(List<Like> likes) {
+		this.likes = likes;
+	}
+	@Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createdAt;
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -43,6 +51,9 @@ public class Tweet {
     
     @OneToMany(mappedBy="tweet", fetch=FetchType.LAZY)
     private List<Reply> replies;
+    
+    @OneToMany(mappedBy="tweet", fetch=FetchType.LAZY)
+    private List<Like> likes;
     
     public Tweet() {}
     

@@ -27,7 +27,7 @@
 			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 			    <ul class="navbar-nav mr-auto">
 			      <li class="nav-item active">
-			        <a class="nav-link" href="/moments"><i class="fas fa-bolt"></i> Moments <span class="sr-only">(current)</span></a>
+			        <a class="nav-link" href="/news"><i class="fas fa-bolt"></i> News <span class="sr-only">(current)</span></a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="/notifications"><i class="fas fa-bell"></i> Notifications</a>
@@ -36,13 +36,13 @@
 			        <a class="nav-link" href="/messages"><i class="fas fa-envelope"></i> Messages</a>
 			      </li>
 		  	      <li class="nav-item">
-			        	<a class="nav-link" href="#" style="margin-left: 95px;"><img id="tweezer-logo"src="/images/tweezer.png"></a>	        
+			        	<a class="nav-link" href="/home" style="margin-left: 95px;"><img id="tweezer-logo"src="/images/tweezer.png"></a>	        
 			      </li>
 			    </ul>
 			    <form class="form-inline my-2 my-lg-0">
 			      <input class="form-control mr-sm-2 searchbar" type="search" placeholder="Search Tweezer" aria-label="Search">
-			      <i class="fas fa-user" style="margin-right: 10px;"></i>
-			      <a href="/logout" class="btn btn-primary my-2 my-sm-0 tweez-btn">Log Out</a>
+			      	<a href="/editprofile"><i class="fas fa-user" style="margin-right: 10px;"></i></a>
+			      <a href="/logout" class="btn btn-danger my-2 my-sm-0 tweez-btn">Log Out</a>
 			    </form>
 			  </div>
 			</nav>
@@ -162,25 +162,25 @@
 	    				<div class="row tweet-icons">
  		<!-- post reply -->
 			<!-- Button trigger modal -->
-						<button type="button" class="btn reply-icon reply-button" data-toggle="modal" data-target="#exampleModalCenter" data-user="${loggedUser.id}" data-tweet="${tweet.id}">
-						  <i class="col-2 far fa-comment" style="padding:0;"></i>
+						<button type="button" style="padding: 0; margin-left: 10px; margin-right: 30px;" class="btn reply-icon reply-button" data-toggle="modal" data-target="#exampleModalCenter" data-user="${loggedUser.id}" data-tweet="${tweet.id}">
+							<span class="badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-comment" style="padding:0; font-size: 1.5em;"> ${fn:length(tweet.replies)}</i></span>
 						</button>
 	    	<!-- like a tweet -->
-	    				<span class="heart" style="padding-top: 7px;">
-	    				<i class="col-2 far fa-heart" style="padding-left:10px;">
-	    				</i> 
-	    					<form:form action="/like" method="post" modelAttribute="likeObj">
-	    						<input type="hidden" name="tweet" value="${tweet.id}">
-	    						<input type="hidden" name="user" value="${loggedUser.id}">
-	    						<input type="submit" value="like">
-	    					</form:form>
-	    				</span>
+    					<form:form action="/like" method="post" modelAttribute="likeObj">
+	    				
+    						<form:input type="hidden" path="tweet" value="${tweet.id}"/>
+    						<form:input type="hidden" path="user" value="${loggedUser.id}"/>
+<!--     						<input type="submit" value="like"> -->
+		    				<button type="submit" style="border:0; padding:0px;"><span class="heart badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-heart" style="padding:0; font-size: 1.5em;"> ${fn:length(tweet.likes)}</i></span></button> 
+	    				
+    					</form:form>
     					</div>
     					<div class="row" style="display:absolute;">
 	    					<div class="container">
 		    					<div class="row" style="margin-left: 1px;">
 		    						<div class="" style="display:inline-block;">
-			    						<span class="badge badge-light">${fn:length(tweet.replies)}</span>
+			    						<%-- <span class="badge badge-light">${fn:length(tweet.replies)}</span> --%>
+			    						<%-- <span class="badge badge-light">${fn:length(tweet.likes)}</span> --%>
 		    						</div>
 	  							    <div class="" style="margin-left: 19px; display:inline-block;">
 			    						<%-- <span class="badge badge-light">${fn:length(tweet.replies)}</span> --%>
