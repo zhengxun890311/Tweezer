@@ -41,7 +41,7 @@
 			    </ul>
 			    <form class="form-inline my-2 my-lg-0">
 			      <input class="form-control mr-sm-2 searchbar" type="search" placeholder="Search Tweezer" aria-label="Search">
-			      	<i class="fas fa-user" style="margin-right: 10px;"></i>
+			      	<a href="/editprofile"><i class="fas fa-user" style="margin-right: 10px;"></i></a>
 			      <a href="/logout" class="btn btn-danger my-2 my-sm-0 tweez-btn">Log Out</a>
 			    </form>
 			  </div>

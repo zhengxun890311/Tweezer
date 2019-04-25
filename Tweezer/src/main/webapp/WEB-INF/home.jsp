@@ -180,7 +180,7 @@
 	    				<div class="row tweet-icons">
 	    	<!-- post reply -->
 		    		<!-- Button trigger modal -->
-						<button type="button" class="btn reply-icon reply-button" data-toggle="modal" data-target="#exampleModalCenter" data-user="${loggedUser.id}" data-tweet="${tweet.id}">
+						<button type="button" class="btn reply-icon reply-button" data-toggle="modal" data-target="#exampleModalCenter" data-user="${loggedUser.id}" data-tweet="${t[9]}">
 						  <i class="col-2 far fa-comment" style="padding:0;"></i>
 						</button>
 	    	<!-- like a tweet -->
