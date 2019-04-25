@@ -14,4 +14,8 @@ public class LikeService {
 	public void createLike(Like like) {
 		lR.save(like);
 	}
+	
+	public void unlike(Long userId, Long tweetId) {
+		lR.unlike(userId, tweetId);
+	}
 }

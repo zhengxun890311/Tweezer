@@ -17,7 +17,8 @@ public interface UserRepo extends CrudRepository<User, Long>{
 	
 	User findByEmail(String email);
 	
-	@Query(value="select users.id as userId , users.user_photo_path, users.first_name, users.last_name, users.username, tweets.text, tweets.created_at, tweets.photo_path, tweets.video_path, tweets.id from friendships join tweets on friendships.following_id = tweets.user_id join users on friendships.following_id = users.id where friendships.user_id=?1 order by tweets.created_at desc", nativeQuery=true)
+
+	@Query(value="select users.id as userId, users.user_photo_path, users.first_name, users.last_name, users.username, tweets.text, tweets.created_at, tweets.photo_path, tweets.video_path, tweets.id from friendships join tweets on friendships.following_id = tweets.user_id join users on friendships.following_id = users.id where friendships.user_id=?1 order by tweets.created_at desc", nativeQuery=true)
 	List<Object[]> getFollowingTweets(Long id);
 	
 	@Query(value="select tweets.id, tweets.text, tweets.created_at from users join tweets on users.id = tweets.user_id where users.id =?1", nativeQuery=true)
