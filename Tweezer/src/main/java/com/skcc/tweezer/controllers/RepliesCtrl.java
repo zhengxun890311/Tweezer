@@ -24,7 +24,6 @@ public class RepliesCtrl {
 	private ReplyService rS;
 	private MessageSource mS;
 	
-	// usersctrl add modelattribute for replyobj
 	// when user posts a reply on home page
 	@PostMapping("/homeReply")
 	public String homeReply(@Valid @ModelAttribute("replyObj") Reply reply, BindingResult result, RedirectAttributes redirectAttributes) {

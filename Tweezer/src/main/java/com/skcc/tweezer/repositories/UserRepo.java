@@ -20,6 +20,9 @@ public interface UserRepo extends CrudRepository<User, Long>{
 	@Query(value="select users.id, users.user_photo_path, users.first_name, users.last_name, users.username, tweets.text, tweets.created_at, tweets.photo_path, tweets.video_path from friendships join tweets on friendships.following_id = tweets.user_id join users on friendships.following_id = users.id where friendships.user_id=?1 order by tweets.created_at desc", nativeQuery=true)
 	List<Object[]> getFollowingTweets(Long id);
 	
+	@Query(value="select tweets.id, tweets.text, tweets.created_at from users join tweets on users.id = tweets.user_id where users.id =?1", nativeQuery=true)
+	List<Object[]> getUserTweets(Long id);
+	
 	@Transactional
 	@Modifying
 	@Query("update User u set u.firstName=?2, u.lastName=?3, u.birthday=?4,u.userPhotoPath=?5 where u.id=?1")
@@ -34,7 +37,7 @@ public interface UserRepo extends CrudRepository<User, Long>{
 	@Modifying
 	@Query(value="delete from friendships where user_id=?1 and following_id=?2", nativeQuery=true)
 	void unfollowUser(Long userId, Long unfollowId);
-
+	
 	// finds accounts that the user is not following
 	@Query(value="select users.id, users.first_name, users.last_name, users.username, users.user_photo_path from users where users.id not in (select following_id from friendships where user_id=?1) and users.id !=?1", nativeQuery=true)
 	List<Object[]> getWhoToFollow(Long id);

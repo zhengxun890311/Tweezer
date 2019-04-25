@@ -1,5 +1,7 @@
 package com.skcc.tweezer.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,9 @@ public class ReplyService {
 	
 	public Reply createReply(Reply reply) {
 		return rR.save(reply);
+	}
+	
+	public List<Object[]> getReplies(Long id){
+		return rR.getReplies(id);
 	}
 }

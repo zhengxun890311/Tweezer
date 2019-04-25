@@ -1,5 +1,7 @@
 package com.skcc.tweezer.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +11,14 @@ import com.skcc.tweezer.repositories.TweetRepo;
 @Service
 public class TweetService {
 	@Autowired
-	private TweetRepo tweetRepo;
+	private TweetRepo tR;
 	
 	public Tweet createTweet(Tweet tweet) {
-		return tweetRepo.save(tweet);
+		return tR.save(tweet);
 	}
+	
+	public Tweet findTweet(Long id) {
+		return tR.findById(id).get();
+	}
+
 }

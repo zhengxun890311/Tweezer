@@ -25,9 +25,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.skcc.tweezer.models.Like;
 import com.skcc.tweezer.models.Reply;
 import com.skcc.tweezer.models.Tweet;
 import com.skcc.tweezer.models.User;
+import com.skcc.tweezer.services.LikeService;
+import com.skcc.tweezer.services.ReplyService;
+import com.skcc.tweezer.services.TweetService;
 import com.skcc.tweezer.services.UserService;
 import com.skcc.tweezer.validators.UserValidator;
 
@@ -36,11 +40,10 @@ import com.skcc.tweezer.validators.UserValidator;
 public class UsersCtrl {
 	@Autowired
 	private UserService uS;
-
-	@Autowired
+	private TweetService tS;
+	private ReplyService rS;
+	private LikeService lS;
 	private UserValidator uV;
-	
-	@Autowired
 	private MessageSource mS;
 	
 	@GetMapping("/")
@@ -84,9 +87,6 @@ public class UsersCtrl {
     		User u = uS.findUserById(userId);
     		System.out.println(u.getUserPhotoPath());
     		model.addAttribute("user", u);
-//    		for (User user: u.getUserFollowing()) {
-//    			System.out.println(user.getFirstName());
-//    		}
     		model.addAttribute("following", u.getUserFollowing());
     		model.addAttribute("loggedUser", uS.findUserById(userId));
     		model.addAttribute("followingTweets", uS.getFollowingTweets(userId));
@@ -144,12 +144,14 @@ public class UsersCtrl {
     }
     
     @GetMapping("/users/{id}")
-    public String show(Model model, @ModelAttribute("followUserObj") User followUser, @ModelAttribute("unfollowUserObj") User unfollowUser, @ModelAttribute("replyObj") Reply reply, @PathVariable("id") Long id, HttpSession session) {
+    public String show(Model model, @ModelAttribute("followUserObj") User followUser, @ModelAttribute("unfollowUserObj") User unfollowUser, @ModelAttribute("replyObj") Reply reply, @ModelAttribute("likeObj") Like like, @PathVariable("id") Long id, HttpSession session) {
     	Long userId = (Long) session.getAttribute("userId");
     	model.addAttribute("user", uS.findUserById(id));
     	model.addAttribute("loggedUser", uS.findUserById(userId));
+    	model.addAttribute("userTweets", uS.getUserTweets(id));
     	return "profile.jsp";
     }
+   
     
 //    @PostMapping("/followUser")
 //    public String follow(@ModelAttribute("user") User following, HttpSession session) {
@@ -162,19 +164,10 @@ public class UsersCtrl {
 //    	return "redirect:/users/" + following.getId();
 //    }
     
-//    @GetMapping("/users/{id}")
-//    public String show(Model model, @PathVariable("id") Long id, @ModelAttribute("friendship") Friendship friendship, HttpSession session) {
-//    	model.addAttribute("user", uS.findUserById(id));
-//    	model.addAttribute("loggeduser", session.getAttribute("userId"));
-//    	return "profile.jsp";
-//    }
-//    
     // follow on user profile
     @PostMapping("/followUser")
     public String follow(@ModelAttribute("followUserObj") User following, HttpSession session) {
     	Long userId = (Long) session.getAttribute("userId");
-//    	User user = uS.findUserById(userId);
-//    	User follower = uS.findUserById(following.getId());
     	uS.followUser(userId, following.getId());
     	return "redirect:/users/" + following.getId();
     }
