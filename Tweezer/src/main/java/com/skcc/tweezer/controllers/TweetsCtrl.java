@@ -52,11 +52,6 @@ public class TweetsCtrl {
 			BindingResult result,
 			HttpServletRequest request, Model model,
 			@RequestParam(value = "myfile") MultipartFile image) {
-		if(tweet.getPhoto_path()==null) {
-			tweet.setPhoto_path(null);
-		}
-		else 
-		{
 			String path = request.getSession().getServletContext().getRealPath("/images");
 			File file = new File(path);
 			if (!file.exists()) {
@@ -73,8 +68,7 @@ public class TweetsCtrl {
 			String url = "images/" + random_photo_name + "." + "jpg";
 			System.out.println("database url is：" + url);
 			tweet.setPhoto_path(url);
-		}
-		tweetService.createTweet(tweet);
-		return "redirect:/home";
+			tweetService.createTweet(tweet);
+			return "redirect:/home";
 	}
 }
