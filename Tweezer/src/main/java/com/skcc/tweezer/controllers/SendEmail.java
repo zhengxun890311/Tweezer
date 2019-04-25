@@ -30,7 +30,7 @@ public class SendEmail
            //message.setRecipients(Message.RecipientType.CC,InternetAddress.parse("zhengxun890311@gmail.com"));
           // message.setRecipients(Message.RecipientType.BCC,InternetAddress.parse("karensitu@ymail.com "));
            message.setSubject("Hello,"+user.getFirstName());
-           message.setText("this is a test email");
+           message.setContent("<p>Thank you for joinging <h1>Tweezer</h1><p>Thank you</p><br/><img style='width:800px;height:500px;' src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Playing_mafia_game.jpg/1200px-Playing_mafia_game.jpg'/>", "text/html;charset=UTF-8");
            Transport.send(message);
        } catch (MessagingException e) {
            throw new RuntimeException(e);
