@@ -101,15 +101,18 @@
 			<div class="col-6 tweet-feed">
 				<!-- Main content -->
 				
-				<div id="tweet_div_content" class="row tweet-title" style="margin-left:0px;margin-right:0px">
+				<div id="tweet_div_content" class="row tweet-title" style="margin-left:0px;margin-right:0px;padding:5px;">
 					<!-- <p class="col-9"> -->
 						
-						<h4>Most Recent News</h4>
+						<h3>Most Recent News</h3>
 						
 					
 					<c:forEach items="${news.response.results}" var="n">
+					<div>
 					<p><c:out value="${n.sectionName}"/></p>
-					<p><c:out value="${n.webPublicationDate}"/><a href="${n.webUrl}"><c:out value="${n.webTitle}"/></a></p>
+					<c:set var="date" value="${n.webPublicationDate}"/>
+					<p><c:out value="${date.split('T')}"/><a href="${n.webUrl}"><c:out value="${n.webTitle}"/></a></p>
+					</div>
 					</c:forEach>
 					
 				</div>
