@@ -41,8 +41,11 @@ import com.skcc.tweezer.validators.UserValidator;
 public class UsersCtrl {
 	@Autowired
 	private UserService uS;
+	@Autowired
 	private TweetService tS;
+	@Autowired
 	private ReplyService rS;
+	@Autowired
 	private LikeService lS;
 	@Autowired
 	private UserValidator uV;
@@ -69,8 +72,6 @@ public class UsersCtrl {
     	}
     }
     
-
-   
     
     @PostMapping("/login")
     public String loginUser(@ModelAttribute("userObj") User user, @RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
@@ -86,7 +87,7 @@ public class UsersCtrl {
     }
     
     @GetMapping("/home")
-    public String home(@ModelAttribute("tweetObj") Tweet tweet, Model model, @ModelAttribute("replyObj") Reply reply, @ModelAttribute("followUserObj") User followUser, @ModelAttribute("likeObj") Like like, HttpSession session) {
+    public String home(@ModelAttribute("tweetObj") Tweet tweet, Model model, @ModelAttribute("replyObj") Reply reply, @ModelAttribute("followUserObj") User followUser, @ModelAttribute("likeObj") Like like, @ModelAttribute("unlikeObj") Like unlike, HttpSession session) {
     	Long userId = (Long) session.getAttribute("userId");
     	if (userId==null) {
     		return "redirect:/";
@@ -160,14 +161,16 @@ public class UsersCtrl {
     }
     
     @GetMapping("/users/{id}")
-    public String show(Model model, @ModelAttribute("followUserObj") User followUser, @ModelAttribute("unfollowUserObj") User unfollowUser, @ModelAttribute("replyObj") Reply reply, @ModelAttribute("likeObj") Like like, @PathVariable("id") Long id, HttpSession session) {
+    public String show(Model model, @ModelAttribute("followUserObj") User followUser, @ModelAttribute("unfollowUserObj") User unfollowUser, @ModelAttribute("replyObj") Reply reply, @ModelAttribute("likeObj") Like like, @ModelAttribute("unlikeObj") Like unlike, @PathVariable("id") Long id, HttpSession session) {
     	Long userId = (Long) session.getAttribute("userId");
     	if (userId==null) {
     		return "redirect:/";
     	} else {
-	    	model.addAttribute("user", uS.findUserById(id));
+    		User u = uS.findUserById(id);
+	    	model.addAttribute("user", u);
 	    	model.addAttribute("loggedUser", uS.findUserById(userId));
-	    	model.addAttribute("userTweets", uS.getUserTweets(id));
+//	    	model.addAttribute("userTweets", uS.getUserTweets(id));
+	    	model.addAttribute("userTweets", tS.findUserTweets(u));
 	    	return "profile.jsp";
     	}
     }

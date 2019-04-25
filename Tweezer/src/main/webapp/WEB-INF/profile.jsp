@@ -148,7 +148,8 @@
 					</div>
 				</div>
 			</div>	
-    		<c:forEach items="${user.tweets}" var="tweet">
+			
+    		<c:forEach items="${userTweets}" var="tweet">
    	    		<div class="row tweet">
     				<img src="/${user.userPhotoPath}" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
     				<div class="col-8">
@@ -159,21 +160,51 @@
 			 			<c:if test ="${empty tweet.photo_path != true }">
 	    					<a href="/${tweet.photo_path}"><img src="/${tweet.photo_path}" class="tweet-photo" id="${tweet.id}"></a>
     					</c:if>
+    					
+    	<!-- 	Showing replies to a tweet	 -->		
+    					<c:forEach items="${tweet.replies}" var="r">
+    						<p><c:out value="${r.text}"/></p>
+    					</c:forEach>
+    	<!-- 	end of replies per tweet -->
+    	
 	    				<div class="row tweet-icons">
  		<!-- post reply -->
 				<!-- Button trigger modal -->
 							<button type="button" style="padding: 0; margin-left: 10px; margin-right: 30px;" class="btn reply-icon reply-button" data-toggle="modal" data-target="#exampleModalCenter" data-user="${loggedUser.id}" data-tweet="${tweet.id}">
 								<span class="badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-comment" style="padding:0; font-size: 1.5em;"> ${fn:length(tweet.replies)}</i></span>
 							</button>
+							
 		    	<!-- like a tweet -->
-	    					<form:form action="/like" method="post" modelAttribute="likeObj">
-		    				
-	    						<form:input type="hidden" path="tweet" value="${tweet.id}"/>
-	    						<form:input type="hidden" path="user" value="${loggedUser.id}"/>
-	<!--     						<input type="submit" value="like"> -->
-			    				<button type="submit" style="border:0; padding:0px;"><span class="heart badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-heart" style="padding:0; font-size: 1.5em;"> ${fn:length(tweet.likes)}</i></span></button> 
-		    				
-	    					</form:form>
+							
+							<c:forEach items="${tweet.likes}" var="l">
+								<c:if test="${l.user.id == loggedUser.id}">
+									<c:set var="alreadyLiked" value="true"/>
+								</c:if>
+							</c:forEach>
+							
+							<c:choose>
+								<c:when test="${alreadyLiked == true}">
+									<c:set var="alreadyLiked" value="false"/>
+										<form:form action="/unlike" method="post" modelAttribute="unlikeObj">
+			    				
+				    						<form:input type="hidden" path="tweet" value="${tweet.id}"/>
+				    	<%-- 					<form:input type="hidden" path="user" value="${loggedUser.id}"/> --%>
+						    					<input type="submit" value="unlike">
+		    							</form:form>
+								</c:when>
+								<c:otherwise>
+			    					<form:form action="/like" method="post" modelAttribute="likeObj">
+				    				
+			    						<form:input type="hidden" path="tweet" value="${tweet.id}"/>
+			    						<form:input type="hidden" path="user" value="${loggedUser.id}"/>
+					    				<button type="submit" style="border:0; padding:0px;"><span class="heart badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-heart" style="padding:0; font-size: 1.5em;"> ${fn:length(tweet.likes)}</i></span></button> 
+				    				
+			    					</form:form>
+	
+								</c:otherwise>
+							</c:choose>
+							
+
     					</div>
     					<div class="row" style="display:absolute;">
 	    					<div class="container">
