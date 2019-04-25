@@ -44,7 +44,9 @@ public class UsersCtrl {
 	private TweetService tS;
 	private ReplyService rS;
 	private LikeService lS;
+	@Autowired
 	private UserValidator uV;
+	@Autowired
 	private MessageSource mS;
 	
 	@GetMapping("/")
@@ -54,8 +56,8 @@ public class UsersCtrl {
 	
     @PostMapping("/registration")
     public String registerUser(@Valid @ModelAttribute("userObj") User user, BindingResult result, HttpSession session) {
+    	System.out.println(user.getFirstName());
     	uV.validate(user, result);
-    	System.out.println(result);
     	if (result.hasErrors()) {
     		return "loginreg.jsp";
     	} else {
@@ -84,7 +86,7 @@ public class UsersCtrl {
     }
     
     @GetMapping("/home")
-    public String home(@ModelAttribute("tweetObj") Tweet tweet, Model model, @ModelAttribute("replyObj") Reply reply, @ModelAttribute("followUserObj") User followUser, HttpSession session) {
+    public String home(@ModelAttribute("tweetObj") Tweet tweet, Model model, @ModelAttribute("replyObj") Reply reply, @ModelAttribute("followUserObj") User followUser, @ModelAttribute("likeObj") Like like, HttpSession session) {
     	Long userId = (Long) session.getAttribute("userId");
     	if (userId==null) {
     		return "redirect:/";

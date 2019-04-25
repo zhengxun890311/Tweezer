@@ -161,19 +161,19 @@
     					</c:if>
 	    				<div class="row tweet-icons">
  		<!-- post reply -->
-			<!-- Button trigger modal -->
-						<button type="button" style="padding: 0; margin-left: 10px; margin-right: 30px;" class="btn reply-icon reply-button" data-toggle="modal" data-target="#exampleModalCenter" data-user="${loggedUser.id}" data-tweet="${tweet.id}">
-							<span class="badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-comment" style="padding:0; font-size: 1.5em;"> ${fn:length(tweet.replies)}</i></span>
-						</button>
-	    	<!-- like a tweet -->
-    					<form:form action="/like" method="post" modelAttribute="likeObj">
-	    				
-    						<form:input type="hidden" path="tweet" value="${tweet.id}"/>
-    						<form:input type="hidden" path="user" value="${loggedUser.id}"/>
-<!--     						<input type="submit" value="like"> -->
-		    				<button type="submit" style="border:0; padding:0px;"><span class="heart badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-heart" style="padding:0; font-size: 1.5em;"> ${fn:length(tweet.likes)}</i></span></button> 
-	    				
-    					</form:form>
+				<!-- Button trigger modal -->
+							<button type="button" style="padding: 0; margin-left: 10px; margin-right: 30px;" class="btn reply-icon reply-button" data-toggle="modal" data-target="#exampleModalCenter" data-user="${loggedUser.id}" data-tweet="${tweet.id}">
+								<span class="badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-comment" style="padding:0; font-size: 1.5em;"> ${fn:length(tweet.replies)}</i></span>
+							</button>
+		    	<!-- like a tweet -->
+	    					<form:form action="/like" method="post" modelAttribute="likeObj">
+		    				
+	    						<form:input type="hidden" path="tweet" value="${tweet.id}"/>
+	    						<form:input type="hidden" path="user" value="${loggedUser.id}"/>
+	<!--     						<input type="submit" value="like"> -->
+			    				<button type="submit" style="border:0; padding:0px;"><span class="heart badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-heart" style="padding:0; font-size: 1.5em;"> ${fn:length(tweet.likes)}</i></span></button> 
+		    				
+	    					</form:form>
     					</div>
     					<div class="row" style="display:absolute;">
 	    					<div class="container">

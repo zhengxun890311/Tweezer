@@ -33,49 +33,57 @@
 				<div class="col-10">
 					<img id="tweezer-logo"src="images/tweezer.png">
 					<h4><span class="main-font">Join Tweezer today.</span></h4>
-			    	<p><form:errors path="user.*"/></p>
-			    	
+			    	<p><form:errors path="user.firstName"/></p>
 					<button class="register-btn badge-pill">Sign Up</button>
-					
-					<span id="register-form" style="display: none;">
+					<div>
 					    <form:form method="POST" action="/registration" modelAttribute="userObj">
-						<div class="row">
-							<div class="col-4 ">
-					            <p><form:label path="firstName">First Name:</form:label></p>
-					            <p><form:label path="lastName">Last Name:</form:label></p>
-					            <p><form:label path="username">Username:</form:label></p>
-					            <p><form:label path="email">Email:</form:label></p>
-					            <p><form:label path="birthday">Birthday:</form:label></p>
-					            <p><form:label path="password">Password:</form:label></p>
-					            <p><form:label path="passwordConfirmation">Password Confirmation:</form:label></p>
+					    <p><c:out value="${passError}"/></p>
+					    <p><form:errors path="firstName"/></p>
+					    <p><form:errors path="lastName"/></p>
+					    <p><form:errors path="username"/></p>
+					    <p><form:errors path="email"/></p>
+					    <p><form:errors path="birthday"/></p>
+					    <p><form:errors path="password"/></p>
+					    <p><form:errors path="passwordConfirmation"/></p>
+						<span id="register-form" style="display: none;">
+							<div class="row">
+								<div class="col-4 ">
+						            <p><form:label path="firstName">First Name:</form:label></p>
+						            <p><form:label path="lastName">Last Name:</form:label></p>
+						            <p><form:label path="username">Username:</form:label></p>
+						            <p><form:label path="email">Email:</form:label></p>
+						            <p><form:label path="birthday">Birthday:</form:label></p>
+						            <p><form:label path="password">Password:</form:label></p>
+						            <p><form:label path="passwordConfirmation">Password Confirmation:</form:label></p>
+								</div>
+								<div class="col-8 form-group">
+							        <p>
+							            <form:input path="firstName" class="form-control form-control-sm" placeholder="Enter First Name"/>
+							        </p>
+							        <p>
+							            <form:input path="lastName" class="form-control form-control-sm" placeholder="Enter Last Name"/>
+							        </p>
+							        <p>
+							            <form:input id="username" onkeydown="check('username');" path="username" class="form-control form-control-sm" placeholder="Enter a Username"/>
+							        </p>
+							        <p>
+							            <form:input id="email" onKeydown="check('email');" type="email" path="email" class="form-control form-control-sm" placeholder="Enter Your Email"/>
+							        </p>
+							        <p>
+							            <form:input type="date" path="birthday" class="form-control form-control-sm"/>
+							        </p>
+							        <p>
+							            <form:password path="password" class="form-control form-control-sm" placeholder="Password"/>
+							        </p>
+							        <p>
+							            <form:password path="passwordConfirmation" class="form-control form-control-sm" placeholder="Confirm Your Password"/>
+							        </p>
+							        <input type="submit" value="Register" class="register-btn badge-pill"/>
+								</div>
 							</div>
-							<div class="col-8 form-group">
-						        <p>
-						            <form:input path="firstName" class="form-control form-control-sm" placeholder="Enter First Name"/>
-						        </p>
-						        <p>
-						            <form:input path="lastName" class="form-control form-control-sm" placeholder="Enter Last Name"/>
-						        </p>
-						        <p>
-						            <form:input id="username" onkeydown="check('username');" path="username" class="form-control form-control-sm" placeholder="Enter a Username"/>
-						        </p>
-						        <p>
-						            <form:input id="email" onKeydown="check('email');" type="email" path="email" class="form-control form-control-sm" placeholder="Enter Your Email"/>
-						        </p>
-						        <p>
-						            <form:input type="date" path="birthday" class="form-control form-control-sm"/>
-						        </p>
-						        <p>
-						            <form:password path="password" class="form-control form-control-sm" placeholder="Password"/>
-						        </p>
-						        <p>
-						            <form:password path="passwordConfirmation" class="form-control form-control-sm" placeholder="Confirm Your Password"/>
-						        </p>
-						        <input type="submit" value="Register" class="register-btn badge-pill"/>
-							</div>
-						</div>
+						</span>
 					    </form:form>				
-					</span>
+					</div>
 				</div>
 			</div>
 	    </div>
