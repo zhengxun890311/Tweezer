@@ -73,7 +73,7 @@ public class UsersCtrl {
    
     
     @PostMapping("/login")
-    public String loginUser(@ModelAttribute("user") User user, @RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
+    public String loginUser(@ModelAttribute("userObj") User user, @RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
     	boolean isAuthenticated = uS.authenticateUser(email, password);
     	if (isAuthenticated) {
     		User u = uS.findByEmail(email);
