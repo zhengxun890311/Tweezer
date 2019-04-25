@@ -10,6 +10,6 @@ import com.skcc.tweezer.models.Tweet;
 
 @Repository
 public interface TweetRepo extends CrudRepository<Tweet,Long> {
-	
+//	List<Tweet> findByUserOrderByCreatedAtDesc(User u);
 
 }

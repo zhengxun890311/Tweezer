@@ -111,7 +111,7 @@
 					<div>
 					<p><c:out value="${n.sectionName}"/></p>
 					<c:set var="date" value="${n.webPublicationDate}"/>
-					<p><c:out value="${date.split('T')}"/><a href="${n.webUrl}"><c:out value="${n.webTitle}"/></a></p>
+					<p><c:out value="${n.webPublicationDate}"/><a href="${n.webUrl}"><c:out value="${n.webTitle}"/></a></p>
 					</div>
 					</c:forEach>
 					
