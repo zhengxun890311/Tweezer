@@ -96,11 +96,11 @@
 				
 <!-- 		This is the section for 'Trends'	 -->	
 
-				<div id="trend_div" style="background-color: white;padding:10px;">
+				<div id="trend_div" style="background-color: white;padding:10px;overflow-y:scroll;max-height:450px;">
 					<h3><span class="black-text">Trends for you</span></h3>
 					
 					<c:forEach items="${trends.response.results}" var='t' begin="1">
-					<a href="${t.webUrl}"><c:out value="#${t.webTitle}"/></a> | 
+					<a href="${t.webUrl}"><c:out value="#${t.webTitle}"/></a><br>
 					</c:forEach>
 				</div>
 			</div>
@@ -138,9 +138,11 @@
    	    		<div class="row tweet" style="margin-left:0px;margin-right: 0px;">
    	    			<c:if test="${empty t[1] != true}">
   	    				<div class="container col-3" style="display:inline-block; margin: 15px 0 0 0;">
-	    					<div class="tweetcropper">
-		    					<img src="${t[1]}" class="small-tweet-pic img-fluid">
-	    					</div>
+	    					<a href="/users/${t[0]}">
+		    					<div class="tweetcropper">
+			    					<img src="${t[1]}" class="small-tweet-pic img-fluid">
+		    					</div>
+	    					</a>
   	    				</div>
     				</c:if>
     				<div class="col-9">
@@ -241,11 +243,11 @@
 				
 <!-- 		This is the section for 'Trends'	 -->	
 
-				<div id="trend_div" style="background-color: white;padding:10px;">
-					<h3><span class="black-text">Trends for you</span></h3>
+				<div id="trend_div" style="overflow-f:scroll;" style="background-color: white;padding:10px;">
+					<h3><span class="black-text">Trends for youfdf</span></h3>
 					
-					<c:forEach items="${trends.response.results}" var='t' begin="1">
-					<a href="${t.webUrl}"><c:out value="#${t.webTitle}"/></a> | 
+					<c:forEach items="${trends.response.results}" var='t' begin="1" end="10">
+						<a href="${t.webUrl}"><c:out value="#${t.webTitle}"/></a></br>
 					</c:forEach>
 				</div>
 			</div>
