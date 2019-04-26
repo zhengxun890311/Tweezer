@@ -158,7 +158,10 @@
 	    				<p class="tweet-text" style="margin-bottom: 8x;">${t[3]}</p>
 	    				
  						<c:if test ="${empty t[10]!= true }">
-							<a href="${t[5]}"><img src="${t[10]}" class="tweet-photo"></a>
+							<a href="${t[10]}"><img src="${t[10]}" class="tweet-photo"></a>
+						</c:if>
+						<c:if test="${empty t[11]!=true}">
+							<iframe src="${t[11]}" style="width:400px;height:300px;border-radius:10px;" class="tweet-video"></iframe>
 						</c:if>
 	    				
 						<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
