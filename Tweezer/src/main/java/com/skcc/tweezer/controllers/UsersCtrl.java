@@ -169,7 +169,6 @@ public class UsersCtrl {
     		User u = uS.findUserById(id);
 	    	model.addAttribute("user", u);
 	    	model.addAttribute("loggedUser", uS.findUserById(userId));
-//	    	model.addAttribute("userTweets", uS.getUserTweets(id));
 	    	model.addAttribute("userTweets", tS.findUserTweets(u));
 	    	return "profile.jsp";
     	}
