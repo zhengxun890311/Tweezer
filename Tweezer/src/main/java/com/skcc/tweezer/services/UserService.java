@@ -82,8 +82,13 @@ public class UserService {
 		return uR.getFollowingTweets(id);
 	}
 	
-	public List<Object[]> getUserTweets(Long id){
-		return uR.getUserTweets(id);
+	public List<Object[]> getAllTweets(){
+		return uR.getAllTweets();
 	}
+	
+	public List<Object[]> getFollowing(Long id){
+		return uR.getFollowing(id);
+	}
+	
 
 }

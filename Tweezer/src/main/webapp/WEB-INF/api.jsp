@@ -3,6 +3,8 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -135,24 +137,32 @@
 				</div>
 					
    	 		<!-- PLACEHOLDER TEXT BELOW -->
+<%--    	 		<c:forEach items="${follow}" var="t">
+   	 			<c:out value="${t[0]}"/>
+   	 		</c:forEach>	 --%>	
    	 				
-    		<c:forEach items="${followingTweets}" var="t">
+   	 				
+    		<c:forEach items="${allTweets}" var="t">
+    			<c:set var="id" value="${t[5]}"/>
+    			<c:set var="str" value="${str}"/>
+    			<c:if test="${fn:contains(str, id)}">
+    			
    	    		<div class="row tweet" style="margin-left:0px;margin-right: 0px;">
-   	    			<c:if test="${empty t[1] != true}">
+    	    			<c:if test="${empty t[1] != true}">
     					<img src="${t[1]}" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
     				</c:if>
-    				<div class="col-8">
+    				<div class="col-8"> 
 	    				
 	    				
 	    				
-    					<fmt:formatDate value="${t[6]}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDateTweet"/>
-	    				<p class="tweet-user-info"><a href="/users/${t[0]}"><c:out value="${t[2]} ${t[3]} @${t[4]}"/></a> • Posted: <c:out value="${formattedDateTweet}"/></p>
+    					<fmt:formatDate value="${t[4]}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDateTweet"/>
+	    				<p class="tweet-user-info"><a href="/users/${t[5]}"><c:out value="${t[6]} ${t[7]} @${t[8]}"/></a> • Posted: <c:out value="${formattedDateTweet}"/></p>
     			
 	    				
 	    				
-	    				<p class="tweet-text">${t[5]}</p>
+	    				<p class="tweet-text">${t[3]}</p>
 	    				
- 						<c:if test ="${empty t[7]!= true }">
+  						<c:if test ="${empty t[7]!= true }">
 							<a href="${t[7]}"><img src="${t[7]}" class="tweet-photo"></a>
 						</c:if>
 	    				
@@ -160,17 +170,18 @@
 	    	<!-- post reply -->
 	    					<i class="col-2 far fa-comment">
 	    					<form:form method="post" action="/homeReply" modelAttribute="replyObj">
-	    						<input type="hidden" name="tweet" value="${tweet.id}">
+	    						<input type="hidden" name="tweet" value="${t[2]}">
 	    						<input type="hidden" name="user" value="${loggedUser.id}">
 	    						<form:input path="text"/>
 	    						<input type="submit" value="reply">
 	    					</form:form>
-	    					</i>
+	    					</i> <c:out value="${t[0]}"/>
 	    	<!-- like a tweet -->
-	    					<span class="heart"><i class="col-2 far fa-heart"></i></span>
+	    					<span class="heart"><i class="col-2 far fa-heart"></i><c:out value="${t[1]}"/></span>
     					</div>
     				</div>
     			</div>
+    			</c:if>
    			</c:forEach>
 			</div>
 			
