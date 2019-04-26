@@ -58,7 +58,7 @@
        	<div class="container">
 	        <div class="justify-content-center" style="margin: 20px 0 0 -240px;">
 	            <div class="prof-pic-crop">
-	                <img src="/${user.userPhotoPath}" alt="" class="me prof-pic img-fluid bg-white rounded-circle rounded">
+	                <img src="/${user.userPhotoPath}" alt="" class="me prof-pic">
 	            </div>
 	        </div>
 	        <div class="row">
