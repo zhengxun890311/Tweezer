@@ -82,6 +82,7 @@ public class UserService {
 		return uR.getFollowingTweets(id);
 	}
 	
+<<<<<<< Upstream, based on master
 	public List<Object[]> getAllTweets(){
 		return uR.getAllTweets();
 	}
@@ -90,5 +91,10 @@ public class UserService {
 		return uR.getFollowing(id);
 	}
 	
+=======
+//	public List<Object[]> getUserTweets(Long id){
+//		return uR.getUserTweets(id);
+//	}
+>>>>>>> e8165c9 replies and likes
 
 }
