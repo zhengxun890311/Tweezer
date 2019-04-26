@@ -164,7 +164,15 @@
 			 			<c:if test ="${empty tweet.photo_path != true }">
 	    					<a href="/${tweet.photo_path}"><img src="/${tweet.photo_path}" class="tweet-photo" id="${tweet.id}"></a>
     					</c:if>
-    	   	
+    					<c:if test ="${empty tweet.video_path != true }">
+	    					<iframe src="/${tweet.video_path}" style="width:600px;height:300px;" class="tweet-video" id="${tweet.id}"></iframe>
+	    				</c:if>
+    	<!-- 	Showing replies to a tweet	 -->		
+    					<c:forEach items="${tweet.replies}" var="r">
+    						<p><c:out value="${r.text}"/></p>
+    					</c:forEach>
+    	<!-- 	end of replies per tweet -->
+   
 	    				<div class="row tweet-icons">
  		<!-- post reply -->
 				<!-- Button trigger modal -->
