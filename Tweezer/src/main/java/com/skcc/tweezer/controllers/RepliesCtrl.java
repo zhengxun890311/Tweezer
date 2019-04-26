@@ -8,20 +8,28 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skcc.tweezer.models.Reply;
+import com.skcc.tweezer.models.Tweet;
 import com.skcc.tweezer.services.ReplyService;
+import com.skcc.tweezer.services.TweetService;
 
 @Controller
 public class RepliesCtrl {
 	
 	@Autowired
 	private ReplyService rS;
+	@Autowired
+	private TweetService tS;
+	@Autowired
 	private MessageSource mS;
 	
 	// when user posts a reply on home page
@@ -62,6 +70,12 @@ public class RepliesCtrl {
 			rS.createReply(reply);
 		}
 		return "redirect:/users/" + reply.getTweet().getUser().getId();
+	}
+	
+	@GetMapping("/viewReplies/{id}")
+	public String viewReplies(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("tweet", tS.findTweet(id));
+		return "test.jsp";
 	}
 	
 	
