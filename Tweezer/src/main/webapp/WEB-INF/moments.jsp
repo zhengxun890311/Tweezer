@@ -82,17 +82,28 @@
 						<div id="profile_div_id">
 							<a style="text-decoration: none; color:grey;" href="/users/${user.id}"><font size="2">@<c:out value="${user.username}"/></font></a>
 						</div>
-						
+						<div id="profile_div_tweets">
+							<a style="text-decoration: none;" href="/users/${user.id}">
+								<div style="color:#657786">Tweezes</div>
+								<div>${fn:length(user.tweets)}</div>
+							</a>
+						</div>
+						<div id="profile_div_following">
+							<a style="text-decoration: none;" href="#">
+								<div style="color:#657786">Following</div>
+								<div>${fn:length(user.userFollowing)}</div>
+							</a>
+						</div>
 					</div>
 				</div>
 				
 <!-- 		This is the section for 'Trends'	 -->	
 
-				<div id="trend_div" style="background-color: white;padding:10px;">
+				<div id="trend_div" style="background-color: white;padding:10px;overflow-y:scroll;max-height:450px;">
 					<h3><span class="black-text">Trends for you</span></h3>
 					
 					<c:forEach items="${trends.response.results}" var='t' begin="1">
-					<a href="${t.webUrl}"><c:out value="${t.webTitle}"/></a> | 
+					<a href="${t.webUrl}"><c:out value="#${t.webTitle}"/></a><br>
 					</c:forEach>
 				</div>
 				</div>
