@@ -142,7 +142,7 @@
     			<c:if test="${fn:contains(str, id)}">
     			
    	    		<div class="row tweet" style="margin-left:0px;margin-right: 0px;">
-   	    			<c:if test="${empty t[1] != true}">
+   	    			<c:if test="${empty t[9] != true}">
   	    				<div class="container col-3" style="display:inline-block; margin: 15px 0 0 0;">
 	    					<a href="/users/${t[5]}">
 		    					<div class="tweetcropper">
@@ -157,8 +157,8 @@
 	    				<p style="margin:0 0 10 0;padding:0;font-size:12px">Posted: <c:out value="${formattedDateTweet}"/></p>
 	    				<p class="tweet-text" style="margin-bottom: 8x;">${t[3]}</p>
 	    				
- 						<c:if test ="${empty t[7]!= true }">
-							<a href="${t[7]}"><img src="${t[7]}" class="tweet-photo"></a>
+ 						<c:if test ="${empty t[10]!= true }">
+							<a href="${t[5]}"><img src="${t[10]}" class="tweet-photo"></a>
 						</c:if>
 	    				
 						<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
