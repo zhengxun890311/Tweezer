@@ -19,11 +19,17 @@ body {
 #tweezer-logo {
 	height: 30px;
 }
+.prof-crop {
+	width: 190px;
+	height: 190px;
+	position: absolute;
+	overflow: hidden;
+	border-radius: 50%;
+}
 .profile_pic .me {
     text-align: left;
     position: relative;
    	top: 100px;
-    width: 18%;
 }
 .whitebar {
 	display: flex;
@@ -111,4 +117,17 @@ body {
 .misc-feed {
 	margin: 0 0 0 4px;
 	background-color: white;
+}
+.tweetcropper {
+	width: 100px;
+	height: 100px;
+	position: relative;
+	overflow: hidden;
+	border-radius: 50%;
+}
+.small-tweet-pic {
+	display: inline-block;
+	margin: 0;
+	height: 100%;
+	width: auto;
 }

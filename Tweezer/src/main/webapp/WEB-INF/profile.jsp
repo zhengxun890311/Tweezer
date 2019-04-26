@@ -52,14 +52,11 @@
     <div class="container" style="background-color: rgb(79,61,103); min-width: 100%; height: 200px;">
     	<div class="container">
 	        <div class="justify-content-center">
-	            <div class="profile_pic">
-	                <img src="/${user.userPhotoPath}" alt="my_pic" class="me img-fluid shadow-sm p-1 mb-5 bg-white rounded-circle rounded" style= "max-height: 200px; max-width: 200px;">
-	            </div>
-	        </div>
-	        <div class="row">
-	            <div class="col bio">
-	                <h1></h1> 
-	            </div>
+		        <div class="prof-crop" style="margin-top: 100px;border-radius: 50%; border: 5px solid white;">
+		            <div style="">
+		                <img src="/${user.userPhotoPath}" alt="my_pic" class="me" style= "max-height: 270px; max-width: 270px;">
+		            </div>
+		        </div>
 	        </div>
     	</div>
     </div>
@@ -151,7 +148,11 @@
 			
     		<c:forEach items="${userTweets}" var="tweet">
    	    		<div class="row tweet">
-    				<img src="/${user.userPhotoPath}" alt="user.photo" class="col-2 small-pic rounded-circle p-2 img-fluid  bg-white rounded">
+   	    			<div class="container col-2" style="margin: 15px 0 15px 10px;">
+	   	    			<div class="tweetcropper">
+	    					<img src="/${user.userPhotoPath}" alt="user.photo" class="small-tweet-pic">
+	    				</div>
+   	    			</div>
     				<div class="col-8">
 
     					<fmt:formatDate value="${tweet.createdAt}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDateTweet"/>
