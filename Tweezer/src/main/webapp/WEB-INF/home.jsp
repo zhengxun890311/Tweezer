@@ -147,7 +147,8 @@
     				</c:if>
     				<div class="col-9">
     					<fmt:formatDate value="${t[6]}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDateTweet"/>
-	    				<p class="tweet-user-info"><a href="/users/${t[0]}"><c:out value="${t[2]} ${t[3]} @${t[4]}"/></a> • Posted: <c:out value="${formattedDateTweet}"/></p>
+	    				<p class="tweet-user-info" style="margin:0;padding:0"><a href="/users/${t[0]}"><c:out value="${t[2]} ${t[3]} @${t[4]}"/></a> </p>
+	    				<p style="margin:0 0 10 0;padding:0;font-size:12px">Posted: <c:out value="${formattedDateTweet}"/></p>
 	    				<p class="tweet-text" style="margin-bottom: 8x;">${t[5]}</p>
 	    				
  						<c:if test ="${empty t[7]!= true }">
@@ -158,7 +159,7 @@
 							<div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content">
 					    			<div class="modal-header">
-						      			<h5 class="modal-title" id="exampleModalCenterTitle">Reply to <c:out value="${user.username}"/>'s Tweez</h5>
+						      			<h5 class="modal-title" id="exampleModalCenterTitle">Reply to <c:out value="${t[4]}"/>'s Tweez</h5>
 							  			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							    		<span aria-hidden="true">&times;</span></button>
 									</div>
@@ -183,6 +184,35 @@
 								<span class="badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-comment" style="padding:0; font-size: 1.5em;"> ${fn:length(tweet.replies)}</i></span>
 							</button>
 <!-- like a tweet -->
+<%-- 							<c:forEach items="${tweet.likes}" var="l">
+								<c:if test="${l.user.id == loggedUser.id}">
+									<c:set var="alreadyLiked" value="true"/>
+								</c:if>
+							</c:forEach>
+							
+							<c:choose>
+								<c:when test="${alreadyLiked == true}">
+									<c:set var="alreadyLiked" value="false"/>
+										<form:form action="/unlike" method="post" modelAttribute="unlikeObj">
+			    				
+				    						<form:input type="hidden" path="tweet" value="${tweet.id}"/>
+				    						<form:input type="hidden" path="user" value="${loggedUser.id}"/>
+						    					<input type="submit" value="unlike">
+		    							</form:form>
+								</c:when>
+								<c:otherwise>
+			    					<form:form action="/like" method="post" modelAttribute="likeObj">
+				    				
+			    						<form:input type="hidden" path="tweet" value="${tweet.id}"/>
+			    						<form:input type="hidden" path="user" value="${loggedUser.id}"/>
+					    				<button type="submit" style="border:0; padding:0px;"><span class="heart badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-heart" style="padding:0; font-size: 1.5em;"> ${fn:length(tweet.likes)}</i></span></button> 
+				    				
+			    					</form:form>
+	
+								</c:otherwise>
+							</c:choose> --%>
+							
+							
 	    					<form:form action="/homeLike" method="post" modelAttribute="likeObj">
 	    						<form:input type="hidden" path="tweet" value="${t[9]}"/>
 	    						<form:input type="hidden" path="user" value="${loggedUser.id}"/>
@@ -195,28 +225,6 @@
 			</div>
 			
 <!-- 	This is the section for 'who to follow' -->
-<%-- 			<div class="col-3 user-profile" style="background-color: white; max-height: 360px;">
-				<h3>Who to Follow</h3>
-				<c:forEach items="${whoToFollow}" var="u" begin="0" end="2">
-				<div class="row" style="height: 80px; margin-bottom: 30px; margin-left: 2px;">
-					<!-- <div class="col-3"> -->
-		 				<c:if test="${empty u[1] != true}">
-		    				<div class="cropper">
-			    				<img src="${u[4]}" class="usericon img-fluid  bg-white" style= "max-height: 200px;">
-		    				</div>
-		    			</c:if>
-					<!-- </div> -->
-					<div class="col-8">
-		    			<a href="/users/${u[0]}"><c:out value="${u[1]} ${u[2]}"/></a>
-		    			<p style="margin-bottom: 0;"><a href="/users/${u[0]}"><c:out value="@${u[3]}"/></a></p>
-		    			<form:form method="POST" action="/whoToFollow" modelAttribute="followUserObj">
-				   			<input type="hidden" name="id" value="${u[0]}">
-			 				<input type="submit" value="follow" class="btn btn-outline-info">
-				    	</form:form>
-					</div>
-				</div>
-				</c:forEach>
-			</div> --%>
 			
 			<div class="col-3 user-profile">
 				<div id="profile_div" style="background-color: white; height: 360px; margin-top: 1px; text-align: center; padding-left: 15px;">
@@ -240,16 +248,7 @@
 					</c:forEach>
 				</div>
 			</div>
-				
-<!-- 		This is the section for 'Trends'	 -->	
 
-				<div id="trend_div" style="overflow-f:scroll;" style="background-color: white;padding:10px;">
-					<h3><span class="black-text">Trends for youfdf</span></h3>
-					
-					<c:forEach items="${trends.response.results}" var='t' begin="1" end="10">
-						<a href="${t.webUrl}"><c:out value="#${t.webTitle}"/></a></br>
-					</c:forEach>
-				</div>
 			</div>
 			
 		</div>
