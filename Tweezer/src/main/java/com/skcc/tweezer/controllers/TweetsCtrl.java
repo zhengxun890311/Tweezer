@@ -52,31 +52,53 @@ public class TweetsCtrl {
 			BindingResult result,
 			HttpServletRequest request, Model model,
 			@RequestParam(value = "myfile") MultipartFile image) {
-			String path = request.getSession().getServletContext().getRealPath("/images");
-			File file = new File(path);
-			if (!file.exists()) {
-				file.mkdir();
+		
+			String path="";
+			String random_file_name = UUID.randomUUID().toString().replaceAll("-", "");
+			String url="";
+			String fileName= image.getOriginalFilename();
+			String fileType = fileName.subSequence(fileName.length()-4, fileName.length()).toString();
+			System.out.println(image.getOriginalFilename().substring(image.getOriginalFilename().length()-4, image.getOriginalFilename().length()));
+			if(fileType.equals(".mp4")){
+				path= request.getSession().getServletContext().getRealPath("/videos");
+				File file = new File(path);
+				if (!file.exists()) {
+					file.mkdir();
+				}
+				try {
+					image.transferTo(new File(path + "/" + random_file_name + "." + "mp4"));
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				url = "videos/" + random_file_name + "." + "mp4";
+				tweet.setVideo_path(url);
+				tweet.setPhoto_path(null);
 			}
-			String random_photo_name = UUID.randomUUID().toString().replaceAll("-", "");
-			try {
-				image.transferTo(new File(path + "/" + random_photo_name + "." + "jpg"));
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+			else {
+				path = request.getSession().getServletContext().getRealPath("/images");
+				File file = new File(path);
+				if (!file.exists()) {
+					file.mkdir();
+				}
+				try {
+					image.transferTo(new File(path + "/" + random_file_name + "." + "jpg"));
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				url = "images/" + random_file_name + "." + "jpg";
+				tweet.setPhoto_path(url);
+				tweet.setVideo_path(null);
 			}
-			String url = "images/" + random_photo_name + "." + "jpg";
-			System.out.println("database url is：" + url);
 			if(tweet.getText().equals("")) {
 				tweet.setText("  ");
 			}
 			if(image.getSize()==0) {
 				tweet.setPhoto_path(null);
-				System.out.println("11111111111");
-				System.out.println("11111111111");
-			}
-			else {
-				tweet.setPhoto_path(url);
+				tweet.setVideo_path(null);
 			}
 			tweetService.createTweet(tweet);
 			return "redirect:/home";

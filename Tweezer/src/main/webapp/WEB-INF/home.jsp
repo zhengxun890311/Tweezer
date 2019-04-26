@@ -120,9 +120,7 @@
 					
 	<!-- 					<input id="success_btn" class="btn btn-success" type="submit" placeholder="What's happening"
 							value="Tweet" /> -->
-				<div>
-					<img id="player" src="" style="width:200px;height:200px;margin-top:10px;border-radius:5px;"/>
-				</div>
+					<iframe id="player" class="embed-responsive-item" src="" style="width:570px;height:300px;"></iframe>
 				<div style="text-align: right; margin-top: 5px; margin-bottom: 5px;">
 					<button id="success_btn" class="btn btn-primary my-2 my-sm-0 tweez-btn" type="submit">Tweez</button>
 				</div>
