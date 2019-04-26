@@ -136,22 +136,26 @@
    	 		<!-- PLACEHOLDER TEXT BELOW -->
    	 				
    	 				
-    		<c:forEach items="${followingTweets}" var="t">
+    		<c:forEach items="${allTweets}" var="t">
+    			<c:set var="id" value="${t[5]}"/>
+    			<c:set var="str" value="${str}"/>
+    			<c:if test="${fn:contains(str, id)}">
+    			
    	    		<div class="row tweet" style="margin-left:0px;margin-right: 0px;">
    	    			<c:if test="${empty t[1] != true}">
   	    				<div class="container col-3" style="display:inline-block; margin: 15px 0 0 0;">
-	    					<a href="/users/${t[0]}">
+	    					<a href="/users/${t[5]}">
 		    					<div class="tweetcropper">
-			    					<img src="${t[1]}" class="small-tweet-pic img-fluid">
+			    					<img src="${t[9]}" class="small-tweet-pic img-fluid">
 		    					</div>
 	    					</a>
   	    				</div>
     				</c:if>
     				<div class="col-9">
-    					<fmt:formatDate value="${t[6]}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDateTweet"/>
-	    				<p class="tweet-user-info" style="margin:0;padding:0"><a href="/users/${t[0]}"><c:out value="${t[2]} ${t[3]} @${t[4]}"/></a> </p>
+    					<fmt:formatDate value="${t[4]}" pattern="MMMM dd, yyyy hh:mmaa" var="formattedDateTweet"/>
+	    				<p class="tweet-user-info" style="margin:0;padding:0"><a href="/users/${t[5]}"><c:out value="${t[6]} ${t[7]} @${t[8]}"/></a> </p>
 	    				<p style="margin:0 0 10 0;padding:0;font-size:12px">Posted: <c:out value="${formattedDateTweet}"/></p>
-	    				<p class="tweet-text" style="margin-bottom: 8x;">${t[5]}</p>
+	    				<p class="tweet-text" style="margin-bottom: 8x;">${t[3]}</p>
 	    				
  						<c:if test ="${empty t[7]!= true }">
 							<a href="${t[7]}"><img src="${t[7]}" class="tweet-photo"></a>
@@ -161,7 +165,7 @@
 							<div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content">
 					    			<div class="modal-header">
-						      			<h5 class="modal-title" id="exampleModalCenterTitle">Reply to <c:out value="${t[4]}"/>'s Tweez</h5>
+						      			<h5 class="modal-title" id="exampleModalCenterTitle">Reply to <c:out value="${t[8]}"/>'s Tweez</h5>
 							  			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							    		<span aria-hidden="true">&times;</span></button>
 									</div>
@@ -182,8 +186,8 @@
 	    				<div class="row tweet-icons">
 <!-- post reply -->
 <!-- Button trigger modal -->
-							<button type="button" style="padding: 0; margin-left: 10px; margin-right: 30px;" class="btn reply-icon reply-button" data-toggle="modal" data-target="#exampleModalCenter" data-user="${loggedUser.id}" data-tweet="${t[9]}">
-								<span class="badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-comment" style="padding:0; font-size: 1.5em;"> ${fn:length(tweet.replies)}</i></span>
+							<button type="button" style="padding: 0; margin-left: 10px; margin-right: 30px;" class="btn reply-icon reply-button" data-toggle="modal" data-target="#exampleModalCenter" data-user="${loggedUser.id}" data-tweet="${t[2]}">
+								<span class="badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-comment" style="padding:0; font-size: 1.5em;"> ${t[0]}</i></span>
 							</button>
 <!-- like a tweet -->
 <%-- 							<c:forEach items="${tweet.likes}" var="l">
@@ -216,13 +220,15 @@
 							
 							
 	    					<form:form action="/homeLike" method="post" modelAttribute="likeObj">
-	    						<form:input type="hidden" path="tweet" value="${t[9]}"/>
+	    						<form:input type="hidden" path="tweet" value="${t[2]}"/>
 	    						<form:input type="hidden" path="user" value="${loggedUser.id}"/>
-			    				<button type="submit" style="border:0; padding:0px;"><span class="heart badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-heart" style="padding:0; font-size: 1.5em; margin-top: 5px;"> ${fn:length(tweet.likes)}</i></span></button> 
+			    				<button type="submit" style="border:0; padding:0px;"><span class="heart badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-heart" style="padding:0; font-size: 1.5em; margin-top: 5px;"> ${t[1]}</i></span></button> 
 	    					</form:form>
     					</div>
     				</div>
+    			<a href="/viewReplies/${t[2]}">View replies</a>
     			</div>
+    			</c:if>
    			</c:forEach>
 			</div>
 			

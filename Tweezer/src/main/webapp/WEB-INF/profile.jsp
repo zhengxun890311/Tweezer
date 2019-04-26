@@ -52,11 +52,14 @@
     <div class="container" style="background-color: rgb(79,61,103); min-width: 100%; height: 200px;">
     	<div class="container">
 	        <div class="justify-content-center">
+	        <c:if test="${empty user.userPhotoPath != true}">
 		        <div class="prof-crop" style="margin-top: 100px;border-radius: 50%; border: 5px solid white;">
-		            <div style="">
-		                <img src="/${user.userPhotoPath}" alt="my_pic" class="me" style= "max-height: 270px; max-width: 270px;">
+		            <div class="">
+		                <img src="/${user.userPhotoPath}" class="me" style= "max-height: 180px;margin: 0 auto;">
+		                <div class=""></div>
 		            </div>
 		        </div>
+	        </c:if>
 	        </div>
     	</div>
     </div>
@@ -169,12 +172,14 @@
     						<p><c:out value="${r.text}"/></p>
     					</c:forEach>
     	<!-- 	end of replies per tweet -->
-    	
+   
 	    				<div class="row tweet-icons">
  		<!-- post reply -->
 				<!-- Button trigger modal -->
 							<button type="button" style="padding: 0; margin-left: 10px; margin-right: 30px;" class="btn reply-icon reply-button" data-toggle="modal" data-target="#exampleModalCenter" data-user="${loggedUser.id}" data-tweet="${tweet.id}">
-								<span class="badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-comment" style="padding:0; font-size: 1.5em;"> ${fn:length(tweet.replies)}</i></span>
+							<span class="badge badge-light" style="width: 15px; padding: 0;">
+							<i class="col-2 far fa-comment" style="padding:0; font-size: 1.5em;" id="#view-replies"> ${fn:length(tweet.replies)}</i>
+							</span>
 							</button>
 							
 		    	<!-- like a tweet -->
@@ -192,7 +197,7 @@
 			    				
 				    						<form:input type="hidden" path="tweet" value="${tweet.id}"/>
 				    	<%-- 					<form:input type="hidden" path="user" value="${loggedUser.id}"/> --%>
-						    					<input type="submit" value="unlike">
+						    					<button type="submit" style="border:0; padding:0px;"><span class="heart badge badge-light" style="width: 15px; padding: 0; color:red"><i class="col-2 far fa-heart" style="padding:0; font-size: 1.5em;"> ${fn:length(tweet.likes)}</i></span></button>
 		    							</form:form>
 								</c:when>
 								<c:otherwise>
@@ -206,30 +211,26 @@
 	
 								</c:otherwise>
 							</c:choose>
-							
-
     					</div>
-    					<div class="row" style="display:absolute;">
-	    					<div class="container">
-		    					<div class="row" style="margin-left: 1px;">
-		    						<div class="" style="display:inline-block;">
-			    						<%-- <span class="badge badge-light">${fn:length(tweet.replies)}</span> --%>
-			    						<%-- <span class="badge badge-light">${fn:length(tweet.likes)}</span> --%>
-		    						</div>
-	  							    <div class="" style="margin-left: 19px; display:inline-block;">
-			    						<%-- <span class="badge badge-light">${fn:length(tweet.replies)}</span> --%>
-		    						</div>
-		    					</div>
-	    					</div>
-    					</div>
+    					<c:set var = "length" value = "${fn:length(tweet.replies)}"/>
+						<c:if test = "${length > 0 }">
+							<p><button class="btn view-replies" style="padding: 0;" data-tweet="${tweet.id}"><span style="color: grey;">View all ${fn:length(tweet.replies)} replies</span></button>
+							<button class="btn hide-replies" style="display:none; padding: 0;"><span style="color: grey;">Hide replies</span></button></p>
+						</c:if>
     				</div>
+    			</div>
+    			<div class="reply-box row tweet-replies col-8"style="margin-left: 17%;">
+    				<div class="col-6 reply-size"style="height: 100px; overflow-y: scroll;">
+	   					<c:forEach items="${tweet.replies}" var="r">
+	   						<p><span style="color: lightgrey;"><c:out value="${r.user.firstName} ${r.user.lastName}"/> replied:</span> <c:out value="${r.text}"/></p>
+	   					</c:forEach>
+   					</div>
     			</div>
    			</c:forEach>
     	<!-- End of the for loops for tweets -->
     		</div>
     	</div>
     </div>
- 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

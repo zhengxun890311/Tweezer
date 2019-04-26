@@ -104,6 +104,29 @@ public class UsersCtrl {
     		model.addAttribute("followingTweets", uS.getFollowingTweets(userId));
     		model.addAttribute("whoToFollow", uS.getWhoToFollow(userId));
     		model.addAttribute("trends", result);
+    		
+    		List<Number> following = new ArrayList<Number>();
+    		
+    		String str = "";
+    		
+    		List<Object[]> res = uS.getFollowing(userId);
+    		res.forEach(i -> {
+    			following.add((Number) i[0]);
+    		});
+    		
+    		System.out.println(following);
+    		
+    		for (int i=0; i<following.size(); i++) {
+    			str += following.get(i);
+    		}
+    		
+    		System.out.println(str);
+    		
+    		model.addAttribute("follow", following);
+    		model.addAttribute("str", str);
+    		
+    		model.addAttribute("allTweets", uS.getAllTweets());
+    		
     		return "home.jsp";    		   		
     	}
     }
