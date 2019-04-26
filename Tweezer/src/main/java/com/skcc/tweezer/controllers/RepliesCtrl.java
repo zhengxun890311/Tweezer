@@ -72,11 +72,4 @@ public class RepliesCtrl {
 		return "redirect:/users/" + reply.getTweet().getUser().getId();
 	}
 	
-	@GetMapping("/viewReplies/{id}")
-	public String viewReplies(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("tweet", tS.findTweet(id));
-		return "test.jsp";
-	}
-	
-	
 }

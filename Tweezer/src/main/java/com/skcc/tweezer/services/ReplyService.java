@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skcc.tweezer.models.Reply;
+import com.skcc.tweezer.models.Tweet;
 import com.skcc.tweezer.repositories.ReplyRepo;
 
 @Service
