@@ -22,7 +22,7 @@ public interface UserRepo extends CrudRepository<User, Long>{
 	List<Object[]> getFollowingTweets(Long id);
 	
 
-	@Query(value="SELECT COUNT(distinct replies.id) as number_of_replies, COUNT(distinct likes.id), tweets.id as tweetId, tweets.text, tweets.created_at, users.id as userId, users.first_name, users.last_name, users.username FROM tweets"
+	@Query(value="SELECT COUNT(distinct replies.id) as number_of_replies, COUNT(distinct likes.id), tweets.id as tweetId, tweets.text, tweets.created_at, users.id as userId, users.first_name, users.last_name, users.username, users.user_photo_path FROM tweets"
 			+ " LEFT JOIN replies ON tweets.id = replies.tweet_id"
 			+ " LEFT JOIN likes on tweets.id = likes.tweet_id "
 			+ "LEFT JOIN users ON tweets.user_id = users.id GROUP BY tweets.id ORDER BY tweets.created_at desc", nativeQuery=true)
