@@ -87,6 +87,19 @@ body {
 	background-color: white;
 	margin-bottom: 2px;
 }
+.tweet-replies {
+	display:none;
+	color: white;
+	background-color: rgb(79,61,103);
+	margin-bottom: 2px;
+	border-radius: 15px;
+}
+.reply-size {
+	padding: 5px;
+	height: 70px;
+	min-width: 450px;
+	overflow-y: scroll;
+}
 .small-pic {
 	width: 10%;
 	height: 10%;
@@ -130,4 +143,7 @@ body {
 	margin: 0;
 	height: 100%;
 	width: auto;
+}
+.badge-light {
+	background-color: white;
 }

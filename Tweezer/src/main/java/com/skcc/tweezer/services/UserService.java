@@ -89,6 +89,4 @@ public class UserService {
 	public List<Object[]> getFollowing(Long id){
 		return uR.getFollowing(id);
 	}
-	
-
 }
