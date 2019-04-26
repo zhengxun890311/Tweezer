@@ -56,50 +56,61 @@ public class TweetsCtrl {
 			String path="";
 			String random_file_name = UUID.randomUUID().toString().replaceAll("-", "");
 			String url="";
-			String fileName= image.getOriginalFilename();
-			String fileType = fileName.subSequence(fileName.length()-4, fileName.length()).toString();
-			System.out.println(image.getOriginalFilename().substring(image.getOriginalFilename().length()-4, image.getOriginalFilename().length()));
-			if(fileType.equals(".mp4")){
-				path= request.getSession().getServletContext().getRealPath("/videos");
-				File file = new File(path);
-				if (!file.exists()) {
-					file.mkdir();
-				}
-				try {
-					image.transferTo(new File(path + "/" + random_file_name + "." + "mp4"));
-				} catch (IllegalStateException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				url = "videos/" + random_file_name + "." + "mp4";
-				tweet.setVideo_path(url);
-				tweet.setPhoto_path(null);
-			}
-			else {
-				path = request.getSession().getServletContext().getRealPath("/images");
-				File file = new File(path);
-				if (!file.exists()) {
-					file.mkdir();
-				}
-				try {
-					image.transferTo(new File(path + "/" + random_file_name + "." + "jpg"));
-				} catch (IllegalStateException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				url = "images/" + random_file_name + "." + "jpg";
-				tweet.setPhoto_path(url);
-				tweet.setVideo_path(null);
-			}
-			if(tweet.getText().equals("")) {
-				tweet.setText("  ");
-			}
+			String fileName="";
+			System.out.println(image.getSize());
+			System.out.println(image.getSize());
 			if(image.getSize()==0) {
 				tweet.setPhoto_path(null);
 				tweet.setVideo_path(null);
+				System.out.println(tweet.getPhoto_path());
+				System.out.println(tweet.getVideo_path());
 			}
+			else {
+				fileName= image.getOriginalFilename();
+				String fileType = fileName.substring(fileName.length()-4, fileName.length()).toString();
+				if(fileType.equals(".mp4")){
+					path= request.getSession().getServletContext().getRealPath("/videos");
+					File file = new File(path);
+					if (!file.exists()) {
+						file.mkdir();
+					}
+					try {
+						image.transferTo(new File(path + "/" + random_file_name + "." + "mp4"));
+					} catch (IllegalStateException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					url = "videos/" + random_file_name + "." + "mp4";
+					tweet.setVideo_path(url);
+					tweet.setPhoto_path(null);
+				}
+				else {
+					path = request.getSession().getServletContext().getRealPath("/images");
+					File file = new File(path);
+					if (!file.exists()) {
+						file.mkdir();
+					}
+					try {
+						image.transferTo(new File(path + "/" + random_file_name + "." + "jpg"));
+					} catch (IllegalStateException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					url = "images/" + random_file_name + "." + "jpg";
+					tweet.setPhoto_path(url);
+					tweet.setVideo_path(null);
+				}
+			}
+			
+			//System.out.println(fileName);
+			//System.out.println(image.getOriginalFilename().substring(image.getOriginalFilename().length()-4, image.getOriginalFilename().length()));
+			
+			if(tweet.getText().equals("")) {
+				tweet.setText("  ");
+			}
+			
 			tweetService.createTweet(tweet);
 			return "redirect:/home";
 	}
