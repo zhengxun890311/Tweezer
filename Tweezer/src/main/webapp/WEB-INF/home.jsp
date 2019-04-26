@@ -226,6 +226,7 @@
 	    					</form:form>
     					</div>
     				</div>
+    			<a href="/viewReplies/${t[2]}">View replies</a>
     			</div>
     			</c:if>
    			</c:forEach>
