@@ -190,7 +190,7 @@
 								<span class="badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-comment" style="padding:0; font-size: 1.5em;"> ${t[0]}</i></span>
 							</button>
 <!-- like a tweet -->
-<%-- 							<c:forEach items="${tweet.likes}" var="l">
+ 							<c:forEach items="${tweet.likes}" var="l">
 								<c:if test="${l.user.id == loggedUser.id}">
 									<c:set var="alreadyLiked" value="true"/>
 								</c:if>
@@ -199,31 +199,25 @@
 							<c:choose>
 								<c:when test="${alreadyLiked == true}">
 									<c:set var="alreadyLiked" value="false"/>
-										<form:form action="/unlike" method="post" modelAttribute="unlikeObj">
+										<form:form action="/homeUnlike" method="post" modelAttribute="unlikeObj">
 			    				
-				    						<form:input type="hidden" path="tweet" value="${tweet.id}"/>
+				    						<form:input type="hidden" path="tweet" value="${t[2]}"/>
 				    						<form:input type="hidden" path="user" value="${loggedUser.id}"/>
 						    					<input type="submit" value="unlike">
 		    							</form:form>
 								</c:when>
 								<c:otherwise>
-			    					<form:form action="/like" method="post" modelAttribute="likeObj">
-				    				
-			    						<form:input type="hidden" path="tweet" value="${tweet.id}"/>
-			    						<form:input type="hidden" path="user" value="${loggedUser.id}"/>
-					    				<button type="submit" style="border:0; padding:0px;"><span class="heart badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-heart" style="padding:0; font-size: 1.5em;"> ${fn:length(tweet.likes)}</i></span></button> 
-				    				
-			    					</form:form>
-	
-								</c:otherwise>
-							</c:choose> --%>
-							
-							
-	    					<form:form action="/homeLike" method="post" modelAttribute="likeObj">
+
+		    					<form:form action="/homeLike" method="post" modelAttribute="likeObj">
 	    						<form:input type="hidden" path="tweet" value="${t[2]}"/>
 	    						<form:input type="hidden" path="user" value="${loggedUser.id}"/>
 			    				<button type="submit" style="border:0; padding:0px;"><span class="heart badge badge-light" style="width: 15px; padding: 0;"><i class="col-2 far fa-heart" style="padding:0; font-size: 1.5em; margin-top: 5px;"> ${t[1]}</i></span></button> 
 	    					</form:form>
+								</c:otherwise>
+							</c:choose> 
+							
+							
+
     					</div>
     				</div>
     			<a href="/viewReplies/${t[2]}">View replies</a>

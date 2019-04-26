@@ -40,11 +40,11 @@ public class LikesCtrl {
 		return "redirect:/users/" + like.getTweet().getUser().getId();
 	}
 	
-//	// unlike on the home page
-//	@PostMapping("/homeUnlike")
-//	public String homeUnlike(@ModelAttribute("unlikeObj") Like like, HttpSession session) {
-//		Long userId = (Long) session.getAttribute("userId");
-//		lS.unlike(userId, like.getId());
-//		return "redirect:/home";
-//	}
+	// unlike on the home page
+	@PostMapping("/homeUnlike")
+	public String homeUnlike(@ModelAttribute("unlikeObj") Like like, HttpSession session) {
+		Long userId = (Long) session.getAttribute("userId");
+		lS.unlike(userId, like.getId());
+		return "redirect:/home";
+	}
 }
