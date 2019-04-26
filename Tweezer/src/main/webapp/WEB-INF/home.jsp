@@ -135,6 +135,7 @@
 					
    	 		<!-- PLACEHOLDER TEXT BELOW -->
    	 				
+   	 				
     		<c:forEach items="${followingTweets}" var="t">
    	    		<div class="row tweet" style="margin-left:0px;margin-right: 0px;">
    	    			<c:if test="${empty t[1] != true}">
