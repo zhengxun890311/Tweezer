@@ -165,7 +165,7 @@
 	    					<a href="/${tweet.photo_path}"><img src="/${tweet.photo_path}" class="tweet-photo" id="${tweet.id}"></a>
     					</c:if>
     					<c:if test ="${empty tweet.video_path != true }">
-	    					<iframe src="/${tweet.video_path}" style="width:600px;height:300px;" class="tweet-video" id="${tweet.id}"></iframe>
+	    					<video autoplay controls="controls" muted src="/${tweet.video_path}" style="width:600px;height:300px;" class="tweet-video" id="${tweet.id}"></video>
 	    				</c:if>
     	<!-- 	Showing replies to a tweet	 -->		
     					<c:forEach items="${tweet.replies}" var="r">
