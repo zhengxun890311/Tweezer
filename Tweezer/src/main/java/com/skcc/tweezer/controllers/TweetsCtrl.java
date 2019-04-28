@@ -29,22 +29,8 @@ public class TweetsCtrl {
 	
 	@RequestMapping("/home1")
 	public String home(HttpSession session,@ModelAttribute("tweetObj") Tweet tweet) {
-		System.out.println(session.getAttribute("userId"));
 		return "/home.jsp";
 	}
-	
-//	@PostMapping("/createTweet")
-//	public String createTweet(HttpSession session,@Valid @ModelAttribute("tweetObj") Tweet tweet, BindingResult result) {
-//		//System.out.println(session.getAttribute("userId"));
-//		System.out.println(tweet.getText());
-//		System.out.println(tweet.getText());
-//		System.out.println(tweet.getText());
-//		User newUser = new User();
-//		newUser.setId((Long)session.getAttribute("userId"));
-//		tweet.setUser(newUser);
-//		tweetService.createTweet(tweet);
-//		return "/home.jsp";
-//	}
 	
 	@PostMapping("/createTweet")
 	public String createTweet(HttpSession session, 
@@ -52,18 +38,13 @@ public class TweetsCtrl {
 			BindingResult result,
 			HttpServletRequest request, Model model,
 			@RequestParam(value = "myfile") MultipartFile image) {
-		
 			String path="";
 			String random_file_name = UUID.randomUUID().toString().replaceAll("-", "");
 			String url="";
 			String fileName="";
-			System.out.println(image.getSize());
-			System.out.println(image.getSize());
 			if(image.getSize()==0) {
 				tweet.setPhoto_path(null);
 				tweet.setVideo_path(null);
-				System.out.println(tweet.getPhoto_path());
-				System.out.println(tweet.getVideo_path());
 			}
 			else {
 				fileName= image.getOriginalFilename();
@@ -103,14 +84,9 @@ public class TweetsCtrl {
 					tweet.setVideo_path(null);
 				}
 			}
-			
-			//System.out.println(fileName);
-			//System.out.println(image.getOriginalFilename().substring(image.getOriginalFilename().length()-4, image.getOriginalFilename().length()));
-			
 			if(tweet.getText().equals("")) {
 				tweet.setText("  ");
 			}
-			
 			tweetService.createTweet(tweet);
 			return "redirect:/home";
 	}
