@@ -89,4 +89,7 @@ public class UserService {
 	public List<Object[]> getFollowing(Long id){
 		return uR.getFollowing(id);
 	}
+	public int checkDuplicateEmail(String email) {
+		return uR.checkDuplicateEmail(email);
+	}
 }

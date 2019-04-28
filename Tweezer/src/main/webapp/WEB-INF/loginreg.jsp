@@ -57,13 +57,13 @@
 							            <form:input path="lastName" class="form-control form-control-sm" placeholder="Enter Last Name"/>
 							        </p>
 							        <p>
-							            <form:input id="username" onkeydown="check('username');" path="username" class="form-control form-control-sm" placeholder="Enter a Username"/>
+							            <form:input id="username" path="username" class="form-control form-control-sm" placeholder="Enter a Username"/>
 							        </p>
 							        <p>
-							            <form:input id="email" onKeydown="check('email');" type="email" path="email" class="form-control form-control-sm" placeholder="Enter Your Email"/>
+							            <form:input id="email" type="email" path="email" class="form-control form-control-sm" placeholder="Enter Your Email"/>
 							        </p>
 							        <p>
-							            <form:input type="date" path="birthday" class="form-control form-control-sm"/>
+							            <form:input id="birthday" type="date" path="birthday" class="form-control form-control-sm"/>
 							        </p>
 							        <p>
 							            <form:password path="password" class="form-control form-control-sm" placeholder="Password"/>
@@ -84,5 +84,21 @@
 </div>
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
+<script>
+	$(document).ready(function(){
+		var date = new Date();
+		var year = date.getFullYear()-13;
+		var month = ''+(date.getMonth()+1);
+		var day = ''+date.getDate();
+		if(month.length<2){
+			month="0"+month;
+		}
+		if(day.length<2){
+			day="0"+day;
+		}
+		var date = [year, month, day].join('-');
+		$("#birthday").attr("max",date);
+	})
+</script>
 </body>
 </html>
