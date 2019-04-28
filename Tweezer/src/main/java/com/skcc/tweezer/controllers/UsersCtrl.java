@@ -59,8 +59,7 @@ public class UsersCtrl {
 	
     @PostMapping("/registration")
     public String registerUser(@Valid @ModelAttribute("userObj") User user, BindingResult result, HttpSession session) {
-    	System.out.println(user.getFirstName());
-    	if(user.getUserPhotoPath()==null) {
+    	if(null == user.getUserPhotoPath()) {
     		user.setUserPhotoPath("https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/user.png");
     	}
     	uV.validate(user, result);
@@ -68,8 +67,8 @@ public class UsersCtrl {
     		return "loginreg.jsp";
     	} else {
     		User u = uS.registerUser(user);
-    		SendEmail sendEmail = new SendEmail();
-    		sendEmail.sendEmail(u);
+    		//SendEmail sendEmail = new SendEmail();
+    		//sendEmail.sendEmail(u);
     		session.setAttribute("userId",  u.getId());
     		return "redirect:/home";
     	}

@@ -49,4 +49,7 @@ public interface UserRepo extends CrudRepository<User, Long>{
 	// finds accounts that the user is not following
 	@Query(value="select users.id, users.first_name, users.last_name, users.username, users.user_photo_path from users where users.id not in (select following_id from friendships where user_id=?1) and users.id !=?1", nativeQuery=true)
 	List<Object[]> getWhoToFollow(Long id);
+	
+	@Query(value="select count(*) from users where email=?1",nativeQuery=true)
+	int checkDuplicateEmail(String email);
 }
