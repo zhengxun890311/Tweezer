@@ -60,6 +60,9 @@ public class UsersCtrl {
     @PostMapping("/registration")
     public String registerUser(@Valid @ModelAttribute("userObj") User user, BindingResult result, HttpSession session) {
     	System.out.println(user.getFirstName());
+    	if(user.getUserPhotoPath()==null) {
+    		user.setUserPhotoPath("https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/user.png");
+    	}
     	uV.validate(user, result);
     	if (result.hasErrors()) {
     		return "loginreg.jsp";
