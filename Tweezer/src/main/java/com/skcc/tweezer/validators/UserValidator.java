@@ -27,6 +27,9 @@ public class UserValidator implements Validator {
         if (!user.getPasswordConfirmation().equals(user.getPassword())) {
             errors.rejectValue("passwordConfirmation", "Match");
         }
+        if(user.getBirthday()==null ||user.getBirthday().toString().length()<=0) {
+        	errors.rejectValue("birthday", "Match");
+        }
         if(duEmail>0) {
         	errors.rejectValue("email", "Match");
         }

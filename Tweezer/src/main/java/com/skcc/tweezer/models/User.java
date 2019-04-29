@@ -28,11 +28,11 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Size(min=1, message="first name is required")
+	@Size(min=1, message="First name is required")
 	private String firstName;
-	@Size(min=1, message="last name is required")
+	@Size(min=1, message="Last name is required")
 	private String lastName;
-	@Size(min=1, message="username is required")
+	@Size(min=1, max=8, message="The maxium charters of username is 8")
 	private String username;
 	
 	private String userPhotoPath;
@@ -41,10 +41,11 @@ public class User {
 	
 	@Email
 	private String email;
-	@Size(min=8, message="password must be at least 8 characters")
+	@Size(min=8, message="Password must be at least 8 characters")
     private String password;
     @Transient
     private String passwordConfirmation;
+    
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
     @Column(updatable=false)
