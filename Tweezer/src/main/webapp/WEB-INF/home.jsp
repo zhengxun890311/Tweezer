@@ -232,10 +232,10 @@
 <!-- 	This is the section for 'who to follow' -->
 			
 			<div class="col-3 user-profile">
-				<div id="profile_div" style="background-color: white; height: 360px; margin-top: 1px; text-align: center; padding-left: 15px;">
+				<div id="profile_div" style="background-color: white; height: 360px; margin-top: 1px; text-align: center;">
 					<h3>Who to Follow</h3>
 					<c:forEach items="${whoToFollow}" var="u" begin="0" end="2">
-						<div class="row" style="height: 80px; margin-bottom: 30px; margin-left: 2px;">
+						<div class="row" style="height: 80px; margin-bottom: 30px; margin-left: 15px;">
 			 				<c:if test="${empty u[1] != true}">
 			    				<div class="cropper">
 				    				<img src="${u[4]}" class="usericon img-fluid  bg-white" style= "max-height: 200px;">
@@ -253,9 +253,7 @@
 					</c:forEach>
 				</div>
 			</div>
-
 			</div>
-			
 		</div>
 	</div>
 	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
