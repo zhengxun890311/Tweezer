@@ -55,7 +55,7 @@
 	        <c:if test="${empty user.userPhotoPath != true}">
 		        <div class="prof-crop" style="margin-top: 100px;border-radius: 50%; border: 5px solid white;">
 		            <div class="">
-		                <img src="${user.userPhotoPath}" class="me" style= "max-height: 180px;margin: 0 auto;">
+		                <img src="/${user.userPhotoPath}" class="me" style= "max-height: 180px;margin: 0 auto;">
 		                <div class=""></div>
 		            </div>
 		        </div>
@@ -152,7 +152,7 @@
    	    		<div class="row tweet">
    	    			<div class="container col-2" style="margin: 15px 0 15px 10px;">
 	   	    			<div class="tweetcropper">
-	    					<img src="${user.userPhotoPath}" alt="user.photo" class="small-tweet-pic">
+	    					<img src="/${user.userPhotoPath}" alt="user.photo" class="small-tweet-pic">
 	    				</div>
    	    			</div>
     				<div class="col-8">
