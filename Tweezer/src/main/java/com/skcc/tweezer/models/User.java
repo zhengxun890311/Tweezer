@@ -32,7 +32,7 @@ public class User {
 	private String firstName;
 	@Size(min=1, message="Last name is required")
 	private String lastName;
-	@Size(min=1, max=8, message="The maxium charters of username is 8")
+	@Size(min=1, max=8, message="The maximum characters for a username is 8 characters")
 	private String username;
 	
 	private String userPhotoPath;
