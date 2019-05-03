@@ -211,20 +211,23 @@
 								</c:otherwise>
 							</c:choose>
     					</div>
-    					<c:set var = "length" value = "${fn:length(tweet.replies)}"/>
-						<c:if test = "${length > 0 }">
+<%--    				<c:set var = "length" value = "${fn:length(tweet.replies)}"/>
+ 						<c:if test = "${length > 0 }">
 							<p><button class="btn view-replies" style="padding: 0;" data-tweet="${tweet.id}"><span style="color: grey;">View all ${fn:length(tweet.replies)} replies</span></button>
 							<button class="btn hide-replies" style="display:none; padding: 0;"><span style="color: grey;">Hide replies</span></button></p>
-						</c:if>
+						</c:if> --%>
     				</div>
     			</div>
-    			<div class="reply-box row tweet-replies col-8"style="margin-left: 17%;">
-    				<div class="col-6 reply-size"style="height: 100px; overflow-y: scroll;">
-	   					<c:forEach items="${tweet.replies}" var="r">
-	   						<p><span style="color: lightgrey;"><c:out value="${r.user.firstName} ${r.user.lastName}"/> replied:</span> <c:out value="${r.text}"/></p>
-	   					</c:forEach>
-   					</div>
-    			</div>
+				<c:set var = "length" value = "${fn:length(tweet.replies)}"/>
+ 				<c:if test = "${length > 0 }">
+	    			<div class="reply-box row tweet-replies col-8"style="margin-left: 17%;">
+	    				<div class="col-6 reply-size"style="height: 100px; overflow-y: scroll;">
+		   					<c:forEach items="${tweet.replies}" var="r">
+		   						<p><a href="/users/${r.user.id}" style="color: rgb(1,152,111);"><c:out value="${r.user.firstName} ${r.user.lastName}"/></a><span style="color: lightgrey;"> replied:</span> <c:out value="${r.text}"/></p>
+		   					</c:forEach>
+	   					</div>
+	    			</div>
+    			</c:if>
    			</c:forEach>
     	<!-- End of the for loops for tweets -->
     		</div>

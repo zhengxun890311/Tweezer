@@ -12,7 +12,7 @@ $(document).ready(function() {
 	$('.reply-button').click(function() {
 		var userId = $(this).attr('data-user');
 		var tweetId = $(this).attr('data-tweet');
-		alert(tweetId);
+
 		
 		$("#modal-userId").val(userId);
 		$("#modal-tweetId").val(tweetId);
