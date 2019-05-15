@@ -222,8 +222,28 @@
 							
 
     					</div>
-    				</div>
     				<a class='view-home-replies' href="/viewReplies/${t[2]}">View replies</a>
+    				
+    				<div class="show-home-replies"></div>
+    				
+<%--     				<a class="view-replies" data-tweet="${tweet.id}" style="text-decoration:underline">view replies</a>
+    			
+    				<div class="show-replies" style="display:none">
+	    			<a class="hide-replies" data-tweet="${tweet.id}" style="text-decoration:underline">hide replies</a>
+					<c:set var = "length" value = "${fn:length(tweet.replies)}"/>
+	 				<c:if test = "${length > 0 }">
+		    			<div class="reply-box row tweet-replies col-8"style="margin-left: 17%;">
+		    				<div class="col-6 reply-size"style="height: 100px; overflow-y: scroll;">
+			   					<c:forEach items="${tweet.replies}" var="r">
+			   						<p><a href="/users/${r.user.id}" style="color: rgb(1,152,111);"><c:out value="${r.user.firstName} ${r.user.lastName}"/></a><span style="color: lightgrey;"> replied:</span> <c:out value="${r.text}"/></p>
+			   					</c:forEach>
+		   					</div>
+		    			</div>
+	    			</c:if>
+    				</div> --%>
+    				
+    				
+    				</div>
     			</div>
     			</c:if>
    			</c:forEach>

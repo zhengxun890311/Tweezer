@@ -30,10 +30,10 @@
 			        <a class="nav-link" href="/news"><i class="fas fa-bolt"></i> News <span class="sr-only">(current)</span></a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="/notifications"><i class="fas fa-bell"></i> Notifications</a>
+			        <a class="nav-link" href="#"><i class="fas fa-bell"></i> Notifications</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="/messages"><i class="fas fa-envelope"></i> Messages</a>
+			        <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Messages</a>
 			      </li>
 		  	      <li class="nav-item">
 			        	<a class="nav-link" href="/home" style="margin-left: 95px;"><img id="tweezer-logo"src="/images/tweezer.png"></a>	        
@@ -66,7 +66,7 @@
     <div class="row shadow-sm p-2 mb-5 bg-white rounded whitebar" style=" height: 60px; min-width: 100%;">
     	<div class="container links-bar">
     		<div class="row" style="width: 300px;">
-				<p class="col-3 followers"><button type="button" class="btn badge-pill">Tweezes <span class="badge badge-dark">${fn:length(user.tweets)}</span></button></p>
+				<p class="col-3 followers"><button class="btn badge-pill">Tweezes <span class="badge badge-dark">${fn:length(user.tweets)}</span></button></p>
 				<p class="col-3 followers"><button type="button" class="btn badge-pill">Following <span class="badge badge-dark">${fn:length(user.userFollowing)}</span></button></p>
  				<p class="col-3 followers"><button type="button" class="btn badge-pill">Followers <span class="badge badge-dark">${fn:length(user.followers)}</span></button></p>
 				<!-- <p class="followers">Moments</p> -->   		
@@ -77,8 +77,8 @@
     <div class="container">
     	<div class="row justify-content-space-between">
     		<div class="col-3 user-profile">
-    			<h3 class="profile-info"><a href="/home">${user.firstName} ${user.lastName}</a></h3>
-    			<p class="profile-info"><span class="grey-text"><a href="/users/${user.id}">@${user.username}</a></span></p>
+    			<h3 class="profile-info">${user.firstName} ${user.lastName}</h3>
+    			<p class="profile-info"><span class="grey-text">@${user.username}</span></p>
     			
     			<fmt:formatDate value="${user.createdAt}" pattern="MMMM dd, yyyy" var="formattedDate"/>
     			<p class="profile-info"><i class="far fa-calendar-alt"></i><span class="grey-text"> Joined ${formattedDate}</span></p>
@@ -120,7 +120,7 @@
     		</div>
     		<div class="col-9 tweet-feed">
     			<div class="row tweet-title">
-    				<p class="col-9"><a href="#" style="margin-left:156px">Tweezes & replies</a></p>    			
+    				<p class="col-9" style="margin-left:156px">Tweezes & Replies</p>    			
     			</div>
    <!-- This is where the for-loop will go for tweets  -->	
    
@@ -152,7 +152,7 @@
    	    		<div class="row tweet">
    	    			<div class="container col-2" style="margin: 15px 0 15px 10px;">
 	   	    			<div class="tweetcropper">
-	    					<img src="/${user.userPhotoPath}" alt="user.photo" class="small-tweet-pic">
+	    					<img src="/${user.userPhotoPath}" class="small-tweet-pic">
 	    				</div>
    	    			</div>
     				<div class="col-8">
@@ -166,11 +166,7 @@
     					<c:if test ="${empty tweet.video_path != true }">
 	    					<video autoplay controls="controls" muted src="/${tweet.video_path}" style="width:600px;height:300px;" class="tweet-video" id="${tweet.id}"></video>
 	    				</c:if>
-    	<!-- 	Showing replies to a tweet	 -->		
-    					<c:forEach items="${tweet.replies}" var="r">
-    						<p><c:out value="${r.text}"/></p>
-    					</c:forEach>
-    	<!-- 	end of replies per tweet -->
+  
    
 	    				<div class="row tweet-icons">
  		<!-- post reply -->
@@ -211,13 +207,31 @@
 								</c:otherwise>
 							</c:choose>
     					</div>
-<%--    				<c:set var = "length" value = "${fn:length(tweet.replies)}"/>
- 						<c:if test = "${length > 0 }">
-							<p><button class="btn view-replies" style="padding: 0;" data-tweet="${tweet.id}"><span style="color: grey;">View all ${fn:length(tweet.replies)} replies</span></button>
-							<button class="btn hide-replies" style="display:none; padding: 0;"><span style="color: grey;">Hide replies</span></button></p>
-						</c:if> --%>
+    				
+						
+						
+<%-- 				<form>
+					<input id="view-tweetId" type="hidden" name="tweet">
+					<input type="submit" value="view replies">
+				</form>
+				 --%>
+    			<a href="#" class="view-replies" data-tweet="${tweet.id}">View replies</a>
+    			
+    			<div class="show-replies" style="display:none">
+	    			<a href="#" class="hide-replies" data-tweet="${tweet.id}">Hide replies</a>
+						<div style="padding:15px">
+			   				<c:forEach items="${tweet.replies}" var="r">
+			   					<div><a href="/users/${r.user.id}"><c:out value="${r.user.firstName} ${r.user.lastName}"/></a> replied: <c:out value="${r.text}"/></div>
+			   				</c:forEach>
+		    			</div>
+    			</div>
+    			
     				</div>
     			</div>
+    			
+    			
+<%--     			<div class="show-replies">
+    			<a class="hide-replies">hide replies</a>
 				<c:set var = "length" value = "${fn:length(tweet.replies)}"/>
  				<c:if test = "${length > 0 }">
 	    			<div class="reply-box row tweet-replies col-8"style="margin-left: 17%;">
@@ -228,6 +242,9 @@
 	   					</div>
 	    			</div>
     			</c:if>
+    			</div> --%>
+    			
+    			
    			</c:forEach>
     	<!-- End of the for loops for tweets -->
     		</div>
