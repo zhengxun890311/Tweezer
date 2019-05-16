@@ -15,61 +15,60 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-<!-- {fn:length(course.users)} -->
+
+<!-- Nav bar -->
 	<div class="container" style="background-color: white; min-width: 100%;">
 		<div class="container">
 			<nav class="navbar navbar-expand-lg navbar-light ">
-			  <a class="navbar-brand home" href="/home"><i class="fas fa-home"></i> Home</a>
-			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			    <span class="navbar-toggler-icon"></span>
-			  </button>
-			
-			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-			    <ul class="navbar-nav mr-auto">
-			      <li class="nav-item active">
-			        <a class="nav-link" href="/news"><i class="fas fa-bolt"></i> News <span class="sr-only">(current)</span></a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#"><i class="fas fa-bell"></i> Notifications</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Messages</a>
-			      </li>
-		  	      <li class="nav-item">
-			        	<a class="nav-link" href="/home" style="margin-left: 95px;"><img id="tweezer-logo"src="/images/tweezer.png"></a>	        
-			      </li>
-			    </ul>
-			    <form class="form-inline my-2 my-lg-0">
-			      <input class="form-control mr-sm-2 searchbar" type="search" placeholder="Search Tweezer" aria-label="Search">
-			      	<a href="/editprofile"><i class="fas fa-user" style="margin-right: 10px;"></i></a>
-			      <a href="/logout" class="btn btn-danger my-2 my-sm-0 tweez-btn">Log Out</a>
-			    </form>
+				<a class="navbar-brand home" href="/home"><i class="fas fa-home"></i> Home</a>
+			  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span></button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				    <ul class="navbar-nav mr-auto">
+				    	<li class="nav-item active">
+				        	<a class="nav-link" href="/news"><i class="fas fa-bolt"></i> News <span class="sr-only">(current)</span></a>
+				      	</li>
+<!-- 				      	<li class="nav-item">
+				        	<a class="nav-link" href="#"><i class="fas fa-bell"></i> Notifications</a>
+				      	</li>
+				      	<li class="nav-item">
+				        	<a class="nav-link" href="#"><i class="fas fa-envelope"></i> Messages</a>
+				      	</li> -->
+			  	      	<li class="nav-item">
+				        	<a class="nav-link" href="/home" style="margin-left: 95px;"><img id="tweezer-logo"src="/images/tweezer.png"></a>	        
+				      	</li>
+				    </ul>
+				    <form class="form-inline my-2 my-lg-0">
+				    	<input class="form-control mr-sm-2 searchbar" type="search" placeholder="Search Tweezer" aria-label="Search">
+				      	<a href="/editprofile"><i class="fas fa-user" style="margin-right: 10px;"></i></a>
+				      	<a href="/logout" class="btn btn-danger my-2 my-sm-0 tweez-btn">Log Out</a>
+				    </form>
 			  </div>
 			</nav>
 		</div>
 	</div>
-<!-- Top of profile and profile picture -->
+<!-- Profile banner picture -->
     <div class="container" style="background-color: rgb(79,61,103); min-width: 100%; height: 200px;">
     	<div class="container">
 	        <div class="justify-content-center">
-	        <c:if test="${empty user.userPhotoPath != true}">
-		        <div class="prof-crop" style="margin-top: 100px;border-radius: 50%; border: 5px solid white;">
-		            <div class="">
-		                <img src="/${user.userPhotoPath}" class="me" style= "max-height: 180px;margin: 0 auto;">
-		                <div class=""></div>
-		            </div>
-		        </div>
-	        </c:if>
+	        	<c:if test="${empty user.userPhotoPath != true}">
+		        	<div class="prof-crop" style="margin-top: 100px;border-radius: 50%; border: 5px solid white;">
+		            	<div class="">
+		                	<img src="/${user.userPhotoPath}" class="me" style= "max-height: 180px;margin: 0 auto;">
+		                	<div class=""></div>
+		            	</div>
+		        	</div>
+	        	</c:if>
 	        </div>
     	</div>
     </div>
+<!-- Middle section showing # of tweezes, followers and following -->
     <div class="row shadow-sm p-2 mb-5 bg-white rounded whitebar" style=" height: 60px; min-width: 100%;">
     	<div class="container links-bar">
     		<div class="row" style="width: 300px;">
 				<p class="col-3 followers"><button class="btn badge-pill">Tweezes <span class="badge badge-dark">${fn:length(user.tweets)}</span></button></p>
 				<p class="col-3 followers"><button type="button" class="btn badge-pill">Following <span class="badge badge-dark">${fn:length(user.userFollowing)}</span></button></p>
- 				<p class="col-3 followers"><button type="button" class="btn badge-pill">Followers <span class="badge badge-dark">${fn:length(user.followers)}</span></button></p>
-				<!-- <p class="followers">Moments</p> -->   		
+ 				<p class="col-3 followers"><button type="button" class="btn badge-pill">Followers <span class="badge badge-dark">${fn:length(user.followers)}</span></button></p>		
     		</div>
     	</div>
     </div> 
@@ -83,7 +82,7 @@
     			<fmt:formatDate value="${user.createdAt}" pattern="MMMM dd, yyyy" var="formattedDate"/>
     			<p class="profile-info"><i class="far fa-calendar-alt"></i><span class="grey-text"> Joined ${formattedDate}</span></p>
     			
- <!--   follow button -->
+ <!--   follow/unfollow button -->
  				<c:forEach items="${loggedUser.getUserFollowing()}" var ="f">
  					<c:if test="${f.id == user.id}">
  						<c:set var="alreadyFollowing" value="true"/>
@@ -118,11 +117,12 @@
 	    			</c:forEach>
 	    		</div>
     		</div>
+    		
+    <!-- Tweez feed -->
     		<div class="col-9 tweet-feed">
     			<div class="row tweet-title">
-    				<p class="col-9" style="margin-left:156px">Tweezes & Replies</p>    			
+    				<p class="col-9" style="margin:auto;padding:10px;text-align:center;">Tweezes & Replies</p>    			
     			</div>
-   <!-- This is where the for-loop will go for tweets  -->	
    
 			<!-- Modal -->
 			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -149,7 +149,7 @@
 			</div>	
 			
     		<c:forEach items="${userTweets}" var="tweet">
-   	    		<div class="row tweet">
+   	    		<div class="row tweet" style="padding:10px;">
    	    			<div class="container col-2" style="margin: 15px 0 15px 10px;">
 	   	    			<div class="tweetcropper">
 	    					<img src="/${user.userPhotoPath}" class="small-tweet-pic">
@@ -215,7 +215,7 @@
 					<input type="submit" value="view replies">
 				</form>
 				 --%>
-    			<a href="#" class="view-replies" data-tweet="${tweet.id}">View replies</a>
+    			<a href="/view${tweet.id}" class="view-replies" data-tweet="${tweet.id}">View replies</a>
     			
     			<div class="show-replies" style="display:none">
 	    			<a href="#" class="hide-replies" data-tweet="${tweet.id}">Hide replies</a>

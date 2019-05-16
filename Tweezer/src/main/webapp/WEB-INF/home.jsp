@@ -45,10 +45,10 @@
 						<li class="nav-item active"><a class="nav-link" href="/news"><i
 								class="fas fa-bolt"></i> News <span class="sr-only">(current)</span></a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="#"><i
+<!-- 						<li class="nav-item"><a class="nav-link" href="#"><i
 								class="fas fa-bell"></i> Notifications</a></li>
 						<li class="nav-item"><a class="nav-link" href="#"><i
-								class="fas fa-envelope"></i> Messages</a></li>
+								class="fas fa-envelope"></i> Messages</a></li> -->
 						<li class="nav-item"><a class="nav-link" href="#"
 							style="margin-left: 95px;"><img id="tweezer-logo"
 								src="images/tweezer.png"></a></li>
@@ -127,10 +127,8 @@
 						
 				</form:form>
 				<div id="tweet_div_content" class="row tweet-title" style:"margin-left:0px;margin-right:0px">
-					<p class="col-2">Tweezes</p>
-					<p class="col-9">
-						<a href="#">Tweezes & replies</a>
-					</p>
+					
+					<p class="col-9" style="margin:auto;text-align:center;padding:10px;">Tweezes & Replies</p>
 				</div>
 					
    	 		<!-- PLACEHOLDER TEXT BELOW -->
@@ -141,7 +139,7 @@
     			<c:set var="str" value="${str}"/>
     			<c:if test="${fn:contains(str, id)}">
     			
-   	    		<div class="row tweet" style="margin-left:0px;margin-right: 0px;">
+   	    		<div class="row tweet" style="margin-left:0px;margin-right: 0px;padding:10px;">
    	    			<c:if test="${empty t[9] != true}">
   	    				<div class="container col-3" style="display:inline-block; margin: 15px 0 0 0;">
 	    					<a href="/users/${t[5]}">
@@ -222,13 +220,13 @@
 							
 
     					</div>
-    				<a class='view-home-replies' href="/viewReplies/${t[2]}">View replies</a>
+    				<a class='view-home-replies' href="/viewReplies/${t[2]}" data-tweet="${t[2]}">View replies</a>
     				
-    				<div class="show-home-replies"></div>
+    				<div class="show-home-replies" data-tweet="${t[2]}"></div>
     				
-<%--     				<a class="view-replies" data-tweet="${tweet.id}" style="text-decoration:underline">view replies</a>
+<%--      				<a class="view-home-replies" data-tweet="${tweet.id}" style="text-decoration:underline">view replies</a>
     			
-    				<div class="show-replies" style="display:none">
+    				<div class="show-home-replies" style="display:none">
 	    			<a class="hide-replies" data-tweet="${tweet.id}" style="text-decoration:underline">hide replies</a>
 					<c:set var = "length" value = "${fn:length(tweet.replies)}"/>
 	 				<c:if test = "${length > 0 }">
@@ -240,7 +238,7 @@
 		   					</div>
 		    			</div>
 	    			</c:if>
-    				</div> --%>
+    				</div>  --%>
     				
     				
     				</div>

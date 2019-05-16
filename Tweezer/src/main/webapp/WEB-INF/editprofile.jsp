@@ -28,14 +28,14 @@
 			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 			    <ul class="navbar-nav mr-auto">
 			      <li class="nav-item active">
-			        <a class="nav-link" href="/moments"><i class="fas fa-bolt"></i> Moments <span class="sr-only">(current)</span></a>
+			        <a class="nav-link" href="/news"><i class="fas fa-bolt"></i> News <span class="sr-only">(current)</span></a>
 			      </li>
-			      <li class="nav-item">
+	<!-- 		      <li class="nav-item">
 			        <a class="nav-link" href="/notifications"><i class="fas fa-bell"></i> Notifications</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="/messages"><i class="fas fa-envelope"></i> Messages</a>
-			      </li>
+			      </li> -->
 		  	      <li class="nav-item">
 			        	<a class="nav-link" href="#" style="margin-left: 95px;"><img id="tweezer-logo"src="images/tweezer.png"></a>	        
 			      </li>
@@ -58,7 +58,7 @@
        	<div class="container">
 	        <div class="justify-content-center" style="margin: 20px 0 0 -240px;">
 	            <div class="prof-pic-crop">
-	                <img src="/${user.userPhotoPath}" alt="" class="me prof-pic">
+	                <img src="/${user.userPhotoPath}" class="me prof-pic">
 	            </div>
 	        </div>
 	        <div class="row">
@@ -91,7 +91,7 @@
 			<input id="myfile" name="myfile" type="file" path="userPhotoPath" class="custom-file-input" value="${user.userPhotoPath }">
 			<label class="custom-file-label" for="customFile">Choose file for user pic</label>
 			<div>
-				<img id="player" src="${tweet.photo_path}" style="width: 20rem;height: 15rem;">
+				<img id="player" src="${tweet.photo_path}" style="width: 20rem;">
 			</div>
 			<input type="submit" value="Update"/>
 		</div>
