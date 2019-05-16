@@ -45,10 +45,10 @@
 						<li class="nav-item active"><a class="nav-link" href="/news"><i
 								class="fas fa-bolt"></i> News <span class="sr-only">(current)</span></a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="#"><i
+						<!-- <li class="nav-item"><a class="nav-link" href="#"><i
 								class="fas fa-bell"></i> Notifications</a></li>
 						<li class="nav-item"><a class="nav-link" href="#"><i
-								class="fas fa-envelope"></i> Messages</a></li>
+								class="fas fa-envelope"></i> Messages</a></li> -->
 						<li class="nav-item"><a class="nav-link" href="#"
 							style="margin-left: 95px;"><img id="tweezer-logo"
 								src="images/tweezer.png"></a></li>
@@ -73,7 +73,7 @@
 						
 						
 						<a href="/editprofile">
-							<img id="profile_div_img" src="${user.userPhotoPath}" alt="my_pic"
+							<img id="profile_div_img" src="${user.userPhotoPath}"
 								class="me rounded-circle img-fluid shadow-sm p-1 mb-5 bg-white rounded">
 						</a>
 						<div id="profile_div_name">
@@ -140,7 +140,7 @@
 				<div class="row" style="height: 80px; margin-bottom: 30px; margin-left: 2px;">
 					<!-- <div class="col-3"> -->
 		 				<c:if test="${empty u[1] != true}">
-		    				<img src="${u[4]}" alt="user.photo" class="usericon col-3 rounded-circle p-1 img-fluid  bg-white rounded" style= "max-height: 200px;">
+		    				<img src="${u[4]}" class="usericon col-3 rounded-circle p-1 img-fluid  bg-white rounded" style= "max-height: 200px;">
 		    			</c:if>
 					<!-- </div> -->
 					<div class="col-8">

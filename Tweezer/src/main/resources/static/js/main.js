@@ -24,6 +24,7 @@ $(document).ready(function() {
 		
 		$('#view-tweetId').val(tweetId);
 		
+		$('.show-replies').addClass(tweetId);
 		$('.show-replies').show();
 		$('.view-replies').hide();
 	})
