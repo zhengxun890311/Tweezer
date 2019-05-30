@@ -12,7 +12,7 @@ public class TweezerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TweezerApplication.class, args);
 	}
-   /* @Bean
+	@Bean
     public TomcatServletWebServerFactory servletContainer() {
         TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
         Connector ajpConnector = new Connector("AJP/1.3");
@@ -22,5 +22,5 @@ public class TweezerApplication {
         ajpConnector.setScheme("http");
         tomcat.addAdditionalTomcatConnectors(ajpConnector);
         return tomcat;
-    }*/
+    }
 }
