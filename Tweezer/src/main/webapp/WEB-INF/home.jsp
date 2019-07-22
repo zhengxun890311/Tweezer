@@ -47,7 +47,7 @@
 						</li>
 						<li class="nav-item"><a class="nav-link" href="https://www.google.com"><i
 								class="fas fa-bell"></i> Notifications</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"><i
+						<li class="nav-item"><a class="nav-link" href="https://www.baidu.com"><i
 								class="fas fa-envelope"></i> Messages</a></li>
 						<li class="nav-item"><a class="nav-link" href="#"
 							style="margin-left: 95px;"><img id="tweezer-logo"
