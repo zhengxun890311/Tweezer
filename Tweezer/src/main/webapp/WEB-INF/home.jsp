@@ -159,7 +159,6 @@
 						</c:if>
 						<c:if test="${empty t[11]!=true}">
 						<!-- <iframe src="${t[11]}" style="width:400px;height:300px;border-radius:10px;" class="tweet-video" controls muted></iframe> -->	
-							
 							<video style="width:400px;height:300px;border-radius:10px;" controls muted autoplay>
 								<source src="${t[11]}" type="video/mp4">
 							</video>
