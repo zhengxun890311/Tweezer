@@ -89,7 +89,12 @@ public class UsersCtrl {
     }
     
     @GetMapping("/home")
-    public String home(@ModelAttribute("tweetObj") Tweet tweet, Model model, @ModelAttribute("replyObj") Reply reply, @ModelAttribute("followUserObj") User followUser, @ModelAttribute("likeObj") Like like, @ModelAttribute("unlikeObj") Like unlike, HttpSession session) {
+    public String home(@ModelAttribute("tweetObj") Tweet tweet, Model model, 
+    		@ModelAttribute("replyObj") Reply reply,
+    		@ModelAttribute("followUserObj") User followUser,
+    		@ModelAttribute("likeObj") Like like, 
+    		@ModelAttribute("unlikeObj") Like unlike, 
+    		HttpSession session) {
     	Long userId = (Long) session.getAttribute("userId");
     	if (userId==null) {
     		return "redirect:/";
@@ -192,6 +197,9 @@ public class UsersCtrl {
     		return "redirect:/";
     	} else {
     		User u = uS.findUserById(id);
+    		System.out.println(u.getUserPhotoPath());
+    		System.out.println(u.getUserPhotoPath());
+    		System.out.println(u.getUserPhotoPath());
 	    	model.addAttribute("user", u);
 	    	model.addAttribute("loggedUser", uS.findUserById(userId));
 	    	model.addAttribute("userTweets", tS.findUserTweets(u));

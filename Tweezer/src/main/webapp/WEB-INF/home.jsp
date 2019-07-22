@@ -45,7 +45,7 @@
 						<li class="nav-item active"><a class="nav-link" href="/news"><i
 								class="fas fa-bolt"></i> News <span class="sr-only">(current)</span></a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="#"><i
+						<li class="nav-item"><a class="nav-link" href="https://www.google.com"><i
 								class="fas fa-bell"></i> Notifications</a></li>
 						<li class="nav-item"><a class="nav-link" href="#"><i
 								class="fas fa-envelope"></i> Messages</a></li>
@@ -70,7 +70,7 @@
 						
 						<a href="/editprofile">
 							<img id="profile_div_img" src="${user.userPhotoPath}" alt="my_pic"
-								class="me rounded-circle img-fluid shadow-sm p-1 mb-5 bg-white rounded">
+								class="me rounded-circle img-fluid p-1 mb-5 bg-white">
 						</a>
 						<div id="profile_div_name">
 							<h6><c:out value="${user.firstName}"/></h6>
@@ -117,9 +117,6 @@
 				</div>
 					
 				<form:textarea style="max-height:200px;" id="tweetText" class="form-control" path="text" placeholder="What's the Tweez?"/>
-					
-	<!-- 					<input id="success_btn" class="btn btn-success" type="submit" placeholder="What's happening"
-							value="Tweet" /> -->
 					<iframe id="player" class="embed-responsive-item" src="" style="width:570px;height:300px;"></iframe>
 				<div style="text-align: right; margin-top: 5px; margin-bottom: 5px;">
 					<button id="success_btn" class="btn btn-primary my-2 my-sm-0 tweez-btn" type="submit">Tweez</button>
@@ -161,7 +158,11 @@
 							<a href="${t[10]}"><img src="${t[10]}" class="tweet-photo"></a>
 						</c:if>
 						<c:if test="${empty t[11]!=true}">
-							<iframe src="${t[11]}" style="width:400px;height:300px;border-radius:10px;" class="tweet-video"></iframe>
+						<!-- <iframe src="${t[11]}" style="width:400px;height:300px;border-radius:10px;" class="tweet-video" controls muted></iframe> -->	
+							
+							<video style="width:400px;height:300px;border-radius:10px;" controls muted autoplay>
+								<source src="${t[11]}" type="video/mp4">
+							</video>
 						</c:if>
 	    				
 						<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
