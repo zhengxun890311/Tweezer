@@ -270,6 +270,10 @@
  				/* $("#iframe").show(); */
 				/* $("#myfile").show(); */
 			});
+			
+			$("#tweezer-logo").click(function(){
+				location.reload();
+			})
 		})
 		
 		$("#myfile").change(function(){
